@@ -1,0 +1,6 @@
+data/org.nordlex.logiops.desktop.in
+data/org.nordlex.logiops.appdata.xml.in
+data/org.nordlex.logiops.gschema.xml
+src/main.c
+src/logiops-window.c
+src/logiops-window.ui
