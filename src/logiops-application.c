@@ -29,9 +29,8 @@ struct _LogiopsApplication {
 
 G_DEFINE_TYPE (LogiopsApplication, logiops_application, ADW_TYPE_APPLICATION)
 
-LogiopsApplication *
-logiops_application_new(const char *application_id,
-                        GApplicationFlags flags) {
+LogiopsApplication *logiops_application_new(const char *application_id,
+                                            GApplicationFlags flags) {
     g_return_val_if_fail (application_id != NULL, NULL);
 
     return g_object_new(LOGIOPS_TYPE_APPLICATION,
@@ -40,8 +39,7 @@ logiops_application_new(const char *application_id,
                         NULL);
 }
 
-static void
-logiops_application_activate(GApplication *app) {
+static void logiops_application_activate(GApplication *app) {
     GtkWindow *window;
 
     g_assert (LOGIOPS_IS_APPLICATION(app));
@@ -56,17 +54,15 @@ logiops_application_activate(GApplication *app) {
     gtk_window_present(window);
 }
 
-static void
-logiops_application_class_init(LogiopsApplicationClass *klass) {
+static void logiops_application_class_init(LogiopsApplicationClass *klass) {
     GApplicationClass *app_class = G_APPLICATION_CLASS (klass);
 
     app_class->activate = logiops_application_activate;
 }
 
-static void
-logiops_application_about_action(GSimpleAction *action,
-                                 GVariant *parameter,
-                                 gpointer user_data) {
+static void logiops_application_about_action(GSimpleAction *action,
+                                             GVariant *parameter,
+                                             gpointer user_data) {
     static const char *developers[] = {"NordLex", NULL};
     LogiopsApplication *self = user_data;
     GtkWindow *window = NULL;
@@ -85,10 +81,9 @@ logiops_application_about_action(GSimpleAction *action,
                           NULL);
 }
 
-static void
-logiops_application_quit_action(GSimpleAction *action,
-                                GVariant *parameter,
-                                gpointer user_data) {
+static void logiops_application_quit_action(GSimpleAction *action,
+                                            GVariant *parameter,
+                                            gpointer user_data) {
     LogiopsApplication *self = user_data;
 
     g_assert (LOGIOPS_IS_APPLICATION(self));
@@ -101,8 +96,7 @@ static const GActionEntry app_actions[] = {
         {"about", logiops_application_about_action},
 };
 
-static void
-logiops_application_init(LogiopsApplication *self) {
+static void logiops_application_init(LogiopsApplication *self) {
     g_action_map_add_action_entries(G_ACTION_MAP (self),
                                     app_actions,
                                     G_N_ELEMENTS (app_actions),

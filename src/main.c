@@ -24,9 +24,7 @@
 
 #include "logiops-application.h"
 
-int
-main(int argc,
-     char *argv[]) {
+int main(int argc, char *argv[]) {
     g_autoptr(LogiopsApplication) app = NULL;
     int ret;
 

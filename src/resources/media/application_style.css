@@ -1,0 +1,14 @@
+button.white_frame {
+    border: 4px solid;
+    color: white;
+}
+
+widget.green_frame {
+    border: 2px solid;
+    color: green;
+}
+
+widget.red_frame {
+    border: 2px solid;
+    color: red;
+}

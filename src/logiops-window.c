@@ -32,16 +32,14 @@ struct _LogiopsWindow {
 
 G_DEFINE_FINAL_TYPE (LogiopsWindow, logiops_window, ADW_TYPE_APPLICATION_WINDOW)
 
-static void
-logiops_window_class_init(LogiopsWindowClass *klass) {
+static void logiops_window_class_init(LogiopsWindowClass *klass) {
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-    gtk_widget_class_set_template_from_resource(widget_class, "/org/nordlex/logiops/logiops-window.ui");
+    gtk_widget_class_set_template_from_resource(widget_class, "/org/nordlex/logiops/resources/ui/logiops-window.ui");
     gtk_widget_class_bind_template_child (widget_class, LogiopsWindow, header_bar);
     gtk_widget_class_bind_template_child (widget_class, LogiopsWindow, label);
 }
 
-static void
-logiops_window_init(LogiopsWindow *self) {
+static void logiops_window_init(LogiopsWindow *self) {
     gtk_widget_init_template(GTK_WIDGET (self));
 }
