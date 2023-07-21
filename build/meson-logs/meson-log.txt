@@ -1,0 +1,979 @@
+Build started at 2023-07-22T01:25:17.293574
+Main binary: /usr/bin/python3
+Build Options: 
+Python system: Linux
+The Meson build system
+Version: 1.0.1
+Source dir: /home/nordlex/devel/CLionProjects/LogiOps
+Build dir: /home/nordlex/devel/CLionProjects/LogiOps/build
+Build type: native build
+Project name: logiops
+Project version: 0.1.0
+-----
+Detecting compiler via: cc --version
+compiler returned <Popen: returncode: 0 args: ['cc', '--version']>
+compiler stdout:
+cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)
+Copyright (C) 2023 Free Software Foundation, Inc.
+Это свободно распространяемое программное обеспечение. Условия копирования
+приведены в исходных текстах.
+
+  Без гарантии каких-либо качеств, включая 
+коммерческую ценность и применимость для каких-либо целей.
+
+
+
+
+compiler stderr:
+
+Running command: cc -E -dM -
+-----
+Detecting linker via: cc -Wl,--version
+linker returned <Popen: returncode: 0 args: ['cc', '-Wl,--version']>
+linker stdout:
+GNU ld version 2.39-9.fc38
+Copyright (C) 2022 Free Software Foundation, Inc.
+Эта программа является свободным программным обеспечением. Вы можете распространять
+её на условиях GNU General Public License версии 3 или (по вашему выбору)
+более поздней версии.
+Эта программа не имеет абсолютно никаких не гарантий.
+
+linker stderr:
+collect2 версия 13.1.1 20230614 (Red Hat 13.1.1-4)
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccTtVDZ2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/13 -L/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/13/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crtn.o
+
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc sanitycheckc.c -o sanitycheckc.exe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/sanitycheckc.exe
+C compiler for the host machine: cc (gcc 13.1.1 "cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)")
+C linker for the host machine: cc ld.bfd 2.39-9
+-----
+Detecting compiler via: cc --version
+compiler returned <Popen: returncode: 0 args: ['cc', '--version']>
+compiler stdout:
+cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)
+Copyright (C) 2023 Free Software Foundation, Inc.
+Это свободно распространяемое программное обеспечение. Условия копирования
+приведены в исходных текстах.
+
+  Без гарантии каких-либо качеств, включая 
+коммерческую ценность и применимость для каких-либо целей.
+
+
+
+
+compiler stderr:
+
+Running command: cc -E -dM -
+-----
+Detecting linker via: cc -Wl,--version
+linker returned <Popen: returncode: 0 args: ['cc', '-Wl,--version']>
+linker stdout:
+GNU ld version 2.39-9.fc38
+Copyright (C) 2022 Free Software Foundation, Inc.
+Эта программа является свободным программным обеспечением. Вы можете распространять
+её на условиях GNU General Public License версии 3 или (по вашему выбору)
+более поздней версии.
+Эта программа не имеет абсолютно никаких не гарантий.
+
+linker stderr:
+collect2 версия 13.1.1 20230614 (Red Hat 13.1.1-4)
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-redhat-linux/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDMaqC5.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/13 -L/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/13/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/crtn.o
+
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc sanitycheckc.c -o sanitycheckc.exe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 13.1.1 "cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)")
+C linker for the build machine: cc ld.bfd 2.39-9
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Configuring config.h using configuration
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgrci0___
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgrci0___/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgrci0___/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-align 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wcast-align: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxu62tbbi
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxu62tbbi/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxu62tbbi/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wdeclaration-after-statement: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5badzqhp
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5badzqhp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5badzqhp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=address 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=address: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkymyyexf
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkymyyexf/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkymyyexf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=array-bounds 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=array-bounds: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6qab5iyl
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6qab5iyl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6qab5iyl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=empty-body 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=empty-body: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr7fp2a7z
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr7fp2a7z/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr7fp2a7z/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=implicit: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe74k4naw
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe74k4naw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe74k4naw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=implicit-function-declaration: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdkq77rr4
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdkq77rr4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdkq77rr4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=incompatible-pointer-types 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=incompatible-pointer-types: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwk62_1jz
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwk62_1jz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwk62_1jz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=init-self 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=init-self: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpbnw0wu_y
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpbnw0wu_y/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpbnw0wu_y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-conversion 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=int-conversion: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcp66nhcm
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcp66nhcm/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcp66nhcm/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-to-pointer-cast 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=int-to-pointer-cast: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjvvl9eyr
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjvvl9eyr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjvvl9eyr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=main 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=main: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpc9bvm5zz
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpc9bvm5zz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpc9bvm5zz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=misleading-indentation 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=misleading-indentation: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg24zi6o2
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg24zi6o2/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg24zi6o2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-braces 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=missing-braces: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjz16mhxo
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjz16mhxo/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjz16mhxo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-include-dirs 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=missing-include-dirs: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn_g5vdrt
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn_g5vdrt/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn_g5vdrt/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=nonnull 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=nonnull: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgfijmgg6
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgfijmgg6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgfijmgg6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=overflow 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=overflow: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpla1qlzdu
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpla1qlzdu/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpla1qlzdu/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=parenthesis 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ cc1: error: '-Werror=parenthesis': no option '-Wparenthesis'; did you mean '-Wparentheses'?
+
+Compiler for C supports arguments -Werror=parenthesis: NO 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxgnft5c1
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxgnft5c1/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxgnft5c1/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-arith 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=pointer-arith: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptgpcp2wb
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptgpcp2wb/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptgpcp2wb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-to-int-cast 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=pointer-to-int-cast: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpfm419aaq
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpfm419aaq/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpfm419aaq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=redundant-decls 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=redundant-decls: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjc_70f3d
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjc_70f3d/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjc_70f3d/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=return-type 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=return-type: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpohjyy4ec
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpohjyy4ec/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpohjyy4ec/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=sequence-point 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=sequence-point: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy4_43i3e
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy4_43i3e/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy4_43i3e/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=shadow 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=shadow: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp66_jil3s
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp66_jil3s/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp66_jil3s/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=strict-prototypes 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=strict-prototypes: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprasoeim3
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprasoeim3/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprasoeim3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=trigraphs 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=trigraphs: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj9990tlc
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj9990tlc/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj9990tlc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=undef 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=undef: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmppix4t8s4
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmppix4t8s4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmppix4t8s4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=write-strings 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=write-strings: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwkigwizl
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwkigwizl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwkigwizl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-nonliteral 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ cc1: warning: '-Wformat-nonliteral' ignored without '-Wformat' [-Wformat-nonliteral]
+
+Compiler for C supports arguments -Wformat-nonliteral: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzlhiemqd
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzlhiemqd/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzlhiemqd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-qualifiers 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wignored-qualifiers: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuaotukyk
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuaotukyk/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuaotukyk/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wimplicit-function-declaration 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wimplicit-function-declaration: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpug4g8o71
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpug4g8o71/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpug4g8o71/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wlogical-op 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wlogical-op: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptvq5w3zl
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptvq5w3zl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptvq5w3zl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-declarations 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wmissing-declarations: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgbbdpv9y
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgbbdpv9y/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgbbdpv9y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-format-attribute 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wmissing-format-attribute: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3fadiydr
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3fadiydr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3fadiydr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-include-dirs 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wmissing-include-dirs: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdt3hjqzs
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdt3hjqzs/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdt3hjqzs/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-noreturn 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wmissing-noreturn: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp32lik4yz
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp32lik4yz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp32lik4yz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wnested-externs 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wnested-externs: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzb7euqtq
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzb7euqtq/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzb7euqtq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-function-type -Wno-cast-function-type 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-cast-function-type: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg2wrqrhg
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg2wrqrhg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg2wrqrhg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdangling-pointer -Wno-dangling-pointer 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-dangling-pointer: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwx0gxllg
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwx0gxllg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwx0gxllg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-field-initializers -Wno-missing-field-initializers 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-missing-field-initializers: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpnczxea9u
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpnczxea9u/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpnczxea9u/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare -Wno-sign-compare 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-sign-compare: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf95c1c5b
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf95c1c5b/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf95c1c5b/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused-parameter -Wno-unused-parameter 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wno-unused-parameter: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzw5l_hrh
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzw5l_hrh/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzw5l_hrh/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-definition 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wold-style-definition: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9qgd8ulp
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9qgd8ulp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9qgd8ulp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wpointer-arith 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wpointer-arith: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf18toeez
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf18toeez/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf18toeez/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wredundant-decls 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wredundant-decls: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdcim19ns
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdcim19ns/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdcim19ns/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-prototypes 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wstrict-prototypes: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvf08f4az
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvf08f4az/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvf08f4az/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-default 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wswitch-default: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpz59erxpd
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpz59erxpd/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpz59erxpd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-enum 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wswitch-enum: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmph2vcd6b9
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmph2vcd6b9/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmph2vcd6b9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wundef 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wundef: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp2jnm677v
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp2jnm677v/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp2jnm677v/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wuninitialized 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wuninitialized: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe0vu4gjg
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe0vu4gjg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe0vu4gjg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Wunused: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg7sy21aw
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg7sy21aw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg7sy21aw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fno-strict-aliasing 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -fno-strict-aliasing: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxtb7n_xh
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxtb7n_xh/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxtb7n_xh/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=format-security -Werror=format=2 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -Werror=format-security -Werror=format=2: YES 
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprcobqdby
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprcobqdby/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprcobqdby/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fstack-protector-strong 
+
+Code:
+ extern int i;
+int i;
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler for C supports arguments -fstack-protector-strong: YES 
+Program msgfmt found: YES (/usr/bin/msgfmt)
+Program desktop-file-validate found: YES (/usr/bin/desktop-file-validate)
+Adding test "Validate desktop file"
+Program appstream-util found: YES (/usr/bin/appstream-util)
+Adding test "Validate appstream file"
+Program glib-compile-schemas found: YES (/usr/bin/glib-compile-schemas)
+Adding test "Validate schema file"
+Pkg-config binary for 1 is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default Pkg-config fallback at pkg-config
+Found pkg-config: /usr/bin/pkg-config (1.8.0)
+Determining dependency 'gtk4' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --modversion gtk4` -> 0
+stdout:
+4.10.4
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --cflags gtk4` -> 0
+stdout:
+-I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/libxml2 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/graphene-1.0 -I/usr/lib64/graphene-1.0/include -mfpmath=sse -msse -msse2 -I/usr/include/gio-unix-2.0 -pthread
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs gtk4` -> 0
+stdout:
+-L/usr/lib64 -lgtk-4 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgraphene-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs gtk4` -> 0
+stdout:
+-lgtk-4 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgraphene-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0_9kywel
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0_9kywel/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0_9kywel/output.exe -D_FILE_OFFSET_BITS=64 -O0 
+
+Code:
+ #include<stdio.h>
+        
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Program stdout:
+
+8
+
+Program stderr:
+
+
+Running compile:
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr0ajuosv
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr0ajuosv/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr0ajuosv/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-redhat-linux/13/
+programs: =/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/
+libraries: =/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/:/lib/x86_64-redhat-linux/13/:/lib/../lib64/:/usr/lib/x86_64-redhat-linux/13/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 
+Run-time dependency gtk4 found: YES 4.10.4
+Pkg-config binary for 1 is cached.
+Determining dependency 'libadwaita-1' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --modversion libadwaita-1` -> 0
+stdout:
+1.3.3
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --cflags libadwaita-1` -> 0
+stdout:
+-I/usr/include/libadwaita-1 -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/libxml2 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/graphene-1.0 -I/usr/lib64/graphene-1.0/include -mfpmath=sse -msse -msse2 -I/usr/include/gio-unix-2.0 -pthread
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs libadwaita-1` -> 0
+stdout:
+-L/usr/lib64 -ladwaita-1 -lgtk-4 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgraphene-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs libadwaita-1` -> 0
+stdout:
+-ladwaita-1 -lgtk-4 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgraphene-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+Run-time dependency libadwaita-1 found: YES 1.3.3
+Pkg-config binary for 0 is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default Pkg-config fallback at pkg-config
+Found pkg-config: /usr/bin/pkg-config (1.8.0)
+Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --modversion glib-2.0` -> 0
+stdout:
+2.76.4
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --cflags glib-2.0` -> 0
+stdout:
+-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -pthread
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs glib-2.0` -> 0
+stdout:
+-L/usr/lib64 -lglib-2.0
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs glib-2.0` -> 0
+stdout:
+-lglib-2.0
+-----------
+Program glib-compile-resources found: YES (/usr/bin/glib-compile-resources)
+Program msginit found: YES (/usr/bin/msginit)
+Program msgmerge found: YES (/usr/bin/msgmerge)
+Program xgettext found: YES (/usr/bin/xgettext)
+Pkg-config binary for 0 is cached.
+Determining dependency 'gio-2.0' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --modversion gio-2.0` -> 0
+stdout:
+2.76.4
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --cflags gio-2.0` -> 0
+stdout:
+-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -I/usr/include/libmount -I/usr/include/blkid -pthread
+-----------
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs gio-2.0` -> 0
+stdout:
+-L/usr/lib64 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --libs gio-2.0` -> 0
+stdout:
+-lgio-2.0 -lgobject-2.0 -lglib-2.0
+-----------
+Build-time dependency gio-2.0 found: YES 2.76.4
+env[PKG_CONFIG_PATH]: 
+Called `/usr/bin/pkg-config --variable=glib_compile_schemas gio-2.0` -> 0
+stdout:
+/usr/bin/glib-compile-schemas
+-----------
+Got pkgconfig variable glib_compile_schemas : /usr/bin/glib-compile-schemas
+Program glib-compile-schemas found: YES (/usr/bin/glib-compile-schemas)
+Program gtk4-update-icon-cache found: YES (/usr/bin/gtk4-update-icon-cache)
+Program update-desktop-database found: YES (/usr/bin/update-desktop-database)
+Build targets in project: 8
+
+Found ninja-1.11.1 at /usr/bin/ninja
+Failed to guess install tag for /usr/local/share/applications/org.nordlex.logiops.desktop
+Failed to guess install tag for /usr/local/share/appdata/org.nordlex.logiops.appdata.xml
+Failed to guess install tag for /usr/local/share/glib-2.0/schemas/org.nordlex.logiops.gschema.xml
+Failed to guess install tag for /usr/local/share/icons/hicolor/scalable/apps/org.nordlex.logiops.svg
+Failed to guess install tag for /usr/local/share/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg
+Failed to guess install tag for install script: /usr/bin/glib-compile-schemas /usr/local/share/glib-2.0/schemas
+Failed to guess install tag for install script: /usr/bin/gtk4-update-icon-cache -q -t -f /usr/local/share/icons/hicolor
+Failed to guess install tag for install script: /usr/bin/update-desktop-database -q /usr/local/share/applications
