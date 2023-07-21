@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="be0a08dd-e949-4e69-8679-0d10ff310618" name="Unnamed" defaultType="TOOL">
+      <configuration id="f0e060c8-1a9b-44a2-b9f3-7ad98a4b7763" name="Unnamed">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_ninja_make" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_ninja_clean" />
+        </clean>
+      </configuration>
+    </target>
+  </component>
+</project>
