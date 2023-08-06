@@ -6,7 +6,6 @@
 
 #include <adwaita.h>
 #include "ui/l-device-button.h"
-#include "ui/device-layers/buttons-layer.h"
 
 #define L_APP_ID           "org.nordlex.logiops"
 #define L_APP_NAME         "Logi::Ops"

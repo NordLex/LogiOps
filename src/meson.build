@@ -5,8 +5,6 @@ logiops_sources = [
   'ui/l-content-manager.c',
   'ui/header-bar.c',
   'ui/l-device-button.c',
-  'ui/device-layers/mx-master-3.c',
-  'ui/device-layers/buttons-layer.c',
 ]
 
 logiops_deps = [

@@ -1,4 +1,4 @@
-Build started at 2023-08-03T21:05:50.957757
+Build started at 2023-08-06T23:45:41.516488
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
@@ -705,8 +705,8 @@ stdout:
 -lglib-2.0
 -----------
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6nbxbom6
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6nbxbom6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6nbxbom6/output.exe -D_FILE_OFFSET_BITS=64 -O0 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcq1h5a7_
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcq1h5a7_/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcq1h5a7_/output.exe -D_FILE_OFFSET_BITS=64 -O0 
 
 Code:
  #include<stdio.h>
@@ -727,8 +727,8 @@ Program stderr:
 
 
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpejco8q0t
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpejco8q0t/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpejco8q0t/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo66wcfc4
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo66wcfc4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo66wcfc4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  
@@ -757,8 +757,8 @@ Build targets in project: 8
 
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpx08aiugu
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpx08aiugu/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpx08aiugu/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvc2pm0_k
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvc2pm0_k/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvc2pm0_k/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  
