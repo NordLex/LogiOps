@@ -9,7 +9,7 @@
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                    <object class="GtkHeaderBar" id="header_bar">
+                    <object class="GtkHeaderBar" id="set_logiops_header_bar">
                         <child type="end">
                             <object class="GtkMenuButton">
                                 <property name="icon-name">open-menu-symbolic</property>

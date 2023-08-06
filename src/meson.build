@@ -1,16 +1,20 @@
 logiops_sources = [
   'main.c',
-  'logiops-application.c',
-  'logiops-window.c',
+  'l-application.c',
+  'l-window.c',
+  'ui/l-content-manager.c',
+  'ui/header-bar.c',
+  'ui/l-device-button.c',
+  'ui/device-layers/mx-master-3.c',
+  'ui/device-layers/buttons-layer.c',
 ]
 
 logiops_deps = [
-  dependency('gtk4'),
-  dependency('libadwaita-1', version: '>= 1.2'),
+  dependency('libadwaita-1', version: '>= 1.3'),
 ]
 
-logiops_sources += gnome.compile_resources('logiops-resources',
-  'logiops.gresource.xml',
+logiops_sources += gnome.compile_resources('l-resources',
+  'l.gresource.xml',
   c_name: 'logiops'
 )
 

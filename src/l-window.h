@@ -1,4 +1,4 @@
-/* logiops-application.h
+/* logiops-window.h
  *
  * Copyright 2023 NordLex
  *
@@ -20,15 +20,12 @@
 
 #pragma once
 
-#include <adwaita.h>
+#include "l-application-resources.h"
 
 G_BEGIN_DECLS
 
-#define LOGIOPS_TYPE_APPLICATION (logiops_application_get_type())
+#define L_TYPE_WINDOW (l_window_get_type())
 
-G_DECLARE_FINAL_TYPE (LogiopsApplication, logiops_application, LOGIOPS, APPLICATION, AdwApplication)
-
-LogiopsApplication *logiops_application_new(const char *application_id,
-                                            GApplicationFlags flags);
+G_DECLARE_FINAL_TYPE (LWindow, l_window, L, WINDOW, AdwApplicationWindow)
 
 G_END_DECLS

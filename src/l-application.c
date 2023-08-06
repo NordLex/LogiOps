@@ -18,59 +18,59 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "logiops-application.h"
-#include "logiops-window.h"
+#include "l-application.h"
+#include "l-window.h"
 
-struct _LogiopsApplication {
+struct _LApplication {
     AdwApplication parent_instance;
 };
 
-G_DEFINE_TYPE (LogiopsApplication, logiops_application, ADW_TYPE_APPLICATION)
+G_DEFINE_TYPE (LApplication, l_application, ADW_TYPE_APPLICATION)
 
-LogiopsApplication *logiops_application_new(const char *application_id,
+LApplication * l_application_new(const char *application_id,
                                             GApplicationFlags flags) {
     g_return_val_if_fail (application_id != NULL, NULL);
 
-    return g_object_new(LOGIOPS_TYPE_APPLICATION,
+    return g_object_new(L_TYPE_APPLICATION,
                         "application-id", application_id,
                         "flags", flags,
                         NULL);
 }
 
-static void logiops_application_activate(GApplication *app) {
+static void l_application_activate(GApplication *app) {
     GtkWindow *window;
 
-    g_assert (LOGIOPS_IS_APPLICATION(app));
+    g_assert (L_IS_APPLICATION(app));
 
     window = gtk_application_get_active_window(GTK_APPLICATION (app));
 
     if (window == NULL)
-        window = g_object_new(LOGIOPS_TYPE_WINDOW,
+        window = g_object_new(L_TYPE_WINDOW,
                               "application", app,
                               NULL);
 
     gtk_window_present(window);
 }
 
-static void logiops_application_class_init(LogiopsApplicationClass *klass) {
+static void l_application_class_init(LApplicationClass *klass) {
     GApplicationClass *app_class = G_APPLICATION_CLASS (klass);
 
-    app_class->activate = logiops_application_activate;
+    app_class->activate = l_application_activate;
 }
 
-static void logiops_application_about_action(GSimpleAction *action,
+static void l_application_about_action(GSimpleAction *action,
                                              GVariant *parameter,
                                              gpointer user_data) {
     static const char *developers[] = {"NordLex", NULL};
-    LogiopsApplication *self = user_data;
+    LApplication *self = user_data;
     GtkWindow *window = NULL;
 
-    g_assert (LOGIOPS_IS_APPLICATION(self));
+    g_assert (L_IS_APPLICATION(self));
 
     window = gtk_application_get_active_window(GTK_APPLICATION (self));
 
     adw_show_about_window(window,
-                          "application-name", "logiops",
+                          "application-name", L_APP_NAME,
                           "application-icon", "org.nordlex.logiops",
                           "developer-name", "NordLex",
                           "version", "0.1.0",
@@ -79,22 +79,22 @@ static void logiops_application_about_action(GSimpleAction *action,
                           NULL);
 }
 
-static void logiops_application_quit_action(GSimpleAction *action,
+static void l_application_quit_action(GSimpleAction *action,
                                             GVariant *parameter,
                                             gpointer user_data) {
-    LogiopsApplication *self = user_data;
+    LApplication *self = user_data;
 
-    g_assert (LOGIOPS_IS_APPLICATION(self));
+    g_assert (L_IS_APPLICATION(self));
 
     g_application_quit(G_APPLICATION (self));
 }
 
 static const GActionEntry app_actions[] = {
-        {"quit",  logiops_application_quit_action},
-        {"about", logiops_application_about_action},
+        {"quit",  l_application_quit_action},
+        {"about", l_application_about_action},
 };
 
-static void logiops_application_init(LogiopsApplication *self) {
+static void l_application_init(LApplication *self) {
     g_action_map_add_action_entries(G_ACTION_MAP (self),
                                     app_actions,
                                     G_N_ELEMENTS (app_actions),

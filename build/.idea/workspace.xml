@@ -12,12 +12,54 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="add xml files" />
+    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="add build_dir">
+      <change afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/l-window.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/buttons-layer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/buttons-layer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/mx-master-3.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/mx-master-3.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/header-bar.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/header-bar.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-device-button.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-device-button.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-info/intro-targets.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-targets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-logs/meson-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/meson-logs/meson-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/build.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/build.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/cleantrees.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/cleantrees.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/coredata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/coredata.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops-resources.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops-resources.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops.p/logiops-application.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops.p/logiops-window.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops.p/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops.p/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logiops.p/meson-generated_.._logiops-resources.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/logiops-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/logiops-application.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/logiops-window.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/logiops-window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/logiops.gresource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l.gresource.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../src/meson.build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/resources/media/MXMaster3.png" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/media/mx_master_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/resources/ui/logiops-window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/ui/logiops-window.ui" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
@@ -75,27 +117,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/nordlex/devel/CLionProjects/LogiOps/build",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/nordlex/devel/BuilderProjects/logiops&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../src/ui" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="LogiOps" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="build" TARGET_NAME="Unnamed" CONFIG_NAME="Unnamed" RUN_PATH="logiops">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -109,7 +162,16 @@
       <updated>1689969971477</updated>
       <workItem from="1689979198149" duration="535000" />
       <workItem from="1689979747891" duration="887000" />
-      <workItem from="1689980649574" duration="369000" />
+      <workItem from="1689980649574" duration="2083000" />
+      <workItem from="1690212331815" duration="24000" />
+      <workItem from="1690212854907" duration="10000" />
+      <workItem from="1690318776016" duration="9555000" />
+      <workItem from="1690482125829" duration="41000" />
+      <workItem from="1690490481963" duration="4032000" />
+      <workItem from="1690638988508" duration="27641000" />
+      <workItem from="1690995688377" duration="1983000" />
+      <workItem from="1691084312421" duration="19715000" />
+      <workItem from="1691241072013" duration="3781000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />
@@ -127,7 +189,23 @@
       <option name="project" value="LOCAL" />
       <updated>1689980853437</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add xml files">
+      <option name="closed" value="true" />
+      <created>1689981027941</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689981027941</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add build_dir">
+      <option name="closed" value="true" />
+      <created>1689981300577</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689981300577</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +230,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add xml files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add xml files" />
+    <MESSAGE value="add build_dir" />
+    <option name="LAST_COMMIT_MESSAGE" value="add build_dir" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
+          <line>83</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
+          <line>93</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
+          <line>28</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

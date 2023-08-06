@@ -3,7 +3,7 @@
     <gresource prefix="/org/nordlex/logiops">
         <file preprocess="xml-stripblanks">resources/ui/logiops-window.ui</file>
         <file preprocess="xml-stripblanks">resources/ui/help-overlay.ui</file>
-        <file alias="application_style.css">resources/media/application_style.css</file>
-        <file>resources/media/MXMaster3.png</file>
+        <file>resources/media/application_style.css</file>
+        <file>resources/media/mx_master_3.png</file>
     </gresource>
 </gresources>
