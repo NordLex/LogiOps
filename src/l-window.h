@@ -1,4 +1,4 @@
-/* logiops-window.h
+/* l-window.h
  *
  * Copyright 2023 NordLex
  *

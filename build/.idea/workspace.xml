@@ -13,21 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="add build_dir">
-      <change afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/l-window.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/buttons-layer.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/buttons-layer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/mx-master-3.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/device-layers/mx-master-3.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/header-bar.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/header-bar.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/l-device-button.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/ui/l-device-button.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/l-application-resources.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/build.ninja" afterDir="false" />
@@ -35,24 +21,15 @@
       <change beforePath="$PROJECT_DIR$/meson-info/intro-targets.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-targets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-logs/meson-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/meson-logs/meson-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-private/build.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/build.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-private/cleantrees.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/cleantrees.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-private/coredata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/coredata.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops-resources.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops-resources.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops.p/logiops-application.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops.p/logiops-window.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops.p/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops.p/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logiops.p/meson-generated_.._logiops-resources.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/logiops-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/logiops-application.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/logiops-window.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/logiops-window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/logiops.gresource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l.gresource.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-application-resources.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-application.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-window.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../src/meson.build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/resources/media/MXMaster3.png" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/media/mx_master_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/resources/ui/logiops-window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/ui/logiops-window.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-content-manager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,9 +123,9 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -172,6 +149,7 @@
       <workItem from="1690995688377" duration="1983000" />
       <workItem from="1691084312421" duration="19715000" />
       <workItem from="1691241072013" duration="3781000" />
+      <workItem from="1691509340782" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />

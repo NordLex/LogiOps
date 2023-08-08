@@ -32,11 +32,6 @@ G_DEFINE_FINAL_TYPE (LContentManager, l_content_manager, G_TYPE_OBJECT)
 /*  Bung  */
 static void clicked_button(GtkWidget * button, gpointer data) {}
 
-static void set_frame(GtkWidget * widget) {
-    const char * overlay_style[] = {"frame"};
-    gtk_widget_set_css_classes(widget, overlay_style);
-}
-
 /*  Sets the device image   */
 static void l_content_manager_set_image(LContentManager * self) {
     GtkWidget * device_image = gtk_image_new_from_resource(L_DEVICE_IMAGE);

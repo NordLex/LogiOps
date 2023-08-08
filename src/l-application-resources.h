@@ -20,6 +20,9 @@
 
 #pragma once
 
+#ifndef APPLICATION_RESOURCES_H
+#define APPLICATION_RESOURCES_H
+
 #include <adwaita.h>
 #include "ui/l-device-button.h"
 
@@ -28,3 +31,10 @@
 #define L_CSS_STYLE_PATH   "/org/nordlex/logiops/resources/media/application_style.css"
 #define L_DEVICE_IMAGE     "/org/nordlex/logiops/resources/media/mx_master_3.png"
 #define L_DEVICE_BUTTON_SIZE 42
+
+
+extern const char * frame[1];
+
+#define SET_FRAME(widget) (gtk_widget_set_css_classes(widget, frame))
+
+#endif

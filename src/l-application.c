@@ -1,4 +1,4 @@
-/* logiops-application.c
+/* l-application.c
  *
  * Copyright 2023 NordLex
  *
@@ -76,6 +76,7 @@ static void l_application_about_action(GSimpleAction *action,
                           "version", "0.1.0",
                           "developers", developers,
                           "copyright", "© 2023 NordLex",
+                          "license-type", GTK_LICENSE_GPL_3_0,
                           NULL);
 }
 

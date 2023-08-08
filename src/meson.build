@@ -1,5 +1,6 @@
 logiops_sources = [
   'main.c',
+  'l-application-resources.c',
   'l-application.c',
   'l-window.c',
   'ui/l-content-manager.c',

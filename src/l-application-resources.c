@@ -1,4 +1,4 @@
-/* l-application.h
+/* l-application-resource.c
  *
  * Copyright 2023 NordLex
  *
@@ -18,17 +18,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#pragma once
-
 #include "l-application-resources.h"
 
-G_BEGIN_DECLS
-
-#define L_TYPE_APPLICATION (l_application_get_type())
-
-G_DECLARE_FINAL_TYPE (LApplication, l_application, L, APPLICATION, AdwApplication)
-
-LApplication *l_application_new(const char *application_id,
-                                            GApplicationFlags flags);
-
-G_END_DECLS
+const char * frame[1] = {"frame"};
