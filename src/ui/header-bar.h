@@ -20,6 +20,6 @@
 
 #pragma once
 
-#include <adwaita.h>
+#include "../l-application-resources.h"
 
 void set_l_header_bar(GtkWidget * header_bar);

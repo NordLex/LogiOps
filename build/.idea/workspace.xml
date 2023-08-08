@@ -12,24 +12,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="add build_dir">
-      <change afterPath="$PROJECT_DIR$/../src/l-application-resources.c" afterDir="false" />
+    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-info/intro-targets.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-targets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-logs/meson-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/meson-logs/meson-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-private/build.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/build.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-private/coredata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/coredata.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-application-resources.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-application.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-window.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../src/meson.build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/ui/l-content-manager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/header-bar.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/header-bar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/header-bar.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/header-bar.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +138,7 @@
       <workItem from="1690995688377" duration="1983000" />
       <workItem from="1691084312421" duration="19715000" />
       <workItem from="1691241072013" duration="3781000" />
-      <workItem from="1691509340782" duration="5000" />
+      <workItem from="1691509340782" duration="8715000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />
@@ -183,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689981300577</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info.">
+      <option name="closed" value="true" />
+      <created>1691509946628</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691509946628</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,28 +206,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add xml files" />
     <MESSAGE value="add build_dir" />
-    <option name="LAST_COMMIT_MESSAGE" value="add build_dir" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
-          <line>83</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
-          <line>93</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/../src/ui/l-content-manager.c</url>
-          <line>28</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
