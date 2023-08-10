@@ -1,3 +1,7 @@
-# logiops
+# LogiOps
 
-A description of this project.
+
+![Icon App](data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg)
+
+
+"logid" UI configurator

@@ -71,7 +71,7 @@ static void l_application_about_action(GSimpleAction *action,
 
     adw_show_about_window(window,
                           "application-name", L_APP_NAME,
-                          "application-icon", "org.nordlex.logiops",
+                          "application-icon", L_APP_ID,
                           "developer-name", "NordLex",
                           "version", "0.1.0",
                           "developers", developers,

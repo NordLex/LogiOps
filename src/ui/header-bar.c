@@ -22,20 +22,12 @@
 
 const char * HEADER_BAR_STYLE[] = {"flat"};
 
-static void menu_button_clicked(void) {}
-
 static GMenu * header_bar_menu(void) {
     GMenu * menu_app = g_menu_new();
-    GMenu * sub_menu = g_menu_new();
 
     g_menu_append(menu_app, "Preferences", "app.preferences");
     g_menu_append(menu_app, "Keyboard Shortcuts", "win.show-help-overlay");
     g_menu_append(menu_app, "About", "app.about");
-    g_menu_append(sub_menu, "Open config file", "app.about");
-    g_menu_append(sub_menu, "Save config file", "app.about");
-    g_menu_append(sub_menu, "Tutorial", "app.about");
-    g_menu_append(sub_menu, "About", "app.about");
-    g_menu_append_submenu(menu_app, "Sub Menu", (GMenuModel *) sub_menu);
     g_menu_append(menu_app, "Quit", "app.quit");
 
     return menu_app;

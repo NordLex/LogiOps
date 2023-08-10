@@ -12,13 +12,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info.">
+    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Add menu button to header bar.">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../org.nordlex.logiops.json" beforeDir="false" afterPath="$PROJECT_DIR$/../org.nordlex.logiops.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-application-resources.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/l-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/ui/header-bar.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/header-bar.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/ui/header-bar.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/header-bar.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +108,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps" />
+      <recent name="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps" />
       <recent name="$PROJECT_DIR$/../src/ui" />
     </key>
   </component>
@@ -138,7 +145,7 @@
       <workItem from="1690995688377" duration="1983000" />
       <workItem from="1691084312421" duration="19715000" />
       <workItem from="1691241072013" duration="3781000" />
-      <workItem from="1691509340782" duration="8715000" />
+      <workItem from="1691509340782" duration="16225000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />
@@ -180,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691509946628</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add menu button to header bar.">
+      <option name="closed" value="true" />
+      <created>1691525453658</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691525453658</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +222,8 @@
     <MESSAGE value="add xml files" />
     <MESSAGE value="add build_dir" />
     <MESSAGE value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
+    <MESSAGE value="Add menu button to header bar." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add menu button to header bar." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
