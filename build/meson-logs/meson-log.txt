@@ -1,4 +1,4 @@
-Build started at 2023-08-07T19:36:29.456281
+Build started at 2023-08-16T18:40:32.620174
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
@@ -7,7 +7,7 @@ Version: 1.0.1
 Source dir: /home/nordlex/devel/CLionProjects/LogiOps
 Build dir: /home/nordlex/devel/CLionProjects/LogiOps/build
 Build type: native build
-Project name: logiops
+Project name: LogiOps
 Project version: 0.1.0
 C compiler for the host machine: cc (gcc 13.1.1 "cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)")
 C linker for the host machine: cc ld.bfd 2.39-9
@@ -705,8 +705,8 @@ stdout:
 -lglib-2.0
 -----------
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3tyjlcf3
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3tyjlcf3/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3tyjlcf3/output.exe -D_FILE_OFFSET_BITS=64 -O0 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxywslbht
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxywslbht/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxywslbht/output.exe -D_FILE_OFFSET_BITS=64 -O0 
 
 Code:
  #include<stdio.h>
@@ -727,8 +727,8 @@ Program stderr:
 
 
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptcrscjqa
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptcrscjqa/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptcrscjqa/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpazlsg1ru
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpazlsg1ru/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpazlsg1ru/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  
@@ -757,8 +757,8 @@ Build targets in project: 8
 
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcpodbp89
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcpodbp89/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcpodbp89/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprceu_ctw
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprceu_ctw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprceu_ctw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  

@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LDeviceButton, l_device_button, L, DEVICE_BUTTON, GtkButton)
 
-LDeviceButton * l_device_button_new(gdouble x_offset, gdouble y_offset, GCallback callback);
+LDeviceButton * l_device_button_new(gdouble x_offset, gdouble y_offset, GCallback callback, gpointer data);
 
 offset_t * l_device_button_get_offset(LDeviceButton * self);
 

@@ -6,6 +6,7 @@ logiops_sources = [
   'ui/l-content-manager.c',
   'ui/header-bar.c',
   'ui/l-device-button.c',
+  'ui/l-pref-panel.c',
 ]
 
 logiops_deps = [

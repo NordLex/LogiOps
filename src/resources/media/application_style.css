@@ -1,14 +1,38 @@
-button.white_frame {
-    border: 4px solid;
-    color: white;
+#DeviceButton {
+    border-radius: 12px;
+    border: 4px solid rgba(255, 255, 255, 0.77);
 }
 
-widget.green_frame {
+#DeviceButton:hover {
+    border-color: #ffffff;
+    background-color: rgba(211, 211, 211, 0.6);
+}
+
+#DeviceButton:active {
+    border-width: 5px;
+    border-color: rgba(255, 255, 255, 0.89);
+    background-color: rgba(211, 211, 211, 0.8);
+}
+
+#DeviceButton:focus {
+    border-color: rgba(255, 255, 255, 1.0);
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
+#PrefPanel {
+    padding: 10px;
+    margin: 15px;
+    border-radius: 12px;
+    box-shadow: -1px 5px 25px 5px rgba(0,0,0,0.3);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
+}
+
+.green-frame {
     border: 2px solid;
     color: green;
 }
 
-widget.red_frame {
+.red-frame {
     border: 2px solid;
     color: red;
 }

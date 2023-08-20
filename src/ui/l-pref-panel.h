@@ -1,4 +1,4 @@
-/* l-application-resource.h
+/* l-button-pref-panel.h
  *
  * Copyright 2023 NordLex
  *
@@ -20,22 +20,14 @@
 
 #pragma once
 
-#ifndef APPLICATION_RESOURCES_H
-#define APPLICATION_RESOURCES_H
+#include "../l-application-resources.h"
 
-#include <adwaita.h>
-#include "ui/l-device-button.h"
-#include "ui/l-pref-panel.h"
+G_BEGIN_DECLS
 
-#define L_APP_ID               "org.nordlex.logiops"
-#define L_APP_NAME             "LogiOps"
-#define L_CSS_STYLE_PATH       "/org/nordlex/logiops/resources/media/application_style.css"
-#define L_DEVICE_IMAGE         "/org/nordlex/logiops/resources/media/mx_master_3.png"
-#define L_DEVICE_BUTTON_SIZE 45
+#define L_TYPE_PREF_PANEL (l_pref_panel_get_type())
 
+G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
 
-extern const char * frame[1];
+LPrefPanel * l_pref_panel_new(void);
 
-#define SET_FRAME(widget) (gtk_widget_set_css_classes(widget, frame))
-
-#endif
+G_END_DECLS

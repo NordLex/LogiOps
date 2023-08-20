@@ -12,18 +12,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Add menu button to header bar.">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Add application icons.">
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-pref-panel.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-pref-panel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/org.nordlex.logiops.desktop" beforeDir="false" afterPath="$PROJECT_DIR$/data/org.nordlex.logiops.desktop" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-info/intro-projectinfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-projectinfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-info/intro-targets.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-targets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-info/intro-tests.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-tests.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-logs/meson-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/meson-logs/meson-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/build.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/build.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/coredata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/coredata.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meson-private/meson_test_setup.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/meson_test_setup.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/l-resources.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/l-resources.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../org.nordlex.logiops.json" beforeDir="false" afterPath="$PROJECT_DIR$/../org.nordlex.logiops.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/org.nordlex.logiops.desktop.in" beforeDir="false" afterPath="$PROJECT_DIR$/../data/org.nordlex.logiops.desktop.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../meson.build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../po/POTFILES" beforeDir="false" afterPath="$PROJECT_DIR$/../po/POTFILES" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/l-application-resources.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l-application.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/ui/header-bar.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/header-bar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../src/meson.build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/resources/media/application_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/media/application_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-content-manager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-device-button.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-device-button.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-device-button.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-device-button.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +90,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="MIXED" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file:///usr/include/gtk-4.0/gtk/gtklayoutmanager.h" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -101,7 +122,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CPPToolchains&quot;,
     &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -115,11 +137,6 @@
   </component>
   <component name="RunManager">
     <configuration name="LogiOps" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="build" TARGET_NAME="Unnamed" CONFIG_NAME="Unnamed" RUN_PATH="logiops">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
@@ -145,7 +162,12 @@
       <workItem from="1690995688377" duration="1983000" />
       <workItem from="1691084312421" duration="19715000" />
       <workItem from="1691241072013" duration="3781000" />
-      <workItem from="1691509340782" duration="16225000" />
+      <workItem from="1691509340782" duration="18289000" />
+      <workItem from="1691697669069" duration="20708000" />
+      <workItem from="1691941191928" duration="65917000" />
+      <workItem from="1692392052301" duration="10304000" />
+      <workItem from="1692481916026" duration="305000" />
+      <workItem from="1692484204646" duration="4799000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />
@@ -195,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691525453658</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add application icons.">
+      <option name="closed" value="true" />
+      <created>1691695566559</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691695566559</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +253,8 @@
     <MESSAGE value="add build_dir" />
     <MESSAGE value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
     <MESSAGE value="Add menu button to header bar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add menu button to header bar." />
+    <MESSAGE value="Add application icons." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add application icons." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
