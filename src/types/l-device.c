@@ -1,4 +1,4 @@
-/* l-button-pref-panel.h
+/* l-device.c
  *
  * Copyright 2023 NordLex
  *
@@ -18,17 +18,40 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#pragma once
+#include "l-device.h"
 
-#include "../l-application-resources.h"
+struct _LDevice {
+    GObject parent_instance;
 
-G_BEGIN_DECLS
+    GString *name;
+    gint dpi;
+    GSList *buttons;
+};
 
-#define L_TYPE_PREF_PANEL (l_pref_panel_get_type())
+G_DEFINE_FINAL_TYPE (LDevice, l_device, G_TYPE_OBJECT)
 
-G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
+GString *
+l_device_get_name(LDevice *self) {
+    return self->name;
+}
 
-LPrefPanel * l_pref_panel_new(void);
-void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf);
+static void
+l_device_buttons_fill(GSList *buttons) {
+    gpointer data = NULL;
+    g_slist_append(buttons, data);
+}
 
-G_END_DECLS
+LDevice *
+l_device_new(const char *name) {
+    LDevice *device = g_object_new(L_TYPE_DEVICE, NULL);
+    device->name = g_string_new(name);
+    l_device_buttons_fill(device->buttons);
+
+    return device;
+}
+
+static void
+l_device_class_init(LDeviceClass *klass) {}
+
+static void
+l_device_init(LDevice *self) {}

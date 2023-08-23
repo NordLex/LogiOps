@@ -25,15 +25,20 @@ struct _LContentManager {
     GObject parent_instance;
     GtkWidget *main_box;
     LPrefPanel *pref_panel;
+    GtkWidget *battery_state;
     GtkWidget *overlay;
     GSList *buttons;
 };
 
 G_DEFINE_FINAL_TYPE (LContentManager, l_content_manager, G_TYPE_OBJECT)
 
+
 /*  Bung  */
-static void clicked_button(GtkWidget *button, gpointer data) {
+static void
+clicked_button(GtkWidget *button, gpointer data) {
     LContentManager *manager = (LContentManager *) data;
+
+    l_pref_panel_configure(manager->pref_panel, NULL);
 
     if (gtk_widget_get_visible(GTK_WIDGET(manager->pref_panel))) {
         g_object_set(G_OBJECT(manager->pref_panel), "visible", FALSE, NULL);
@@ -43,13 +48,20 @@ static void clicked_button(GtkWidget *button, gpointer data) {
 }
 
 /*  Sets the device image   */
-static void l_content_manager_set_image(LContentManager *self) {
+static void
+l_content_manager_set_image(LContentManager *self) {
     GtkWidget *device_image = gtk_image_new_from_resource(L_DEVICE_IMAGE);
     gtk_overlay_set_child(GTK_OVERLAY(self->overlay), device_image);
 }
 
+static void
+l_content_manager_set_battery_state(LContentManager *self, const char *state) {
+    gtk_image_set_from_resource(GTK_IMAGE(self->battery_state), state);
+}
+
 /**/
-static void fill_buttons_container(GtkWidget *container, LContentManager *self) {
+static void
+fill_buttons_container(GtkWidget *container, LContentManager *self) {
     GSList *temp = self->buttons;
 
     g_object_set(container,
@@ -64,7 +76,8 @@ static void fill_buttons_container(GtkWidget *container, LContentManager *self) 
 }
 
 /**/
-static void fill_buttons_list(LContentManager *self) {
+static void
+fill_buttons_list(LContentManager *self) {
     gpointer data = (gpointer *) self;
 
     LDeviceButton *scroll_wheel = l_device_button_new(
@@ -95,7 +108,8 @@ static void fill_buttons_list(LContentManager *self) {
 }
 
 /**/
-static void l_content_manager_set_buttons_layer(LContentManager *self) {
+static void
+l_content_manager_set_buttons_layer(LContentManager *self) {
     GtkWidget *buttons_container = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkLayoutManager *binLayout = gtk_bin_layout_new();
     gtk_widget_set_layout_manager(buttons_container, binLayout);
@@ -116,8 +130,9 @@ static void l_content_manager_set_buttons_layer(LContentManager *self) {
  *  when resizing the window
  *
  */
-gboolean l_content_manager_resize(GtkOverlay *overlay, GtkWidget *widget,
-                                  GdkRectangle *allocation, gpointer data) {
+gboolean
+l_content_manager_resize(GtkOverlay *overlay, GtkWidget *widget,
+                         GdkRectangle *allocation, gpointer data) {
     int width = gtk_widget_get_width(GTK_WIDGET(overlay));
     int height = gtk_widget_get_height(GTK_WIDGET(overlay));
     int size = MIN(width, height);
@@ -144,29 +159,36 @@ gboolean l_content_manager_resize(GtkOverlay *overlay, GtkWidget *widget,
 }
 
 /* */
-void l_content_manager_set_content(LContentManager *self) {
+void
+l_content_manager_set_content(LContentManager *self) {
     l_content_manager_set_image(self);
+    l_content_manager_set_battery_state(self, L_BATTERY_100);
     l_content_manager_set_buttons_layer(self);
 
     g_signal_connect(self->overlay, "get-child-position", G_CALLBACK(l_content_manager_resize), self);
 }
 
 /* */
-GtkWidget *l_content_manager_get_content(LContentManager *self) {
+GtkWidget *
+l_content_manager_get_content(LContentManager *self) {
     l_content_manager_set_content(self);
     return self->main_box;
 }
 
-LContentManager *l_content_manager_new(void) {
+LContentManager *
+l_content_manager_new(void) {
     return g_object_new(L_TYPE_CONTENT_MANAGER, NULL);
 }
 
-static void l_content_manager_class_init(LContentManagerClass *Klass) {}
+static void
+l_content_manager_class_init(LContentManagerClass *Klass) {}
 
-static void l_content_manager_init(LContentManager *self) {
+static void
+l_content_manager_init(LContentManager *self) {
     GtkLayoutManager *bin_layout = gtk_bin_layout_new();
 
     self->pref_panel = l_pref_panel_new();
+    self->battery_state = gtk_image_new();
     self->main_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     self->overlay = gtk_overlay_new();
     self->buttons = NULL;
@@ -174,14 +196,25 @@ static void l_content_manager_init(LContentManager *self) {
     gtk_widget_set_layout_manager(self->main_box, bin_layout);
     gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->overlay));
     gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->pref_panel));
+    gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->battery_state));
 
     g_object_set(self->main_box,
                  "vexpand", TRUE,
                  "hexpand", TRUE,
                  NULL);
 
+    g_object_set(self->battery_state,
+                 "valign", GTK_ALIGN_END,
+                 "halign", GTK_ALIGN_START,
+                 NULL);
+
+
     g_object_set(self->overlay,
                  "vexpand", TRUE,
                  "hexpand", TRUE,
                  NULL);
+
+    gtk_widget_set_margin_start(self->battery_state, 20);
+    gtk_widget_set_margin_bottom(self->battery_state, 17);
+    gtk_widget_set_size_request(self->battery_state, 60, 50);
 }

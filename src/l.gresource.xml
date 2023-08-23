@@ -5,5 +5,10 @@
         <file preprocess="xml-stripblanks">resources/ui/help-overlay.ui</file>
         <file>resources/media/application_style.css</file>
         <file>resources/media/mx_master_3.png</file>
+        <file>resources/media/battery/0.svg</file>
+        <file>resources/media/battery/20.svg</file>
+        <file>resources/media/battery/50.svg</file>
+        <file>resources/media/battery/80.svg</file>
+        <file>resources/media/battery/100.svg</file>
     </gresource>
 </gresources>

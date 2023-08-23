@@ -1,4 +1,4 @@
-/* l-button-pref-panel.h
+/* l-conf-reader.c
  *
  * Copyright 2023 NordLex
  *
@@ -18,17 +18,29 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#pragma once
+#include "l-conf-reader.h"
 
-#include "../l-application-resources.h"
+struct _LConfReader {
+    GObject parent_instance;
 
-G_BEGIN_DECLS
+    config_t *cfg;
+};
 
-#define L_TYPE_PREF_PANEL (l_pref_panel_get_type())
+G_DEFINE_FINAL_TYPE (LConfReader, l_conf_reader, G_TYPE_OBJECT)
 
-G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
+static void l_conf_reader_read(LConfReader *self, const char *file_name) {
 
-LPrefPanel * l_pref_panel_new(void);
-void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf);
+}
 
-G_END_DECLS
+LConfReader *
+l_conf_reader_new(void) {
+    return g_object_new(L_TYPE_CONF_READER, NULL);
+}
+
+static void
+l_conf_reader_class_init(LConfReaderClass *klass) {}
+
+static void
+l_conf_reader_init(LConfReader *self) {
+    config_init(self->cfg);
+}

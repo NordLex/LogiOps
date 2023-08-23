@@ -23,62 +23,56 @@
 
 struct _LPrefPanel {
     GtkBox parent_instance;
+
+    GtkWidget * title;
+    GtkWidget * text_box;
+    GtkWidget * pref_container;
+    GtkWidget * apply_button;
 };
 
 G_DEFINE_FINAL_TYPE (LPrefPanel, l_pref_panel, GTK_TYPE_BOX)
-
-static void l_pref_panel_add_title(GtkWidget * parent, const char *text) {
-    GtkWidget * title = gtk_label_new(NULL);
-    gtk_label_set_markup(GTK_LABEL(title), text);
-    g_object_set(title, "halign", GTK_ALIGN_CENTER, NULL);
-    gtk_box_append(GTK_BOX(parent), title);
-}
 
 static void l_pref_panel_apply_button_clicked(GtkWidget *button, gpointer data) {
     LPrefPanel *self = (LPrefPanel *) data;
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
 }
 
-static void l_pref_panel_add_apply_button(GtkWidget * parent) {
+static void l_pref_panel_init_apply_button(LPrefPanel * self) {
     GtkWidget * button_title = gtk_label_new("Apply");
-    GtkWidget * button = gtk_button_new();
-    gpointer data = (gpointer *) parent;
+    GCallback on_click = G_CALLBACK(l_pref_panel_apply_button_clicked);
 
-    gtk_button_set_child(GTK_BUTTON(button), button_title);
-    g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(l_pref_panel_apply_button_clicked), data);
-
-    gtk_box_append(GTK_BOX(parent), button);
+    gtk_button_set_child(GTK_BUTTON(self->apply_button), button_title);
+    g_signal_connect(G_OBJECT(self->apply_button), "clicked", on_click, self);
 }
 
-static void l_pref_panel_add_dpi_slider(GtkWidget * parent) {
-    double dpi_value = 1200;
-    GtkAdjustment *adjustment = gtk_adjustment_new(dpi_value, 400, 2700, 100.0, 0.5, 0.5);
-    GtkWidget *dpi_slider = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, adjustment);
+static void l_pref_panel_init_content(LPrefPanel * self, const char *label ) {
+    gtk_label_set_markup(GTK_LABEL(self->title), label);
 
-    gtk_box_append(GTK_BOX(parent), dpi_slider);
 }
 
+void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf) {
+    l_pref_panel_init_content(self, "Configure button");
+    l_pref_panel_init_apply_button(self);
+}
 
 LPrefPanel * l_pref_panel_new(void) {
     LPrefPanel * pref_panel = g_object_new(L_TYPE_PREF_PANEL, NULL);
-    GtkWidget * pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-
-    g_object_set(pref_container,
-                 "vexpand", TRUE,
-                 "hexpand", TRUE,
-                 NULL);
-    l_pref_panel_add_dpi_slider(pref_container);
-
-    l_pref_panel_add_title(GTK_WIDGET(pref_panel), "Gesture Button");
-    gtk_box_append(GTK_BOX(pref_panel), pref_container);
-    l_pref_panel_add_apply_button(GTK_WIDGET(pref_panel));
-
     return pref_panel;
 }
 
 static void l_pref_panel_class_init(LPrefPanelClass * klass) {}
 
-static void l_pref_panel_init(LPrefPanel * self) {;
+static void l_pref_panel_init(LPrefPanel * self) {
+    self->title = gtk_label_new(NULL);
+    self->text_box = gtk_text_view_new();
+    self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    self->apply_button = gtk_button_new();
+
+    gtk_box_append(GTK_BOX(self), self->title);
+    gtk_box_append(GTK_BOX(self), self->pref_container);
+    gtk_box_append(GTK_BOX(self->pref_container), self->text_box);
+    gtk_box_append(GTK_BOX(self), self->apply_button);
+
     g_object_set(self,
                  "name", "PrefPanel",
                  "orientation", GTK_ORIENTATION_VERTICAL,
@@ -86,6 +80,20 @@ static void l_pref_panel_init(LPrefPanel * self) {;
                  "halign", GTK_ALIGN_END,
                  "visible", FALSE,
                  NULL);
+    g_object_set(self->title,
+                 "halign", GTK_ALIGN_CENTER,
+                 NULL);
+    g_object_set(self->text_box,
+                 "vexpand", TRUE,
+                 "hexpand", TRUE,
+                 NULL);
+    g_object_set(self->pref_container,
+                 "vexpand", TRUE,
+                 "hexpand", TRUE,
+                 NULL);
 
+    gtk_widget_set_margin_start(self->apply_button, 60);
+    gtk_widget_set_margin_end(self->apply_button, 60);
     gtk_widget_set_size_request(GTK_WIDGET(self), 450, -1);
+
 }

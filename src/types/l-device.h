@@ -1,4 +1,4 @@
-/* l-button-pref-panel.h
+/* l-device.h
  *
  * Copyright 2023 NordLex
  *
@@ -24,11 +24,14 @@
 
 G_BEGIN_DECLS
 
-#define L_TYPE_PREF_PANEL (l_pref_panel_get_type())
+#define L_TYPE_DEVICE (l_device_get_type())
 
-G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
+G_DECLARE_FINAL_TYPE (LDevice, l_device, L, DEVICE, GObject)
 
-LPrefPanel * l_pref_panel_new(void);
-void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf);
+LDevice *
+l_device_new(const char *name);
+
+GString *
+l_device_get_name(LDevice *self);
 
 G_END_DECLS

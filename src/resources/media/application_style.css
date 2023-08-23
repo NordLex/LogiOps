@@ -27,6 +27,11 @@
     background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
 }
 
+textview.view {
+    border-radius: 12px;
+    background-color: transparent;
+}
+
 .green-frame {
     border: 2px solid;
     color: green;

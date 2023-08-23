@@ -24,17 +24,23 @@
 #define APPLICATION_RESOURCES_H
 
 #include <adwaita.h>
+#include <libconfig.h>
 #include "ui/l-device-button.h"
 #include "ui/l-pref-panel.h"
+#include "types/l-device.h"
 
 #define L_APP_ID               "org.nordlex.logiops"
 #define L_APP_NAME             "LogiOps"
 #define L_CSS_STYLE_PATH       "/org/nordlex/logiops/resources/media/application_style.css"
 #define L_DEVICE_IMAGE         "/org/nordlex/logiops/resources/media/mx_master_3.png"
 #define L_DEVICE_BUTTON_SIZE 45
+#define L_BATTERY_0            "/org/nordlex/logiops/resources/media/battery/0.svg"
+#define L_BATTERY_20           "/org/nordlex/logiops/resources/media/battery/20.svg"
+#define L_BATTERY_50           "/org/nordlex/logiops/resources/media/battery/50.svg"
+#define L_BATTERY_80           "/org/nordlex/logiops/resources/media/battery/80.svg"
+#define L_BATTERY_100          "/org/nordlex/logiops/resources/media/battery/100.svg"
 
-
-extern const char * frame[1];
+extern const char *frame[1];
 
 #define SET_FRAME(widget) (gtk_widget_set_css_classes(widget, frame))
 

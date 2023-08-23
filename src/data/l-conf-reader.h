@@ -1,4 +1,4 @@
-/* l-button-pref-panel.h
+/* l-conf-reader.h
  *
  * Copyright 2023 NordLex
  *
@@ -24,11 +24,11 @@
 
 G_BEGIN_DECLS
 
-#define L_TYPE_PREF_PANEL (l_pref_panel_get_type())
+#define L_TYPE_CONF_READER (l_conf_reader_get_type())
 
-G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
+G_DECLARE_FINAL_TYPE (LConfReader, l_conf_reader, L, CONF_READER, GObject)
 
-LPrefPanel * l_pref_panel_new(void);
-void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf);
+LConfReader *
+l_conf_reader_new(void);
 
 G_END_DECLS

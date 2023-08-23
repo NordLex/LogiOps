@@ -7,10 +7,13 @@ logiops_sources = [
   'ui/header-bar.c',
   'ui/l-device-button.c',
   'ui/l-pref-panel.c',
+  'data/l-conf-reader.c',
+  'types/l-device.c',
 ]
 
 logiops_deps = [
   dependency('libadwaita-1', version: '>= 1.3'),
+  dependency('libconfig'),
 ]
 
 logiops_sources += gnome.compile_resources('l-resources',
