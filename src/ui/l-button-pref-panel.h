@@ -1,4 +1,4 @@
-/* l-content-manager.h
+/* l-button-pref-panel.h
  *
  * Copyright 2023 NordLex
  *
@@ -24,12 +24,17 @@
 
 G_BEGIN_DECLS
 
-#define L_TYPE_CONTENT_MANAGER (l_content_manager_get_type())
+#define L_TYPE_BUTTON_PREF_PANEL (l_button_pref_panel_get_type())
 
-G_DECLARE_FINAL_TYPE (LContentManager, l_content_manager, L, CONTENT_MANAGER, GObject)
+G_DECLARE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, L, BUTTON_PREF_PANEL, GtkBox)
 
-LContentManager * l_content_manager_new(LConfReader *conf_reader);
+LButtonPrefPanel *
+l_button_pref_panel_new(void);
 
-GtkWidget * l_content_manager_get_content(LContentManager * self);
+void
+l_button_pref_panel_centered(LButtonPrefPanel *self, int width);
+
+void
+l_button_pref_panel_expand(LButtonPrefPanel *self);
 
 G_END_DECLS

@@ -19,6 +19,10 @@
     background-color: rgba(211, 211, 211, 0.5);
 }
 
+#DeviceName {
+    border-radius: 100px;
+}
+
 #PrefPanel {
     padding: 10px;
     margin: 15px;
@@ -27,9 +31,12 @@
     background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
 }
 
-textview.view {
+#ButtonPrefPanel {
+    padding: 10px;
+    margin: 15px;
     border-radius: 12px;
-    background-color: transparent;
+    box-shadow: -1px 5px 25px 5px rgba(0,0,0,0.3);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
 }
 
 .green-frame {

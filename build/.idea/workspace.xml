@@ -12,34 +12,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Button preferences panel added.">
-      <change afterPath="$PROJECT_DIR$/../src/data/l-conf-reader.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/data/l-conf-reader.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/resources/media/battery/0.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/resources/media/battery/100.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/resources/media/battery/20.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/resources/media/battery/50.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/resources/media/battery/80.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/types/l-device.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../src/types/l-device.h" afterDir="false" />
+    <list default="true" id="2942a27c-a7be-4a5c-aea7-bb15008b4558" name="Changes" comment="Buttery indicator added.&#10;Libconfig dependencies added.">
+      <change afterPath="$PROJECT_DIR$/../src/cfg/config.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/data/l-key-codes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-button-pref-panel.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/ui/l-button-pref-panel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meson-info/intro-dependencies.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-dependencies.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-info/intro-targets.json" beforeDir="false" afterPath="$PROJECT_DIR$/meson-info/intro-targets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-logs/meson-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/meson-logs/meson-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-private/build.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/build.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meson-private/coredata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/meson-private/coredata.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/l-resources.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/l-resources.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logiops" beforeDir="false" afterPath="$PROJECT_DIR$/src/logiops" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/l-conf-reader.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/l-conf-reader.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/data/l-conf-reader.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/data/l-conf-reader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/l-application-resources.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-application-resources.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/l-window.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l-window.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/l.gresource.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/l.gresource.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/../src/meson.build" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/resources/media/application_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/resources/media/application_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/types/l-device.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/types/l-device.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/types/l-device.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/types/l-device.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/ui/l-content-manager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-content-manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-content-manager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/ui/l-device-button.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-device-button.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/ui/l-pref-panel.c" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-pref-panel.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/ui/l-pref-panel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/ui/l-pref-panel.h" afterDir="false" />
     </list>
@@ -95,6 +94,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/include/gtk-4.0/gtk/gtklayoutmanager.h" root0="SKIP_INSPECTION" />
+    <setting file="file:///usr/include/libadwaita-1/adw-expander-row.h" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -107,13 +107,20 @@
     <option name="majorVersion" value="2023" />
     <option name="minorVersion" value="1.5" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2StwU0jlWiQNzVUtC603MzkRTB5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -126,7 +133,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "com.github.weisj.darkmode.DarkModeConfigurable",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -136,18 +143,19 @@
       <recent name="$PROJECT_DIR$/../src/resources/media/battery" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../src" />
       <recent name="$PROJECT_DIR$/../data/icons/hicolor/symbolic/apps" />
       <recent name="$PROJECT_DIR$/../data/icons/hicolor/scalable/apps" />
       <recent name="$PROJECT_DIR$/../src/ui" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="LogiOps" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="build" TARGET_NAME="Unnamed" CONFIG_NAME="Unnamed" RUN_PATH="logiops">
+    <configuration name="LogiOps" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="build" TARGET_NAME="Unnamed" CONFIG_NAME="Unnamed" RUN_PATH="logiops">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="LogiOps" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="build" TARGET_NAME="Unnamed" CONFIG_NAME="Unnamed" RUN_PATH="logiops">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
@@ -178,7 +186,22 @@
       <workItem from="1691941191928" duration="65917000" />
       <workItem from="1692392052301" duration="10304000" />
       <workItem from="1692481916026" duration="305000" />
-      <workItem from="1692484204646" duration="34315000" />
+      <workItem from="1692484204646" duration="42597000" />
+      <workItem from="1692897302375" duration="13737000" />
+      <workItem from="1693116020767" duration="2041000" />
+      <workItem from="1693119064958" duration="1538000" />
+      <workItem from="1693124072233" duration="8844000" />
+      <workItem from="1693158549780" duration="14958000" />
+      <workItem from="1693326235461" duration="31365000" />
+      <workItem from="1693595487187" duration="610000" />
+      <workItem from="1693601112209" duration="26269000" />
+      <workItem from="1693692207805" duration="1270000" />
+      <workItem from="1693733364848" duration="10785000" />
+      <workItem from="1693761848726" duration="25040000" />
+      <workItem from="1694188124484" duration="733000" />
+      <workItem from="1694199851890" duration="190000" />
+      <workItem from="1694200057638" duration="50000" />
+      <workItem from="1694200121007" duration="101000" />
     </task>
     <task id="LOCAL-00001" summary="add xml files">
       <option name="closed" value="true" />
@@ -244,11 +267,22 @@
       <option name="project" value="LOCAL" />
       <updated>1692556081422</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Buttery indicator added.&#10;Libconfig dependencies added.">
+      <option name="closed" value="true" />
+      <created>1692815179569</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692815179569</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -268,13 +302,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="add xml files" />
     <MESSAGE value="add build_dir" />
     <MESSAGE value="Fun 'set_frame()' movie to macros 'SET_FRAME()' in app resource header file.&#10;Refactor licence info." />
     <MESSAGE value="Add menu button to header bar." />
     <MESSAGE value="Add application icons." />
     <MESSAGE value="Button preferences panel added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Button preferences panel added." />
+    <MESSAGE value="Buttery indicator added.&#10;Libconfig dependencies added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Buttery indicator added.&#10;Libconfig dependencies added." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

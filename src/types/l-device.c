@@ -24,34 +24,132 @@ struct _LDevice {
     GObject parent_instance;
 
     GString *name;
+    gboolean settings_is_changed;
     gint dpi;
+    Smartshift *smartshift;
+    Hiresscroll *hiresscroll;
     GSList *buttons;
 };
 
 G_DEFINE_FINAL_TYPE (LDevice, l_device, G_TYPE_OBJECT)
+
+gboolean
+l_device_settings_is_changed(LDevice *self) {
+    return self->settings_is_changed;
+}
+
+void
+l_device_reset_settings_state(LDevice *self) {
+    self->settings_is_changed = FALSE;
+}
 
 GString *
 l_device_get_name(LDevice *self) {
     return self->name;
 }
 
-static void
-l_device_buttons_fill(GSList *buttons) {
-    gpointer data = NULL;
-    g_slist_append(buttons, data);
+gint *
+l_device_get_dpi(LDevice *self) {
+    return &self->dpi;
+}
+
+/*  Smartshift  */
+gboolean
+l_device_get_smartshift_state(LDevice *self) {
+    return self->smartshift->on;
+}
+
+gint
+l_device_get_smartshift_threshold(LDevice *self) {
+    return self->smartshift->threshold;
+}
+
+gint
+l_device_get_smartshift_torque(LDevice *self) {
+    return self->smartshift->torque;
+}
+
+Smartshift *
+l_device_get_smartshift(LDevice *self) {
+    return self->smartshift;
+}
+
+void
+l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque) {
+    self->smartshift->on = on;
+    self->smartshift->threshold = threshold;
+    self->smartshift->torque = torque;
+    self->settings_is_changed = TRUE;
+}
+
+/*  Hiresscroll */
+gboolean
+l_device_get_hiresscroll_hires(LDevice *self) {
+    return self->hiresscroll->hires;
+}
+
+gboolean
+l_device_get_hiresscroll_invert(LDevice *self) {
+    return self->hiresscroll->invert;
+}
+
+gboolean
+l_device_get_hiresscroll_target(LDevice *self) {
+    return self->hiresscroll->target;
+}
+
+Hiresscroll *
+l_device_get_hiresscroll(LDevice *self) {
+    return self->hiresscroll;
+}
+
+void
+l_device_set_hiresscroll(LDevice *self, gboolean hires, gboolean invert, gboolean target) {
+    self->hiresscroll->hires = hires;
+    self->hiresscroll->invert = invert;
+    self->hiresscroll->target = target;
+    self->settings_is_changed = TRUE;
+}
+
+/*  Name  */
+void
+l_device_set_name(LDevice *self, const char *name) {
+    self->name = g_string_new(name);
+    self->settings_is_changed = TRUE;
+}
+
+/*  DPI  */
+void
+l_device_set_dpi(LDevice *self, gint dpi) {
+    self->dpi = dpi;
+    self->settings_is_changed = TRUE;
+}
+
+/*  Button configuration  */
+void
+l_device_append_button(LDevice *self, gint sid, ActionType action_type, GSList *action_keys) {
+    Button *button = g_malloc(sizeof(Button));
+
+    button->cid = sid;
+    button->action.type = action_type;
+    button->action.keys = action_keys;
+
+    self->buttons = g_slist_append(self->buttons, button);
 }
 
 LDevice *
-l_device_new(const char *name) {
-    LDevice *device = g_object_new(L_TYPE_DEVICE, NULL);
-    device->name = g_string_new(name);
-    l_device_buttons_fill(device->buttons);
-
-    return device;
+l_device_new(void) {
+    return g_object_new(L_TYPE_DEVICE, NULL);
 }
 
 static void
 l_device_class_init(LDeviceClass *klass) {}
 
 static void
-l_device_init(LDevice *self) {}
+l_device_init(LDevice *self) {
+    self->name = g_malloc(sizeof(GString));
+    self->settings_is_changed = FALSE;
+    self->dpi = 22;
+    self->smartshift = g_malloc(sizeof(Smartshift));
+    self->hiresscroll = g_malloc(sizeof(Hiresscroll));
+}

@@ -23,8 +23,12 @@
 
 struct _LContentManager {
     GObject parent_instance;
+
+    LConfReader *conf_reader;
     GtkWidget *main_box;
     LPrefPanel *pref_panel;
+    LButtonPrefPanel *button_pref_panel;
+    GtkWidget *device_name;
     GtkWidget *battery_state;
     GtkWidget *overlay;
     GSList *buttons;
@@ -33,18 +37,58 @@ struct _LContentManager {
 G_DEFINE_FINAL_TYPE (LContentManager, l_content_manager, G_TYPE_OBJECT)
 
 
+static void
+l_content_manager_panels_resize(LContentManager *self) {
+    int width = gtk_widget_get_width(GTK_WIDGET(self->overlay));
+    int height = gtk_widget_get_height(GTK_WIDGET(self->overlay));
+
+    if (gtk_widget_get_visible(GTK_WIDGET(self->pref_panel))) {
+        if (width < height) {
+            l_pref_panel_expand(self->pref_panel);
+        } else {
+            l_pref_panel_centered(self->pref_panel, width);
+        }
+    }
+
+    if (gtk_widget_get_visible(GTK_WIDGET(self->button_pref_panel))) {
+        if (width < height) {
+            l_button_pref_panel_expand(self->button_pref_panel);
+        } else {
+            l_button_pref_panel_centered(self->button_pref_panel, width);
+        }
+    }
+}
+
 /*  Bung  */
 static void
 clicked_button(GtkWidget *button, gpointer data) {
     LContentManager *manager = (LContentManager *) data;
 
-    l_pref_panel_configure(manager->pref_panel, NULL);
+    g_object_set(G_OBJECT(manager->pref_panel), "visible", FALSE, NULL);
+    g_object_set(G_OBJECT(manager->button_pref_panel), "visible", TRUE, NULL);
 
-    if (gtk_widget_get_visible(GTK_WIDGET(manager->pref_panel))) {
-        g_object_set(G_OBJECT(manager->pref_panel), "visible", FALSE, NULL);
-    } else {
-        g_object_set(G_OBJECT(manager->pref_panel), "visible", TRUE, NULL);
-    }
+    l_content_manager_panels_resize(manager);
+}
+
+static void
+clicked_name_button(GtkWidget *button, gpointer data) {
+    LContentManager *manager = (LContentManager *) data;
+
+    l_pref_panel_configure(manager->pref_panel,
+                           l_conf_reader_get_device(manager->conf_reader));
+
+    g_object_set(G_OBJECT(manager->pref_panel), "visible", TRUE, NULL);
+    g_object_set(G_OBJECT(manager->button_pref_panel), "visible", FALSE, NULL);
+
+    l_content_manager_panels_resize(manager);
+}
+
+static void
+l_content_manager_set_device_name(LContentManager *self) {
+    LDevice *device = L_DEVICE(l_conf_reader_get_device(self->conf_reader));
+    GString *name = l_device_get_name(device);
+    gtk_button_set_label(GTK_BUTTON(self->device_name), name->str);
+    g_signal_connect(self->device_name, "clicked", G_CALLBACK(clicked_name_button), self);
 }
 
 /*  Sets the device image   */
@@ -112,6 +156,7 @@ static void
 l_content_manager_set_buttons_layer(LContentManager *self) {
     GtkWidget *buttons_container = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkLayoutManager *binLayout = gtk_bin_layout_new();
+
     gtk_widget_set_layout_manager(buttons_container, binLayout);
 
     g_object_set(buttons_container,
@@ -124,6 +169,7 @@ l_content_manager_set_buttons_layer(LContentManager *self) {
 
     gtk_overlay_add_overlay(GTK_OVERLAY(self->overlay), GTK_WIDGET(buttons_container));
 }
+
 
 /*
  *  Change the value buttons offset,
@@ -142,6 +188,7 @@ l_content_manager_resize(GtkOverlay *overlay, GtkWidget *widget,
     GSList *buttons = manager->buttons;
 
     gtk_widget_set_size_request(widget, size, size);
+    l_content_manager_panels_resize(manager);
 
     while (buttons != NULL) {
         LDeviceButton *button = buttons->data;
@@ -161,6 +208,7 @@ l_content_manager_resize(GtkOverlay *overlay, GtkWidget *widget,
 /* */
 void
 l_content_manager_set_content(LContentManager *self) {
+    l_content_manager_set_device_name(self);
     l_content_manager_set_image(self);
     l_content_manager_set_battery_state(self, L_BATTERY_100);
     l_content_manager_set_buttons_layer(self);
@@ -176,8 +224,12 @@ l_content_manager_get_content(LContentManager *self) {
 }
 
 LContentManager *
-l_content_manager_new(void) {
-    return g_object_new(L_TYPE_CONTENT_MANAGER, NULL);
+l_content_manager_new(LConfReader *conf_reader) {
+    LContentManager *manager = g_object_new(L_TYPE_CONTENT_MANAGER, NULL);
+
+    manager->conf_reader = conf_reader;
+
+    return manager;
 }
 
 static void
@@ -187,7 +239,10 @@ static void
 l_content_manager_init(LContentManager *self) {
     GtkLayoutManager *bin_layout = gtk_bin_layout_new();
 
+    self->device_name = gtk_button_new();
+    self->conf_reader = NULL;
     self->pref_panel = l_pref_panel_new();
+    self->button_pref_panel = l_button_pref_panel_new();
     self->battery_state = gtk_image_new();
     self->main_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     self->overlay = gtk_overlay_new();
@@ -195,12 +250,20 @@ l_content_manager_init(LContentManager *self) {
 
     gtk_widget_set_layout_manager(self->main_box, bin_layout);
     gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->overlay));
-    gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->pref_panel));
+    gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->device_name));
     gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->battery_state));
+    gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->pref_panel));
+    gtk_box_append(GTK_BOX(self->main_box), GTK_WIDGET(self->button_pref_panel));
 
     g_object_set(self->main_box,
                  "vexpand", TRUE,
                  "hexpand", TRUE,
+                 NULL);
+
+    g_object_set(self->device_name,
+                 "name", "DeviceName",
+                 "valign", GTK_ALIGN_START,
+                 "halign", GTK_ALIGN_CENTER,
                  NULL);
 
     g_object_set(self->battery_state,

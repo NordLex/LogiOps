@@ -29,6 +29,9 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LConfReader, l_conf_reader, L, CONF_READER, GObject)
 
 LConfReader *
-l_conf_reader_new(void);
+l_conf_reader_new(const char *file_name);
+
+GObject *
+l_conf_reader_get_device(LConfReader * self);
 
 G_END_DECLS

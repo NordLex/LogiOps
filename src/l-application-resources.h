@@ -23,11 +23,21 @@
 #ifndef APPLICATION_RESOURCES_H
 #define APPLICATION_RESOURCES_H
 
+typedef enum  {
+    KEYPRESS,
+    GESTURES,
+    TOGGLE_SMARTSHIFT,
+    CYCLE_DPI,
+} ActionType;
+
 #include <adwaita.h>
 #include <libconfig.h>
 #include "ui/l-device-button.h"
+#include "ui/l-button-pref-panel.h"
 #include "ui/l-pref-panel.h"
 #include "types/l-device.h"
+#include "data/l-conf-reader.h"
+#include "data/l-key-codes.h"
 
 #define L_APP_ID               "org.nordlex.logiops"
 #define L_APP_NAME             "LogiOps"

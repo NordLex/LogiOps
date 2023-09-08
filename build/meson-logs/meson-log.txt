@@ -1,4 +1,4 @@
-Build started at 2023-08-23T21:17:38.229089
+Build started at 2023-09-03T20:38:03.319940
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
@@ -687,7 +687,7 @@ Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-confi
 env[PKG_CONFIG_PATH]: 
 Called `/usr/bin/pkg-config --modversion glib-2.0` -> 0
 stdout:
-2.76.4
+2.76.5
 -----------
 env[PKG_CONFIG_PATH]: 
 Called `/usr/bin/pkg-config --cflags glib-2.0` -> 0
@@ -706,8 +706,8 @@ stdout:
 -lglib-2.0
 -----------
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpp5_b1eme
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpp5_b1eme/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpp5_b1eme/output.exe -D_FILE_OFFSET_BITS=64 -O0 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz/output.exe -D_FILE_OFFSET_BITS=64 -O0 
 
 Code:
  #include<stdio.h>
@@ -728,8 +728,8 @@ Program stderr:
 
 
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo9c7o3l9
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo9c7o3l9/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo9c7o3l9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  
@@ -758,8 +758,8 @@ Build targets in project: 8
 
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpncvtuizu
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpncvtuizu/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpncvtuizu/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k
+Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  

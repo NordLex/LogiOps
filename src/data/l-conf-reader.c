@@ -23,18 +23,45 @@
 struct _LConfReader {
     GObject parent_instance;
 
-    config_t *cfg;
+    //config_t *cfg;
+    LDevice *device;
 };
 
 G_DEFINE_FINAL_TYPE (LConfReader, l_conf_reader, G_TYPE_OBJECT)
 
-static void l_conf_reader_read(LConfReader *self, const char *file_name) {
+static void
+l_conf_reader_read(LConfReader *self, const char *file_name) {
+    //config_read_file(self->cfg, file_name);
+}
 
+void
+l_conf_reader_init_device(LDevice *device) {
+    GSList *actions = NULL;
+
+    actions = g_slist_append(actions, "KEY_CTRL");
+    actions = g_slist_append(actions, "KEY_L");
+
+    l_device_set_name(device, "MX Master 3");
+    l_device_set_dpi(device, 1700);
+    l_device_set_smartshift(device, false, 30, 50);
+    l_device_set_hiresscroll(device, true, false, false);
+    l_device_append_button(device, 0xc3, KEYPRESS, actions);
+    l_device_reset_settings_state(device);
+}
+
+GObject *
+l_conf_reader_get_device(LConfReader * self) {
+    return G_OBJECT(self->device);
 }
 
 LConfReader *
-l_conf_reader_new(void) {
-    return g_object_new(L_TYPE_CONF_READER, NULL);
+l_conf_reader_new(const char *file_name) {
+    LConfReader *conf_reader = g_object_new(L_TYPE_CONF_READER, NULL);
+
+    //l_conf_reader_read(conf_reader, file_name);
+    l_conf_reader_init_device(conf_reader->device);
+
+    return conf_reader;
 }
 
 static void
@@ -42,5 +69,6 @@ l_conf_reader_class_init(LConfReaderClass *klass) {}
 
 static void
 l_conf_reader_init(LConfReader *self) {
-    config_init(self->cfg);
+    //config_init(self->cfg);
+    self->device = l_device_new();
 }

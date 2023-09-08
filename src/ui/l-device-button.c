@@ -23,6 +23,7 @@
 
 struct _LDeviceButton {
     GtkButton parent_instance;
+
     offset_t offset;
 };
 
