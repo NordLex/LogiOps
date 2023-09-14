@@ -27,7 +27,8 @@ struct _LApplication {
 
 G_DEFINE_TYPE (LApplication, l_application, ADW_TYPE_APPLICATION)
 
-LApplication * l_application_new(const char *application_id,
+LApplication *
+l_application_new(const char *application_id,
                                             GApplicationFlags flags) {
     g_return_val_if_fail (application_id != NULL, NULL);
 
@@ -37,7 +38,8 @@ LApplication * l_application_new(const char *application_id,
                         NULL);
 }
 
-static void l_application_activate(GApplication *app) {
+static void
+l_application_activate(GApplication *app) {
     GtkWindow *window;
 
     g_assert (L_IS_APPLICATION(app));
@@ -52,13 +54,15 @@ static void l_application_activate(GApplication *app) {
     gtk_window_present(window);
 }
 
-static void l_application_class_init(LApplicationClass *klass) {
+static void
+l_application_class_init(LApplicationClass *klass) {
     GApplicationClass *app_class = G_APPLICATION_CLASS (klass);
 
     app_class->activate = l_application_activate;
 }
 
-static void l_application_about_action(GSimpleAction *action,
+static void
+l_application_about_action(GSimpleAction *action,
                                              GVariant *parameter,
                                              gpointer user_data) {
     static const char *developers[] = {"NordLex", NULL};
@@ -80,7 +84,8 @@ static void l_application_about_action(GSimpleAction *action,
                           NULL);
 }
 
-static void l_application_quit_action(GSimpleAction *action,
+static void
+l_application_quit_action(GSimpleAction *action,
                                             GVariant *parameter,
                                             gpointer user_data) {
     LApplication *self = user_data;
@@ -90,12 +95,14 @@ static void l_application_quit_action(GSimpleAction *action,
     g_application_quit(G_APPLICATION (self));
 }
 
-static const GActionEntry app_actions[] = {
+static const GActionEntry
+app_actions[] = {
         {"quit",  l_application_quit_action},
         {"about", l_application_about_action},
 };
 
-static void l_application_init(LApplication *self) {
+static void
+l_application_init(LApplication *self) {
     g_action_map_add_action_entries(G_ACTION_MAP (self),
                                     app_actions,
                                     G_N_ELEMENTS (app_actions),

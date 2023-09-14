@@ -1,18 +1,38 @@
-Build started at 2023-09-03T20:38:03.319940
+Build started at 2023-09-14T01:07:22.977403
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
 The Meson build system
-Version: 1.0.1
+Version: 1.2.1
 Source dir: /home/nordlex/devel/CLionProjects/LogiOps
 Build dir: /home/nordlex/devel/CLionProjects/LogiOps/build
 Build type: native build
 Project name: LogiOps
 Project version: 0.1.0
-C compiler for the host machine: cc (gcc 13.1.1 "cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)")
+C compiler for the host machine: ccache cc (gcc 13.2.1 "cc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1)")
 C linker for the host machine: cc ld.bfd 2.39-9
-C compiler for the build machine: cc (gcc 13.1.1 "cc (GCC) 13.1.1 20230614 (Red Hat 13.1.1-4)")
+-----------
+Detecting linker via: `gcc-ar --version` -> 0
+stdout:
+GNU ar version 2.39-9.fc38
+Copyright (C) 2022 Free Software Foundation, Inc.
+Эта программа является открытым программным обеспечением; вы можете
+распространять её согласно условиям GNU General Public License версии 3 или
+(по вашему выбору) более новой версии.
+Эта программа не имеет абсолютно никаких гарантий.
+-----------
+C compiler for the build machine: ccache cc (gcc 13.2.1 "cc (GCC) 13.2.1 20230728 (Red Hat 13.2.1-1)")
 C linker for the build machine: cc ld.bfd 2.39-9
+-----------
+Detecting linker via: `gcc-ar --version` -> 0
+stdout:
+GNU ar version 2.39-9.fc38
+Copyright (C) 2022 Free Software Foundation, Inc.
+Эта программа является открытым программным обеспечением; вы можете
+распространять её согласно условиям GNU General Public License версии 3 или
+(по вашему выбору) более новой версии.
+Эта программа не имеет абсолютно никаких гарантий.
+-----------
 Build machine cpu family: x86_64
 Build machine cpu: x86_64
 Host machine cpu family: x86_64
@@ -21,7 +41,7 @@ Target machine cpu family: x86_64
 Target machine cpu: x86_64
 Configuring config.h using configuration
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgrci0___/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgrci0___/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-align 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr9v0rna6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr9v0rna6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-align 
 
 Code:
  extern int i;
@@ -33,7 +53,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wcast-align: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxu62tbbi/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxu62tbbi/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkv0whjka/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkv0whjka/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
 
 Code:
  extern int i;
@@ -45,7 +65,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wdeclaration-after-statement: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5badzqhp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5badzqhp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=address 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo4s_w7h3/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpo4s_w7h3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=address 
 
 Code:
  extern int i;
@@ -57,7 +77,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=address: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkymyyexf/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkymyyexf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=array-bounds 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmphv17l1l4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmphv17l1l4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=array-bounds 
 
 Code:
  extern int i;
@@ -69,7 +89,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=array-bounds: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6qab5iyl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6qab5iyl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=empty-body 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkx1ttzz8/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpkx1ttzz8/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=empty-body 
 
 Code:
  extern int i;
@@ -81,7 +101,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=empty-body: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr7fp2a7z/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpr7fp2a7z/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp76ywbbqz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp76ywbbqz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit 
 
 Code:
  extern int i;
@@ -93,7 +113,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=implicit: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe74k4naw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe74k4naw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsusjut34/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsusjut34/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration 
 
 Code:
  extern int i;
@@ -105,7 +125,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=implicit-function-declaration: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdkq77rr4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdkq77rr4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=incompatible-pointer-types 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0k_hipyp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0k_hipyp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=incompatible-pointer-types 
 
 Code:
  extern int i;
@@ -117,7 +137,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=incompatible-pointer-types: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwk62_1jz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwk62_1jz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=init-self 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdw4p55ca/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdw4p55ca/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=init-self 
 
 Code:
  extern int i;
@@ -129,7 +149,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=init-self: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpbnw0wu_y/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpbnw0wu_y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-conversion 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpmep_qjv6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpmep_qjv6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-conversion 
 
 Code:
  extern int i;
@@ -141,7 +161,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=int-conversion: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcp66nhcm/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcp66nhcm/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-to-pointer-cast 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0mirhq1l/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0mirhq1l/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=int-to-pointer-cast 
 
 Code:
  extern int i;
@@ -153,7 +173,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=int-to-pointer-cast: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjvvl9eyr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjvvl9eyr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=main 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpoqjflszn/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpoqjflszn/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=main 
 
 Code:
  extern int i;
@@ -165,7 +185,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=main: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpc9bvm5zz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpc9bvm5zz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=misleading-indentation 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3wyyvh3w/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3wyyvh3w/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=misleading-indentation 
 
 Code:
  extern int i;
@@ -177,7 +197,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=misleading-indentation: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg24zi6o2/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg24zi6o2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-braces 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp1woljnym/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp1woljnym/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-braces 
 
 Code:
  extern int i;
@@ -189,7 +209,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=missing-braces: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjz16mhxo/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjz16mhxo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-include-dirs 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp69kh3k2u/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp69kh3k2u/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=missing-include-dirs 
 
 Code:
  extern int i;
@@ -201,7 +221,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=missing-include-dirs: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn_g5vdrt/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn_g5vdrt/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=nonnull 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpujl19s6x/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpujl19s6x/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=nonnull 
 
 Code:
  extern int i;
@@ -213,7 +233,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=nonnull: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgfijmgg6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgfijmgg6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=overflow 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmps2w5hmtm/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmps2w5hmtm/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=overflow 
 
 Code:
  extern int i;
@@ -225,7 +245,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=overflow: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpla1qlzdu/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpla1qlzdu/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=parenthesis 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvpdf6esj/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvpdf6esj/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=parenthesis 
 
 Code:
  extern int i;
@@ -238,7 +258,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Werror=parenthesis: NO (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxgnft5c1/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxgnft5c1/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-arith 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5voe319h/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5voe319h/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-arith 
 
 Code:
  extern int i;
@@ -250,7 +270,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=pointer-arith: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptgpcp2wb/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptgpcp2wb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-to-int-cast 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp73fvc952/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp73fvc952/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=pointer-to-int-cast 
 
 Code:
  extern int i;
@@ -262,7 +282,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=pointer-to-int-cast: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpfm419aaq/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpfm419aaq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=redundant-decls 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5cz7bpfj/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp5cz7bpfj/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=redundant-decls 
 
 Code:
  extern int i;
@@ -274,7 +294,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=redundant-decls: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjc_70f3d/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjc_70f3d/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=return-type 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplc1keplr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplc1keplr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=return-type 
 
 Code:
  extern int i;
@@ -286,7 +306,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=return-type: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpohjyy4ec/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpohjyy4ec/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=sequence-point 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpq4l22rhh/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpq4l22rhh/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=sequence-point 
 
 Code:
  extern int i;
@@ -298,7 +318,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=sequence-point: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy4_43i3e/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy4_43i3e/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=shadow 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp_nue0e17/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp_nue0e17/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=shadow 
 
 Code:
  extern int i;
@@ -310,7 +330,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=shadow: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp66_jil3s/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp66_jil3s/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=strict-prototypes 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplvk700jw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplvk700jw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=strict-prototypes 
 
 Code:
  extern int i;
@@ -322,7 +342,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=strict-prototypes: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprasoeim3/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprasoeim3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=trigraphs 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpyl74cja_/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpyl74cja_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=trigraphs 
 
 Code:
  extern int i;
@@ -334,7 +354,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=trigraphs: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj9990tlc/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj9990tlc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=undef 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpa4l4cor2/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpa4l4cor2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=undef 
 
 Code:
  extern int i;
@@ -346,7 +366,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=undef: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmppix4t8s4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmppix4t8s4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=write-strings 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6of8bcg3/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp6of8bcg3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=write-strings 
 
 Code:
  extern int i;
@@ -358,7 +378,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=write-strings: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwkigwizl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwkigwizl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-nonliteral 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj47wcxyp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpj47wcxyp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-nonliteral 
 
 Code:
  extern int i;
@@ -371,7 +391,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Wformat-nonliteral: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzlhiemqd/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzlhiemqd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-qualifiers 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpqajpccp1/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpqajpccp1/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-qualifiers 
 
 Code:
  extern int i;
@@ -383,7 +403,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wignored-qualifiers: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuaotukyk/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuaotukyk/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wimplicit-function-declaration 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3r92ff9c/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3r92ff9c/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wimplicit-function-declaration 
 
 Code:
  extern int i;
@@ -395,7 +415,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wimplicit-function-declaration: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpug4g8o71/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpug4g8o71/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wlogical-op 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpygxxuey4/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpygxxuey4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wlogical-op 
 
 Code:
  extern int i;
@@ -407,7 +427,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wlogical-op: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptvq5w3zl/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmptvq5w3zl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-declarations 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprv_6r8qb/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprv_6r8qb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-declarations 
 
 Code:
  extern int i;
@@ -419,7 +439,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-declarations: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgbbdpv9y/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpgbbdpv9y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-format-attribute 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsa85f8do/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsa85f8do/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-format-attribute 
 
 Code:
  extern int i;
@@ -431,7 +451,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-format-attribute: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3fadiydr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp3fadiydr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-include-dirs 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxer083yo/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxer083yo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-include-dirs 
 
 Code:
  extern int i;
@@ -443,7 +463,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-include-dirs: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdt3hjqzs/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdt3hjqzs/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-noreturn 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplzzaebhr/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmplzzaebhr/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-noreturn 
 
 Code:
  extern int i;
@@ -455,7 +475,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-noreturn: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp32lik4yz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp32lik4yz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wnested-externs 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf6vze3fj/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf6vze3fj/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wnested-externs 
 
 Code:
  extern int i;
@@ -467,7 +487,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wnested-externs: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzb7euqtq/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzb7euqtq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-function-type -Wno-cast-function-type 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuox3i7dd/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpuox3i7dd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wcast-function-type -Wno-cast-function-type 
 
 Code:
  extern int i;
@@ -479,7 +499,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-cast-function-type: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg2wrqrhg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg2wrqrhg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdangling-pointer -Wno-dangling-pointer 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp8lkqoyct/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp8lkqoyct/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdangling-pointer -Wno-dangling-pointer 
 
 Code:
  extern int i;
@@ -491,7 +511,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-dangling-pointer: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwx0gxllg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpwx0gxllg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-field-initializers -Wno-missing-field-initializers 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpqbnb_k1b/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpqbnb_k1b/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-field-initializers -Wno-missing-field-initializers 
 
 Code:
  extern int i;
@@ -503,7 +523,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-missing-field-initializers: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpnczxea9u/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpnczxea9u/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare -Wno-sign-compare 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0n177bhw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0n177bhw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare -Wno-sign-compare 
 
 Code:
  extern int i;
@@ -515,7 +535,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-sign-compare: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf95c1c5b/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf95c1c5b/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused-parameter -Wno-unused-parameter 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9i3paybp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9i3paybp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused-parameter -Wno-unused-parameter 
 
 Code:
  extern int i;
@@ -527,7 +547,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-unused-parameter: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzw5l_hrh/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzw5l_hrh/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-definition 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe_yd4ur2/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe_yd4ur2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-definition 
 
 Code:
  extern int i;
@@ -539,7 +559,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wold-style-definition: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9qgd8ulp/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp9qgd8ulp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wpointer-arith 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0ergft9i/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp0ergft9i/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wpointer-arith 
 
 Code:
  extern int i;
@@ -551,7 +571,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wpointer-arith: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf18toeez/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpf18toeez/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wredundant-decls 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpl5ikdbvf/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpl5ikdbvf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wredundant-decls 
 
 Code:
  extern int i;
@@ -563,7 +583,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wredundant-decls: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdcim19ns/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpdcim19ns/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-prototypes 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd0jpb69d/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd0jpb69d/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-prototypes 
 
 Code:
  extern int i;
@@ -575,7 +595,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wstrict-prototypes: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvf08f4az/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpvf08f4az/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-default 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcltrnwq7/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpcltrnwq7/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-default 
 
 Code:
  extern int i;
@@ -587,7 +607,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wswitch-default: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpz59erxpd/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpz59erxpd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-enum 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjdvfvu5g/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpjdvfvu5g/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wswitch-enum 
 
 Code:
  extern int i;
@@ -599,7 +619,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wswitch-enum: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmph2vcd6b9/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmph2vcd6b9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wundef 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp72j1vj0s/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp72j1vj0s/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wundef 
 
 Code:
  extern int i;
@@ -611,7 +631,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wundef: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp2jnm677v/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp2jnm677v/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wuninitialized 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpifiatv77/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpifiatv77/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wuninitialized 
 
 Code:
  extern int i;
@@ -623,7 +643,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wuninitialized: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe0vu4gjg/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpe0vu4gjg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd_d9vac6/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd_d9vac6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wunused 
 
 Code:
  extern int i;
@@ -635,7 +655,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wunused: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg7sy21aw/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpg7sy21aw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fno-strict-aliasing 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxcvn8sha/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxcvn8sha/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fno-strict-aliasing 
 
 Code:
  extern int i;
@@ -647,7 +667,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -fno-strict-aliasing: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxtb7n_xh/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpxtb7n_xh/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=format-security -Werror=format=2 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn6piwm7o/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpn6piwm7o/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Werror=format-security -Werror=format=2 
 
 Code:
  extern int i;
@@ -659,7 +679,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Werror=format-security -Werror=format=2: YES (cached)
 Using cached compile:
-Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprcobqdby/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmprcobqdby/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fstack-protector-strong 
+Cached command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzc95lggc/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpzc95lggc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fstack-protector-strong 
 
 Code:
  extern int i;
@@ -677,7 +697,7 @@ Program appstream-util found: YES (/usr/bin/appstream-util)
 Adding test "Validate appstream file"
 Program glib-compile-schemas found: YES (/usr/bin/glib-compile-schemas)
 Adding test "Validate schema file"
-Dependency libadwaita-1 found: YES 1.3.3 (cached)
+Dependency libadwaita-1 found: YES 1.3.4 (cached)
 Dependency libconfig found: YES 1.7.3 (cached)
 Pkg-config binary for 0 is not cached.
 Pkg-config binary missing from cross or native file, or env var undefined.
@@ -685,68 +705,66 @@ Trying a default Pkg-config fallback at pkg-config
 Found pkg-config: /usr/bin/pkg-config (1.8.0)
 Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-config'
 env[PKG_CONFIG_PATH]: 
-Called `/usr/bin/pkg-config --modversion glib-2.0` -> 0
+-----------
+Called: `/usr/bin/pkg-config --modversion glib-2.0` -> 0
 stdout:
 2.76.5
 -----------
 env[PKG_CONFIG_PATH]: 
-Called `/usr/bin/pkg-config --cflags glib-2.0` -> 0
+-----------
+Called: `/usr/bin/pkg-config --cflags glib-2.0` -> 0
 stdout:
 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -pthread
 -----------
 env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
 env[PKG_CONFIG_PATH]: 
-Called `/usr/bin/pkg-config --libs glib-2.0` -> 0
+-----------
+Called: `/usr/bin/pkg-config --libs glib-2.0` -> 0
 stdout:
 -L/usr/lib64 -lglib-2.0
 -----------
 env[PKG_CONFIG_PATH]: 
-Called `/usr/bin/pkg-config --libs glib-2.0` -> 0
+-----------
+Called: `/usr/bin/pkg-config --libs glib-2.0` -> 0
 stdout:
 -lglib-2.0
 -----------
-Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpsygq2eoz/output.exe -D_FILE_OFFSET_BITS=64 -O0 
-
+Using cached run result:
 Code:
- #include<stdio.h>
-        
+ 
+        #include<stdio.h>
         int main(void) {
             printf("%ld\n", (long)(sizeof(void *)));
             return 0;
         }
-Compiler stdout:
+Args:
+ []
+Cached run returncode:
+ 0
+Cached run stdout:
+ 8
+
+Cached run stderr:
  
-Compiler stderr:
- 
-Program stdout:
-
-8
-
-Program stderr:
-
-
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpy0wv0mxk/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
-
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp8ogev703
 Code:
  
-Compiler stdout:
- install: /usr/lib/gcc/x86_64-redhat-linux/13/
+-----------
+Command line: `cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp8ogev703/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp8ogev703/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+stdout:
+install: /usr/lib/gcc/x86_64-redhat-linux/13/
 programs: =/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/
 libraries: =/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/:/lib/x86_64-redhat-linux/13/:/lib/../lib64/:/usr/lib/x86_64-redhat-linux/13/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../:/lib/:/usr/lib/
-
-Compiler stderr:
- 
+-----------
 Program glib-compile-resources found: YES (/usr/bin/glib-compile-resources)
 Program msginit found: YES (/usr/bin/msginit)
 Program msgmerge found: YES (/usr/bin/msgmerge)
 Program xgettext found: YES (/usr/bin/xgettext)
-Dependency gio-2.0 found: YES 2.76.4 (cached)
+Dependency gio-2.0 found: YES 2.76.5 (cached)
 env[PKG_CONFIG_PATH]: 
-Called `/usr/bin/pkg-config --variable=glib_compile_schemas gio-2.0` -> 0
+-----------
+Called: `/usr/bin/pkg-config --variable=glib_compile_schemas gio-2.0` -> 0
 stdout:
 /usr/bin/glib-compile-schemas
 -----------
@@ -758,18 +776,24 @@ Build targets in project: 8
 
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k
-Command line:  cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmp__13zb7k/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
-
+Working directory:  /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd5o0hv58
 Code:
  
-Compiler stdout:
- install: /usr/lib/gcc/x86_64-redhat-linux/13/
+-----------
+Command line: `cc /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd5o0hv58/testfile.c -o /home/nordlex/devel/CLionProjects/LogiOps/build/meson-private/tmpd5o0hv58/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+stdout:
+install: /usr/lib/gcc/x86_64-redhat-linux/13/
 programs: =/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/13/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/bin/
 libraries: =/usr/lib/gcc/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../x86_64-redhat-linux/13/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64/:/lib/x86_64-redhat-linux/13/:/lib/../lib64/:/usr/lib/x86_64-redhat-linux/13/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/lib/:/usr/lib/gcc/x86_64-redhat-linux/13/../../../:/lib/:/usr/lib/
-
-Compiler stderr:
- 
+-----------
+Failed to guess install tag for /usr/local/share/applications/org.nordlex.logiops.desktop
+Failed to guess install tag for /usr/local/share/appdata/org.nordlex.logiops.appdata.xml
+Failed to guess install tag for /usr/local/share/glib-2.0/schemas/org.nordlex.logiops.gschema.xml
+Failed to guess install tag for /usr/local/share/icons/hicolor/scalable/apps/org.nordlex.logiops.svg
+Failed to guess install tag for /usr/local/share/icons/hicolor/symbolic/apps/org.nordlex.logiops-symbolic.svg
+Failed to guess install tag for install script: /usr/bin/glib-compile-schemas /usr/local/share/glib-2.0/schemas
+Failed to guess install tag for install script: /usr/bin/gtk4-update-icon-cache -q -t -f /usr/local/share/icons/hicolor
+Failed to guess install tag for install script: /usr/bin/update-desktop-database -q /usr/local/share/applications
 Failed to guess install tag for /usr/local/share/applications/org.nordlex.logiops.desktop
 Failed to guess install tag for /usr/local/share/appdata/org.nordlex.logiops.appdata.xml
 Failed to guess install tag for /usr/local/share/glib-2.0/schemas/org.nordlex.logiops.gschema.xml

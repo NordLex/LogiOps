@@ -1,4 +1,4 @@
-/* main.c
+/* l-device-page.h
  *
  * Copyright 2023 NordLex
  *
@@ -18,23 +18,17 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "config.h"
+#pragma once
 
-#include <glib/gi18n.h>
+#include "../l-application-resources.h"
 
-#include "l-application.h"
+G_BEGIN_DECLS
 
+#define L_TYPE_DEVICE_PAGE (l_device_page_get_type())
 
-int main(int argc, char *argv[]) {
-    g_autoptr(LApplication) app = NULL;
-    int ret;
+G_DECLARE_FINAL_TYPE (LDevicePage, l_device_page, L, DEVICE_PAGE, GtkBox)
 
-    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-    textdomain(GETTEXT_PACKAGE);
+LDevicePage *
+l_device_page_new(gpointer device);
 
-    app = l_application_new(L_APP_ID, G_APPLICATION_DEFAULT_FLAGS);
-    ret = g_application_run(G_APPLICATION (app), argc, argv);
-
-    return ret;
-}
+G_END_DECLS

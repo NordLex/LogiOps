@@ -32,23 +32,31 @@ typedef enum  {
 
 #include <adwaita.h>
 #include <libconfig.h>
+#include "ui/l-device-page.h"
 #include "ui/l-device-button.h"
 #include "ui/l-button-pref-panel.h"
 #include "ui/l-pref-panel.h"
+#include "ui/device-description/device-description.h"
 #include "types/l-device.h"
 #include "data/l-conf-reader.h"
 #include "data/l-key-codes.h"
 
-#define L_APP_ID               "org.nordlex.logiops"
-#define L_APP_NAME             "LogiOps"
-#define L_CSS_STYLE_PATH       "/org/nordlex/logiops/resources/media/application_style.css"
-#define L_DEVICE_IMAGE         "/org/nordlex/logiops/resources/media/mx_master_3.png"
-#define L_DEVICE_BUTTON_SIZE 45
-#define L_BATTERY_0            "/org/nordlex/logiops/resources/media/battery/0.svg"
-#define L_BATTERY_20           "/org/nordlex/logiops/resources/media/battery/20.svg"
-#define L_BATTERY_50           "/org/nordlex/logiops/resources/media/battery/50.svg"
-#define L_BATTERY_80           "/org/nordlex/logiops/resources/media/battery/80.svg"
-#define L_BATTERY_100          "/org/nordlex/logiops/resources/media/battery/100.svg"
+#define L_APP_ID                "org.nordlex.logiops"
+#define L_APP_NAME              "LogiOps"
+#define L_CSS_STYLE_PATH        "/org/nordlex/logiops/resources/media/application_style.css"
+
+#define MX_MASTER_3_IMAGE       "/org/nordlex/logiops/resources/media/mx_master_3.png"
+#define MX_MASTER_3S_IMAGE      "/org/nordlex/logiops/resources/media/mx_master_3s..."
+#define MX_ANYWHERE_3_IMAGE     "/org/nordlex/logiops/resources/media/mx_anywhere_3..."
+#define MX_ANYWHERE_3S_IMAGE    "/org/nordlex/logiops/resources/media/mx_anywhere_3s..."
+
+#define L_DEVICE_BUTTON_SIZE    45
+
+#define L_BATTERY_0             "/org/nordlex/logiops/resources/media/battery/0.svg"
+#define L_BATTERY_20            "/org/nordlex/logiops/resources/media/battery/20.svg"
+#define L_BATTERY_50            "/org/nordlex/logiops/resources/media/battery/50.svg"
+#define L_BATTERY_80            "/org/nordlex/logiops/resources/media/battery/80.svg"
+#define L_BATTERY_100           "/org/nordlex/logiops/resources/media/battery/100.svg"
 
 extern const char *frame[1];
 

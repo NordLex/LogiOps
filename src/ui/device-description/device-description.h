@@ -1,4 +1,4 @@
-/* main.c
+/* device-description.h
  *
  * Copyright 2023 NordLex
  *
@@ -18,23 +18,23 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "config.h"
+#pragma once
 
-#include <glib/gi18n.h>
+#include "../../l-application-resources.h"
 
-#include "l-application.h"
+typedef struct  {
+    gint cid;
+    GString *name;
+    gdouble x_offset;
+    gdouble y_offset;
+    gpointer conf;
+} ButtonDescription;
 
+typedef struct  {
+    GString *name;
+    GString *image_path;
+    GSList *buttons;
+    gpointer conf;
+} DeviceDescription;
 
-int main(int argc, char *argv[]) {
-    g_autoptr(LApplication) app = NULL;
-    int ret;
-
-    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-    textdomain(GETTEXT_PACKAGE);
-
-    app = l_application_new(L_APP_ID, G_APPLICATION_DEFAULT_FLAGS);
-    ret = g_application_run(G_APPLICATION (app), argc, argv);
-
-    return ret;
-}
+DeviceDescription * description_mx_master_3(void);

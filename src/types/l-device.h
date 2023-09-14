@@ -66,6 +66,9 @@ l_device_reset_settings_state(LDevice *self);
 LDevice *
 l_device_new(void);
 
+GSList *
+l_device_get_buttons_conf(LDevice *self);
+
 GString *
 l_device_get_name(LDevice *self);
 

@@ -137,6 +137,11 @@ l_device_append_button(LDevice *self, gint sid, ActionType action_type, GSList *
     self->buttons = g_slist_append(self->buttons, button);
 }
 
+GSList *
+l_device_get_buttons_conf(LDevice *self) {
+    return self->buttons;
+}
+
 LDevice *
 l_device_new(void) {
     return g_object_new(L_TYPE_DEVICE, NULL);

@@ -4,10 +4,12 @@ logiops_sources = [
   'l-application.c',
   'l-window.c',
   'ui/l-content-manager.c',
+  'ui/l-device-page.c',
   'ui/header-bar.c',
   'ui/l-device-button.c',
   'ui/l-pref-panel.c',
   'ui/l-button-pref-panel.c',
+  'ui/device-description/device-description.c',
   'data/l-conf-reader.c',
   'types/l-device.c',
 ]
