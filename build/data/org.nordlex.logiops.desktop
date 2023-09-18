@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=LogiOps
-Exec=logiops
-Icon=org.nordlex.logiops
-Terminal=false
-Type=Application
-Categories=GTK;
-StartupNotify=true

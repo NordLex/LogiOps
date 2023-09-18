@@ -28,7 +28,7 @@
     margin: 15px;
     border-radius: 12px;
     box-shadow: -1px 5px 25px 5px rgba(0,0,0,0.3);
-    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.02), 0.97);
 }
 
 #ButtonPrefPanel {
@@ -36,7 +36,14 @@
     margin: 15px;
     border-radius: 12px;
     box-shadow: -1px 5px 25px 5px rgba(0,0,0,0.3);
-    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.05), 0.9);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.02), 0.97);
+}
+
+#PrefGroup {
+    padding: 5px 15px 10px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.15);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.4), 0.1);
 }
 
 .green-frame {

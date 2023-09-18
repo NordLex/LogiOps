@@ -30,22 +30,31 @@ struct _LConfReader {
 G_DEFINE_FINAL_TYPE (LConfReader, l_conf_reader, G_TYPE_OBJECT)
 
 static void
-l_conf_reader_read(LConfReader *self, const char *file_name) {
+l_conf_reader_read_conf_file(LConfReader *self, const char *file_name) {
     //config_read_file(self->cfg, file_name);
 }
 
 void
 l_conf_reader_init_device(LDevice *device) {
-    GSList *actions = NULL;
+    GSList *one_actions = NULL;
+    GSList *two_actions = NULL;
 
-    actions = g_slist_append(actions, "KEY_CTRL");
-    actions = g_slist_append(actions, "KEY_L");
+    one_actions = g_slist_append(one_actions, "KEY_CTRL");
+    one_actions = g_slist_append(one_actions, "KEY_L");
+
+    two_actions = g_slist_append(two_actions, "KEY_ALT");
+    two_actions = g_slist_append(two_actions, "KEY_Z");
 
     l_device_set_name(device, "MX Master 3");
     l_device_set_dpi(device, 1700);
     l_device_set_smartshift(device, false, 30, 50);
     l_device_set_hiresscroll(device, true, false, false);
-    l_device_append_button(device, 0xc3, KEYPRESS, actions);
+    l_device_append_button(device, 0xc2, KEYPRESS, one_actions);
+    l_device_append_button(device, 0xc3, KEYPRESS, one_actions);
+    l_device_append_button(device, 0xc4, KEYPRESS, two_actions);
+    l_device_append_button(device, 0xc5, KEYPRESS, one_actions);
+    l_device_append_button(device, 0xc6, KEYPRESS, two_actions);
+    l_device_append_button(device, 0xc7, KEYPRESS, one_actions);
     l_device_reset_settings_state(device);
 }
 

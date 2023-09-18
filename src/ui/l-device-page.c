@@ -195,6 +195,7 @@ page_set_self(LDevicePage *self) {
     page_set_device_image(self);
     page_set_battery_state(self, L_BATTERY_20);
     page_set_buttons_layer(self);
+    l_pref_panel_configure(self->device_pref_panel, self->device->conf);
 
     g_signal_connect(self->overlay, "get-child-position", G_CALLBACK(page_resize), self);
 }
@@ -255,5 +256,5 @@ l_device_page_init(LDevicePage *self) {
 
     gtk_widget_set_margin_start(self->battery_state, 20);
     gtk_widget_set_margin_bottom(self->battery_state, 17);
-    gtk_widget_set_size_request(self->battery_state, 60, 50);
+    gtk_widget_set_size_request(self->battery_state, 50, 40);
 }

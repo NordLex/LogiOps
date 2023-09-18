@@ -28,9 +28,16 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LPrefPanel, l_pref_panel, L, PREF_PANEL, GtkBox)
 
-LPrefPanel * l_pref_panel_new(void);
-void l_pref_panel_configure(LPrefPanel * self, gpointer button_conf);
-void l_pref_panel_centered(LPrefPanel *self, int width);
-void l_pref_panel_expand(LPrefPanel *self);
+LPrefPanel *
+l_pref_panel_new(void);
+
+void
+l_pref_panel_configure(LPrefPanel * self, gpointer device_conf);
+
+void
+l_pref_panel_centered(LPrefPanel *self, int width);
+
+void
+l_pref_panel_expand(LPrefPanel *self);
 
 G_END_DECLS

@@ -20,8 +20,8 @@
 
 #pragma once
 
-#ifndef APPLICATION_RESOURCES_H
-#define APPLICATION_RESOURCES_H
+#ifndef L_APPLICATION_RESOURCES
+#define L_APPLICATION_RESOURCES
 
 typedef enum  {
     KEYPRESS,

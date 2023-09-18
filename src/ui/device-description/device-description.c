@@ -30,32 +30,32 @@ ButtonDescription   scroll_wheel,
 DeviceDescription   mx_master_3;
 
 DeviceDescription * description_mx_master_3(void) {
-    scroll_wheel.cid = 1;
+    scroll_wheel.cid = 0xc2;
     scroll_wheel.name = g_string_new("Scroll Wheel");
     scroll_wheel.x_offset = 0.62;
     scroll_wheel.y_offset = 0.21;
 
-    dpi_button.cid = 2;
+    dpi_button.cid = 0xc3;
     dpi_button.name = g_string_new("DPI");
     dpi_button.x_offset = 0.68;
     dpi_button.y_offset = 0.37;
 
-    horizontal_wheel.cid = 3;
+    horizontal_wheel.cid = 0xc4;
     horizontal_wheel.name = g_string_new("Horizontal Wheel");
     horizontal_wheel.x_offset = 0.51;
     horizontal_wheel.y_offset = 0.45;
 
-    copy_button.cid = 4;
+    copy_button.cid = 0xc5;
     copy_button.name = g_string_new("Copy");
     copy_button.x_offset = 0.39;
     copy_button.y_offset = 0.45;
 
-    paste_button.cid = 5;
+    paste_button.cid = 0xc6;
     paste_button.name = g_string_new("Paste");
     paste_button.x_offset = 0.42;
     paste_button.y_offset = 0.545;
 
-    gesture_button.cid = 6;
+    gesture_button.cid = 0xc7;
     gesture_button.name = g_string_new("Gestures");
     gesture_button.x_offset = 0.265;
     gesture_button.y_offset = 0.58;

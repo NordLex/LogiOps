@@ -32,6 +32,21 @@ G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
 
 #define PANEL_WIDTH 450
 
+static void
+callback_close_button(GtkWidget *button, gpointer data) {
+    LButtonPrefPanel *self = L_BUTTON_PREF_PANEL(data);
+    g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
+}
+
+static void
+init_close_button(LButtonPrefPanel *self) {
+    GtkWidget *title = gtk_label_new("Close");
+    GCallback on_click = G_CALLBACK(callback_close_button);
+
+    gtk_button_set_child(GTK_BUTTON(self->close_button), title);
+    g_signal_connect(self->close_button, "clicked", on_click, self);
+}
+
 void
 l_button_pref_panel_centered(LButtonPrefPanel *self, int width) {
     int panel_width = (int) (width * 0.4);
@@ -87,7 +102,7 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
                  "hexpand", TRUE,
                  NULL);
 
-
+    init_close_button(self);
     gtk_widget_set_margin_start(self->close_button, 60);
     gtk_widget_set_margin_end(self->close_button, 60);
     gtk_widget_set_margin_start(self->pref_container, 5);
