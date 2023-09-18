@@ -2,7 +2,9 @@
 
 ![LogiOps Icon](data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg)
 
-#### "PixelOne/LogiOps" UI configurator
+#### UI configurator for [PixelOne/LogiOps](https://github.com/PixlOne/logiops)
+
+<span style="color:red">This project is under development</span>
 
 ![App](data/readme-media/app.png)
 ![Device Settings](data/readme-media/app_device_settings.png)
