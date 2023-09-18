@@ -4,7 +4,8 @@
 
 #### UI configurator for [PixelOne/LogiOps](https://github.com/PixlOne/logiops)
 
-<span style="color:red">This project is under development</span>
+:warning:__`This project is under development`__:warning:
+
 
 ![App](data/readme-media/app.png)
 ![Device Settings](data/readme-media/app_device_settings.png)
