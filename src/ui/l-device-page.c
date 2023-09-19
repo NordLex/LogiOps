@@ -81,27 +81,6 @@ static void
 fill_mx_master_buttons_list(LDevicePage *self) {
     GSList *buttons_description = self->device->buttons;
 
-   /*
-    LDeviceButton *scroll_wheel = l_device_button_new(
-            0.62, 0.21,G_CALLBACK(clicked_device_button),self);
-    LDeviceButton *horizontal_wheel = l_device_button_new(
-            0.51, 0.45,G_CALLBACK(clicked_device_button),self);
-    LDeviceButton *copy_button = l_device_button_new(
-            0.39, 0.45,G_CALLBACK(clicked_device_button),self);
-    LDeviceButton *paste_button = l_device_button_new(
-            0.42, 0.545,G_CALLBACK(clicked_device_button),self);
-    LDeviceButton *dpi_button = l_device_button_new(
-            0.68, 0.37,G_CALLBACK(clicked_device_button),self);
-    LDeviceButton *gestures_button = l_device_button_new(
-            0.265, 0.58,G_CALLBACK(clicked_device_button),self);
-
-    self->buttons = g_slist_append(self->buttons, scroll_wheel);
-    self->buttons = g_slist_append(self->buttons, horizontal_wheel);
-    self->buttons = g_slist_append(self->buttons, copy_button);
-    self->buttons = g_slist_append(self->buttons, paste_button);
-    self->buttons = g_slist_append(self->buttons, dpi_button);
-    self->buttons = g_slist_append(self->buttons, gestures_button);
-    */
     while (buttons_description != NULL) {
         ButtonDescription *description = buttons_description->data;
 

@@ -42,8 +42,8 @@
 #PrefGroup {
     padding: 5px 15px 10px;
     border-radius: 8px;
-    box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.15);
-    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.4), 0.1);
+    /*box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.15);
+    background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.4), 0.1);*/
 }
 
 .green-frame {

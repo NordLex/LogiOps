@@ -47,6 +47,20 @@ init_close_button(LButtonPrefPanel *self) {
     g_signal_connect(self->close_button, "clicked", on_click, self);
 }
 
+static void
+init_title(LButtonPrefPanel *self, GString *name) {
+    const char *format = "<span weight=\"bold\">\%s</span>";
+    char *markup = g_markup_printf_escaped(format, name->str);
+
+    gtk_label_set_markup(GTK_LABEL(self->title), markup);
+    g_free(markup);
+}
+
+static void
+init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
+    init_title(self, button_description->name);
+}
+
 void
 l_button_pref_panel_centered(LButtonPrefPanel *self, int width) {
     int panel_width = (int) (width * 0.4);
@@ -69,6 +83,12 @@ l_button_pref_panel_expand(LButtonPrefPanel *self) {
                  NULL);
 }
 
+void
+l_button_pref_panel_configure(LButtonPrefPanel *self, gpointer button_conf) {
+    ButtonDescription *button_description = (ButtonDescription *) button_conf;
+    init_content(self, button_description);
+}
+
 LButtonPrefPanel *
 l_button_pref_panel_new(void) {
     return g_object_new(L_TYPE_BUTTON_PREF_PANEL, NULL);
@@ -79,7 +99,7 @@ l_button_pref_panel_class_init(LButtonPrefPanelClass *klass) {}
 
 static void
 l_button_pref_panel_init(LButtonPrefPanel *self) {
-    self->title = gtk_label_new("Empty Button pref panel");
+    self->title = gtk_label_new(NULL);
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
     self->close_button = gtk_button_new();
 

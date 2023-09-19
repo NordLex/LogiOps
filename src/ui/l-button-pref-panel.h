@@ -37,4 +37,7 @@ l_button_pref_panel_centered(LButtonPrefPanel *self, int width);
 void
 l_button_pref_panel_expand(LButtonPrefPanel *self);
 
+void
+l_button_pref_panel_configure(LButtonPrefPanel *self, gpointer button_conf);
+
 G_END_DECLS

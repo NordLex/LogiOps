@@ -186,7 +186,10 @@ l_pref_panel_init_hiresscroll(Hiresscroll *hiresscroll, GtkWidget *parent) {
                  NULL);
 
     g_object_set(switch_box, "hexpand", TRUE, NULL);
-    g_object_set(main_box,  "name", "PrefGroup", "hexpand", TRUE, NULL);
+    g_object_set(main_box,
+                 "name", "PrefGroup",
+                 "hexpand", TRUE,
+                 NULL);
 
     gtk_switch_set_active(GTK_SWITCH(hires_switch), *hires_state);
     gtk_switch_set_active(GTK_SWITCH(invert_switch), *invert_state);
@@ -230,7 +233,7 @@ l_pref_panel_clear_content(GtkWidget *container) {
 static void
 l_pref_panel_init_content(LPrefPanel * self, gpointer device_conf) {
     LDevice *device = L_DEVICE(device_conf);
-        gint *dpi = l_device_get_dpi(device);
+    gint *dpi = l_device_get_dpi(device);
     Smartshift *smartshift = l_device_get_smartshift(device);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 

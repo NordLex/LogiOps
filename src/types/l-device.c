@@ -127,10 +127,10 @@ l_device_set_dpi(LDevice *self, gint dpi) {
 
 /*  Button configuration  */
 void
-l_device_append_button(LDevice *self, gint sid, ActionType action_type, GSList *action_keys) {
+l_device_append_button(LDevice *self, gint cid, ActionType action_type, GSList *action_keys) {
     Button *button = g_malloc(sizeof(Button));
 
-    button->cid = sid;
+    button->cid = cid;
     button->action.type = action_type;
     button->action.keys = action_keys;
 
