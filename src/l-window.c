@@ -29,6 +29,7 @@ struct _LWindow {
     LContentManager * content_manager;
     LConfReader * conf_reader;
     GtkWidget * header_bar;
+    LDataManager *data_manager;
 };
 
 G_DEFINE_FINAL_TYPE (LWindow, l_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -51,8 +52,9 @@ static void l_window_init(LWindow *self) {
     gtk_window_set_default_size(GTK_WINDOW(self), 1100, 700);
 
     self->header_bar = adw_header_bar_new();
+    self->data_manager = l_data_manager_new();
     self->conf_reader = l_conf_reader_new(NULL);
-    self->content_manager = l_content_manager_new(self->conf_reader);
+    self->content_manager = l_content_manager_new(self->data_manager);
 
     content_box = l_content_manager_get_content(self->content_manager);
 

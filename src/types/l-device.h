@@ -29,6 +29,14 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LDevice, l_device, L, DEVICE, GObject)
 
 typedef struct {
+    gint dpi;
+    gint min;
+    gint max;
+    gint step;
+    gboolean range;
+} Dpi;
+
+typedef struct {
     gboolean on;
     gint threshold;
     gint torque;
@@ -72,7 +80,7 @@ l_device_get_buttons_conf(LDevice *self);
 GString *
 l_device_get_name(LDevice *self);
 
-gint *
+Dpi *
 l_device_get_dpi(LDevice *self);
 
 Smartshift *
@@ -103,7 +111,7 @@ void
 l_device_set_name(LDevice *self, const char *name);
 
 void
-l_device_set_dpi(LDevice *self, gint dpi);
+l_device_set_dpi(LDevice *self, gint dpi, gint min, gint max, gint step, gboolean range);
 
 void
 l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque);

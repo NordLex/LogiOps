@@ -25,28 +25,37 @@ struct _LDeviceButton {
     GtkButton parent_instance;
 
     offset_t offset;
+    ButtonDescription *description;
 };
 
 G_DEFINE_FINAL_TYPE (LDeviceButton, l_device_button, GTK_TYPE_BUTTON)
 
-offset_t * l_device_button_get_offset(LDeviceButton * self) {
+offset_t *
+l_device_button_get_offset(LDeviceButton * self) {
     return &self->offset;
 }
 
-LDeviceButton * l_device_button_new(gdouble x_offset, gdouble y_offset, GCallback callback, gpointer data) {
+ButtonDescription *
+l_device_button_get_description(LDeviceButton *self) {
+    return self->description;
+}
+
+LDeviceButton *
+l_device_button_new(ButtonDescription *description, gpointer data) {
     LDeviceButton * object = g_object_new(L_TYPE_DEVICE_BUTTON, NULL);
 
-    object->offset.x = x_offset;
-    object->offset.y = y_offset;
-
-    g_signal_connect(G_OBJECT(object), "clicked", callback, data);
+    object->description = description;
+    object->offset.x = description->x_offset;
+    object->offset.y = description->y_offset;
 
     return object;
 }
 
-static void l_device_button_class_init(LDeviceButtonClass * klass) {}
+static void
+l_device_button_class_init(LDeviceButtonClass * klass) {}
 
-static void l_device_button_init(LDeviceButton * self) {
+static void
+l_device_button_init(LDeviceButton * self) {
     gtk_widget_set_size_request(GTK_WIDGET(self),
                                 L_DEVICE_BUTTON_SIZE,
                                 L_DEVICE_BUTTON_SIZE);

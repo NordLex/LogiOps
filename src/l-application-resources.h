@@ -30,25 +30,31 @@ typedef enum  {
     CYCLE_DPI,
 } ActionType;
 
+
 #include <adwaita.h>
 #include <libconfig.h>
+#include "types/description-types.h"
+#include "types/l-device.h"
+#include "ui/device-description/device-description.h"
+#include "ui/l-device-card.h"
+#include "ui/l-overview-page.h"
 #include "ui/l-device-page.h"
 #include "ui/l-device-button.h"
 #include "ui/l-button-pref-panel.h"
 #include "ui/l-pref-panel.h"
-#include "ui/device-description/device-description.h"
-#include "types/l-device.h"
 #include "data/l-conf-reader.h"
 #include "data/l-key-codes.h"
+#include "data/l-bus-manager.h"
+#include "data/l-data-manager.h"
 
 #define L_APP_ID                "org.nordlex.logiops"
 #define L_APP_NAME              "LogiOps"
 #define L_CSS_STYLE_PATH        "/org/nordlex/logiops/resources/media/application_style.css"
 
-#define MX_MASTER_3_IMAGE       "/org/nordlex/logiops/resources/media/mx_master_3.png"
-#define MX_MASTER_3S_IMAGE      "/org/nordlex/logiops/resources/media/mx_master_3s..."
-#define MX_ANYWHERE_3_IMAGE     "/org/nordlex/logiops/resources/media/mx_anywhere_3..."
-#define MX_ANYWHERE_3S_IMAGE    "/org/nordlex/logiops/resources/media/mx_anywhere_3s..."
+#define MX_MASTER_3_IMAGE           "/org/nordlex/logiops/resources/media/mx-master-3.png"
+#define MX_MASTER_3_IMAGE_LIGHT     "/org/nordlex/logiops/resources/media/mx-master-3-light..."
+#define MX_ANYWHERE_3_IMAGE         "/org/nordlex/logiops/resources/media/mx-anywhere-3.png"
+#define MX_ANYWHERE_3_IMAGE_LIGHT   "/org/nordlex/logiops/resources/media/mx-anywhere-3-light..."
 
 #define L_DEVICE_BUTTON_SIZE    45
 

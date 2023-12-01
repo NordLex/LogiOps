@@ -1,6 +1,6 @@
-/* l-device-page.h
+/* l-overview-page.h
  *
- * Copyright 2023 NordLex
+ * Copyright 18.11.2023 NordLex
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,14 @@
 
 #include "../l-application-resources.h"
 
+
 G_BEGIN_DECLS
 
-#define L_TYPE_DEVICE_PAGE (l_device_page_get_type())
+#define L_TYPE_OVERVIEW_PAGE (l_overview_page_get_type())
 
-G_DECLARE_FINAL_TYPE (LDevicePage, l_device_page, L, DEVICE_PAGE, GtkBox)
+G_DECLARE_FINAL_TYPE(LOverviewPage, l_overview_page, L, OVERVIEW_PAGE, GtkBox)
 
-GtkWidget *
-l_device_page_new(gpointer device, GCallback return_callback, gpointer data);
+LOverviewPage *
+l_overview_page_new(GSList *cards);
 
 G_END_DECLS

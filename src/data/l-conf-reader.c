@@ -28,33 +28,49 @@ struct _LConfReader {
 };
 
 G_DEFINE_FINAL_TYPE (LConfReader, l_conf_reader, G_TYPE_OBJECT)
-
+/*
 static void
 l_conf_reader_read_conf_file(LConfReader *self, const char *file_name) {
     //config_read_file(self->cfg, file_name);
-}
+}*/
 
-void
+static void
 l_conf_reader_init_device(LDevice *device) {
-    GSList *one_actions = NULL;
-    GSList *two_actions = NULL;
+    GSList *middle_actions = NULL;
+    GSList *top_actions = NULL;
+    GSList *forward_actions = NULL;
+    GSList *back_actions = NULL;
+    GSList *hwheel_actions = NULL;
+    GSList *gesture_actions = NULL;
 
-    one_actions = g_slist_append(one_actions, "KEY_CTRL");
-    one_actions = g_slist_append(one_actions, "KEY_L");
+    middle_actions = g_slist_append(middle_actions, (char *) "KEY_LEFTMETA");
+    middle_actions = g_slist_append(middle_actions, (char *) "KEY_TAB");
 
-    two_actions = g_slist_append(two_actions, "KEY_ALT");
-    two_actions = g_slist_append(two_actions, "KEY_Z");
+    top_actions = g_slist_append(top_actions, (char *) "KEY_LEFTCTRL");
+    top_actions = g_slist_append(top_actions, (char *) "KEY_L");
 
-    l_device_set_name(device, "MX Master 3");
-    l_device_set_dpi(device, 1700);
+    forward_actions = g_slist_append(forward_actions, (char *) "KEY_LEFTCTRL");
+    forward_actions = g_slist_append(forward_actions, (char *) "KEY_C");
+
+    back_actions = g_slist_append(back_actions, (char *) "KEY_LEFTCTRL");
+    back_actions = g_slist_append(back_actions, (char *) "KEY_V");
+
+    hwheel_actions = g_slist_append(hwheel_actions, (char *) "REL_HWHEEL");
+    hwheel_actions = g_slist_append(hwheel_actions, (char *) "REL_HWHEEL_HI_RES");
+
+    gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_LEFTALT");
+    gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_Z");
+
+    l_device_set_name(device, "Wireless Mouse MX Master 3");
+    l_device_set_dpi(device, 1700, 150, 6000, 100, true);
     l_device_set_smartshift(device, false, 30, 50);
     l_device_set_hiresscroll(device, true, false, false);
-    l_device_append_button(device, 0xc2, KEYPRESS, one_actions);
-    l_device_append_button(device, 0xc3, KEYPRESS, one_actions);
-    l_device_append_button(device, 0xc4, KEYPRESS, two_actions);
-    l_device_append_button(device, 0xc5, KEYPRESS, one_actions);
-    l_device_append_button(device, 0xc6, KEYPRESS, two_actions);
-    l_device_append_button(device, 0xc7, KEYPRESS, one_actions);
+    l_device_append_button(device, 0x52, KEYPRESS, middle_actions);
+    l_device_append_button(device, 0xc4, KEYPRESS, top_actions);
+    l_device_append_button(device, 0x56, KEYPRESS, forward_actions);
+    l_device_append_button(device, 0x53, KEYPRESS, back_actions);
+    l_device_append_button(device, 0xd7, KEYPRESS, hwheel_actions);
+    l_device_append_button(device, 0xc3, KEYPRESS, gesture_actions);
     l_device_reset_settings_state(device);
 }
 

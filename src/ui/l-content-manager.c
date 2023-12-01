@@ -24,72 +24,81 @@
 struct _LContentManager {
     GObject parent_instance;
 
-    LConfReader *conf_reader;
-    DeviceDescription *device_description;
-    LDevicePage *device_page;
+    LDataManager *data_manager;
+    LOverviewPage *overview_page;
+    GtkWidget *main_box;
+    GSList *devices;
+    GSList *device_cards;
 };
 
 G_DEFINE_FINAL_TYPE (LContentManager, l_content_manager, G_TYPE_OBJECT)
 
+
 static void
-set_default_button_conf(gpointer *conf) {
-    conf = NULL;
+return_callback(GtkWidget *widget, gpointer data) {
+    GtkWidget *master = GTK_WIDGET(data);
+    gtk_stack_set_visible_child_name(GTK_STACK(master), "start-page");
 }
 
-gpointer
-find_conf_cid(gint cid, GSList *button_conf) {
-    GSList *temp = button_conf;
+static void
+card_selected_callback(LDeviceCard *card, gpointer data) {
+    LContentManager *manager = L_CONTENT_MANAGER(data);
+    DeviceDescription *description = l_device_card_get_description(card);
+    GtkWidget *child = gtk_stack_get_child_by_name(GTK_STACK(manager->main_box),
+                                                   description->name->str);
 
-    while (temp != NULL) {
-        Button *conf = temp->data;
-        if (conf->cid == cid) {
-            return conf;
-        }
-        temp = g_slist_next(temp);
+    if (NULL == child) {
+        GtkWidget *device_page = l_device_page_new(description,
+                                                   G_CALLBACK(return_callback),
+                                                   manager->main_box);
+        gtk_stack_add_named(GTK_STACK(manager->main_box),
+                            device_page,
+                            description->name->str);
     }
-
-    return NULL;
+    gtk_stack_set_visible_child_name(GTK_STACK(manager->main_box),
+                                     description->name->str);
 }
 
-static void
-attach_buttons_conf(GSList *buttons_conf, GSList *buttons_description) {
-    GSList *temp = buttons_description;
+static GSList *
+fill_cards(LContentManager *self) {
+    GSList *cards = NULL;
+    GSList *temp_devices = self->devices;
 
-    while (temp != NULL) {
-        ButtonDescription *description = temp->data;
-        gpointer *conf = find_conf_cid(description->cid, buttons_conf);
-        if (conf != NULL) {
-            description->conf = conf;
-        } else {
-            set_default_button_conf(description->conf);
-        }
-        temp = g_slist_next(temp);
+    while (temp_devices != NULL) {
+        DeviceDescription *description = temp_devices->data;
+        LDeviceCard *card = l_device_card_new(description);
+        cards = g_slist_append(cards, card);
+        g_signal_connect(card, "selected", G_CALLBACK(card_selected_callback), self);
+
+        temp_devices = g_slist_next(temp_devices);
     }
+    return cards;
 }
 
-static void
-set_device_description(LContentManager *self, gpointer device) {
-    LDevice *device_conf = L_DEVICE(device);
-    GSList *buttons_conf = l_device_get_buttons_conf(device_conf);
+GtkWidget *
+get_start_page(LContentManager *self) {
+    self->device_cards = fill_cards(self);
+    self->overview_page = l_overview_page_new(self->device_cards);
 
-    self->device_description = description_mx_master_3();
-    self->device_description->conf = device_conf;
-    attach_buttons_conf(buttons_conf, self->device_description->buttons);
+    return GTK_WIDGET(self->overview_page);
 }
 
 GtkWidget *
 l_content_manager_get_content(LContentManager *self) {
-    set_device_description(self, l_conf_reader_get_device(self->conf_reader));
-    self->device_page = l_device_page_new(self->device_description);
+    self->devices = l_data_manager_get_devices_list(self->data_manager,
+                                                    self->devices);
+    gtk_stack_add_named(GTK_STACK(self->main_box),
+                        get_start_page(self),
+                        "start-page");
 
-    return GTK_WIDGET(self->device_page);
+    return GTK_WIDGET(self->main_box);
 }
 
 LContentManager *
-l_content_manager_new(LConfReader *conf_reader) {
+l_content_manager_new(LDataManager *data_manager) {
     LContentManager *manager = g_object_new(L_TYPE_CONTENT_MANAGER, NULL);
 
-    manager->conf_reader = conf_reader;
+    manager->data_manager = data_manager;
 
     return manager;
 }
@@ -99,6 +108,12 @@ l_content_manager_class_init(LContentManagerClass *Klass) {}
 
 static void
 l_content_manager_init(LContentManager *self) {
-    self->device_page = NULL;
-    self->conf_reader = NULL;
+    self->main_box = gtk_stack_new();
+
+    self->devices = g_slist_append(self->devices, description_mx_master_3());
+    self->devices = g_slist_append(self->devices, description_mx_anywhere_3());
+
+    gtk_stack_set_transition_type(GTK_STACK(self->main_box),
+                                  GTK_STACK_TRANSITION_TYPE_CROSSFADE);
+    gtk_stack_set_transition_duration(GTK_STACK(self->main_box), 50);
 }

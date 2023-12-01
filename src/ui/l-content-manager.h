@@ -28,8 +28,10 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LContentManager, l_content_manager, L, CONTENT_MANAGER, GObject)
 
-LContentManager * l_content_manager_new(LConfReader *conf_reader);
+LContentManager *
+l_content_manager_new(LDataManager *data_manager);
 
-GtkWidget * l_content_manager_get_content(LContentManager * self);
+GtkWidget *
+l_content_manager_get_content(LContentManager * self);
 
 G_END_DECLS

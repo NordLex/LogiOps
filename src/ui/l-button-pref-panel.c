@@ -25,6 +25,9 @@ struct _LButtonPrefPanel {
 
     GtkWidget *title;
     GtkWidget *pref_container;
+    GtkWidget *cid_label;
+    GtkWidget *action_type_label;
+    GtkWidget *action_keys_label;
     GtkWidget *close_button;
 };
 
@@ -48,7 +51,7 @@ init_close_button(LButtonPrefPanel *self) {
 }
 
 static void
-init_title(LButtonPrefPanel *self, GString *name) {
+init_title_label(LButtonPrefPanel *self, GString *name) {
     const char *format = "<span weight=\"bold\">\%s</span>";
     char *markup = g_markup_printf_escaped(format, name->str);
 
@@ -57,8 +60,47 @@ init_title(LButtonPrefPanel *self, GString *name) {
 }
 
 static void
+init_cid_label(LButtonPrefPanel *self, int cid) {
+    const char *format = "<span weight=\"bold\">\%d</span>";
+    char *markup = g_markup_printf_escaped(format, cid);
+
+    gtk_label_set_markup(GTK_LABEL(self->cid_label), markup);
+    g_free(markup);
+}
+
+static void
+init_action_type_label(LButtonPrefPanel *self, ActionType action_type) {
+    const char *format = "<span weight=\"bold\">\%d</span>";
+    char *markup = g_markup_printf_escaped(format, action_type);
+
+    gtk_label_set_markup(GTK_LABEL(self->action_type_label), markup);
+    g_free(markup);
+}
+
+static void
+init_action_keys_label(LButtonPrefPanel *self, GSList *keys) {
+    GString *keys_label = g_string_new("");
+    GSList *temp_keys = keys;
+
+    while (temp_keys != NULL) {
+        keys_label = g_string_append(keys_label, temp_keys->data);
+        if (temp_keys->next != NULL)
+            keys_label = g_string_append(keys_label, "  ");
+
+        temp_keys = g_slist_next(temp_keys);
+    }
+
+    gtk_label_set_markup(GTK_LABEL(self->action_keys_label), keys_label->str);
+}
+
+static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
-    init_title(self, button_description->name);
+    Button *button_conf = button_description->conf;
+
+    init_title_label(self, button_description->name);
+    init_cid_label(self, button_description->cid);
+    init_action_type_label(self, button_conf->action.type);
+    init_action_keys_label(self, button_conf->action.keys);
 }
 
 void
@@ -101,7 +143,14 @@ static void
 l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+    self->cid_label = gtk_label_new(NULL);
+    self->action_type_label = gtk_label_new(NULL);
+    self->action_keys_label = gtk_label_new(NULL);
     self->close_button = gtk_button_new();
+
+    gtk_box_append(GTK_BOX(self->pref_container), self->cid_label);
+    gtk_box_append(GTK_BOX(self->pref_container), self->action_type_label);
+    gtk_box_append(GTK_BOX(self->pref_container), self->action_keys_label);
 
     gtk_box_append(GTK_BOX(self), self->title);
     gtk_box_append(GTK_BOX(self), self->pref_container);

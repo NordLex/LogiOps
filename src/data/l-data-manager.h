@@ -1,6 +1,6 @@
-/* l-device-page.h
+/* l-data-manager.h
  *
- * Copyright 2023 NordLex
+ * Copyright 10.11.2023 NordLex
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,17 @@
 
 #include "../l-application-resources.h"
 
+
 G_BEGIN_DECLS
 
-#define L_TYPE_DEVICE_PAGE (l_device_page_get_type())
+#define L_TYPE_DATA_MANAGER (l_data_manager_get_type())
 
-G_DECLARE_FINAL_TYPE (LDevicePage, l_device_page, L, DEVICE_PAGE, GtkBox)
+G_DECLARE_FINAL_TYPE(LDataManager, l_data_manager, L, DATA_MANAGER, GObject)
 
-GtkWidget *
-l_device_page_new(gpointer device, GCallback return_callback, gpointer data);
+LDataManager *
+l_data_manager_new(void);
+
+GSList *
+l_data_manager_get_devices_list(LDataManager *self, GSList *descriptions_list);
 
 G_END_DECLS

@@ -25,7 +25,7 @@ struct _LDevice {
 
     GString *name;
     gboolean settings_is_changed;
-    gint dpi;
+    Dpi dpi;
     Smartshift *smartshift;
     Hiresscroll *hiresscroll;
     GSList *buttons;
@@ -48,12 +48,12 @@ l_device_get_name(LDevice *self) {
     return self->name;
 }
 
-gint *
+Dpi *
 l_device_get_dpi(LDevice *self) {
     return &self->dpi;
 }
 
-/*  Smartshift  */
+/**  Smartshift  */
 gboolean
 l_device_get_smartshift_state(LDevice *self) {
     return self->smartshift->on;
@@ -82,7 +82,7 @@ l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque)
     self->settings_is_changed = TRUE;
 }
 
-/*  Hiresscroll */
+/**  Hiresscroll */
 gboolean
 l_device_get_hiresscroll_hires(LDevice *self) {
     return self->hiresscroll->hires;
@@ -111,21 +111,31 @@ l_device_set_hiresscroll(LDevice *self, gboolean hires, gboolean invert, gboolea
     self->settings_is_changed = TRUE;
 }
 
-/*  Name  */
+/**
+ * Name
+ **/
 void
 l_device_set_name(LDevice *self, const char *name) {
     self->name = g_string_new(name);
     self->settings_is_changed = TRUE;
 }
 
-/*  DPI  */
+/**
+ * DPI
+ **/
 void
-l_device_set_dpi(LDevice *self, gint dpi) {
-    self->dpi = dpi;
+l_device_set_dpi(LDevice *self, gint dpi, gint min, gint max, gint step, gboolean range) {
+    self->dpi.dpi = dpi;
+    self->dpi.min = min;
+    self->dpi.max = max;
+    self->dpi.step = step;
+    self->dpi.range = range;
     self->settings_is_changed = TRUE;
 }
 
-/*  Button configuration  */
+/**
+ * Button configuration
+ **/
 void
 l_device_append_button(LDevice *self, gint cid, ActionType action_type, GSList *action_keys) {
     Button *button = g_malloc(sizeof(Button));
@@ -154,7 +164,6 @@ static void
 l_device_init(LDevice *self) {
     self->name = g_malloc(sizeof(GString));
     self->settings_is_changed = FALSE;
-    self->dpi = 22;
     self->smartshift = g_malloc(sizeof(Smartshift));
     self->hiresscroll = g_malloc(sizeof(Hiresscroll));
 }

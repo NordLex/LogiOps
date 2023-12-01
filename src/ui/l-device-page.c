@@ -23,12 +23,14 @@
 struct _LDevicePage {
     GtkBox parent_instance;
 
-    DeviceDescription *device;
+    DeviceDescription *device_description;
     LPrefPanel *device_pref_panel;
     LButtonPrefPanel *button_pref_panel;
     GtkWidget *device_name_button;
+    GtkWidget *return_button;
     GtkWidget *battery_state;
     GtkWidget *overlay;
+    GtkGesture *background_controller;
     GSList *buttons;
 };
 
@@ -59,7 +61,7 @@ page_panels_resize(LDevicePage *self) {
 
 static void
 clicked_name_button(GtkWidget *button, gpointer data) {
-    LDevicePage *self = (LDevicePage *) data;
+    LDevicePage *self = L_DEVICE_PAGE(data);
 
     g_object_set(self->device_pref_panel, "visible", TRUE, NULL);
     g_object_set(self->button_pref_panel, "visible", FALSE, NULL);
@@ -68,8 +70,19 @@ clicked_name_button(GtkWidget *button, gpointer data) {
 }
 
 static void
-clicked_device_button(GtkWidget *button, gpointer data) {
-    LDevicePage *self = (LDevicePage *) data;
+clicked_background(GtkGesture *gesture, int n_press, double x, double y, gpointer data) {
+    LDevicePage *self = L_DEVICE_PAGE(data);
+
+    g_object_set(self->device_pref_panel, "visible", FALSE, NULL);
+    g_object_set(self->button_pref_panel, "visible", FALSE, NULL);
+}
+
+static void
+clicked_button_pref_panel_active(GtkWidget *button, gpointer device_page) {
+    LDevicePage *self = (LDevicePage *) device_page;
+    ButtonDescription *description = l_device_button_get_description(L_DEVICE_BUTTON(button));
+
+    l_button_pref_panel_configure(self->button_pref_panel, description);
 
     g_object_set(self->device_pref_panel, "visible", FALSE, NULL);
     g_object_set(self->button_pref_panel, "visible", TRUE, NULL);
@@ -78,18 +91,23 @@ clicked_device_button(GtkWidget *button, gpointer data) {
 }
 
 static void
-fill_mx_master_buttons_list(LDevicePage *self) {
-    GSList *buttons_description = self->device->buttons;
+clicked_battery_state(GtkWidget *button, gpointer data) {
+    GtkWidget *battery_image = gtk_button_get_child(GTK_BUTTON(button));
+    gtk_image_set_from_resource(GTK_IMAGE(battery_image), L_BATTERY_50);
+}
+
+static void
+fill_buttons_list(LDevicePage *self) {
+    GSList *buttons_description = self->device_description->buttons;
 
     while (buttons_description != NULL) {
         ButtonDescription *description = buttons_description->data;
+        LDeviceButton *device_button = l_device_button_new(description, self);
 
-        self->buttons = g_slist_append(self->buttons,l_device_button_new(
-                description->x_offset,
-                description->y_offset,
-                G_CALLBACK(clicked_device_button),
-                self
-                ));
+        g_signal_connect(device_button, "clicked",
+                         G_CALLBACK(clicked_button_pref_panel_active), self);
+
+        self->buttons = g_slist_append(self->buttons, device_button);
 
         buttons_description = g_slist_next(buttons_description);
     }
@@ -107,19 +125,22 @@ fill_buttons_container(GtkWidget *container, LDevicePage *self) {
 
 static void
 page_set_device_name(LDevicePage *self) {
-    gtk_button_set_label(GTK_BUTTON(self->device_name_button), self->device->name->str);
+    gtk_button_set_label(GTK_BUTTON(self->device_name_button),
+                         self->device_description->name->str);
     g_signal_connect(self->device_name_button, "clicked", G_CALLBACK(clicked_name_button), self);
 }
 
 static void
 page_set_device_image(LDevicePage *self) {
-    GtkWidget *device_image = gtk_image_new_from_resource(self->device->image_path->str);
+    GtkWidget *device_image = gtk_image_new_from_resource(
+            self->device_description->image_path->str);
     gtk_overlay_set_child(GTK_OVERLAY(self->overlay), device_image);
 }
 
 static void
 page_set_battery_state(LDevicePage *self, const char *state) {
-    gtk_image_set_from_resource(GTK_IMAGE(self->battery_state), state);
+    GtkWidget *battery_image = gtk_button_get_child(GTK_BUTTON(self->battery_state));
+    gtk_image_set_from_resource(GTK_IMAGE(battery_image), state);
 }
 
 static void
@@ -134,7 +155,7 @@ page_set_buttons_layer(LDevicePage *self) {
                  "halign", GTK_ALIGN_CENTER,
                  NULL);
 
-    fill_mx_master_buttons_list(self);
+    fill_buttons_list(self);
     fill_buttons_container(container, self);
 
     gtk_overlay_add_overlay(GTK_OVERLAY(self->overlay), container);
@@ -174,19 +195,21 @@ page_set_self(LDevicePage *self) {
     page_set_device_image(self);
     page_set_battery_state(self, L_BATTERY_20);
     page_set_buttons_layer(self);
-    l_pref_panel_configure(self->device_pref_panel, self->device->conf);
+    l_pref_panel_configure(self->device_pref_panel, self->device_description->conf);
 
     g_signal_connect(self->overlay, "get-child-position", G_CALLBACK(page_resize), self);
 }
 
-LDevicePage *
-l_device_page_new(gpointer device) {
+GtkWidget *
+l_device_page_new(gpointer device_description, GCallback return_callback, gpointer data) {
     LDevicePage *device_page = g_object_new(L_TYPE_DEVICE_PAGE, NULL);
 
-    device_page->device = (DeviceDescription *) (device);
+    device_page->device_description = (DeviceDescription *) (device_description);
     page_set_self(device_page);
 
-    return device_page;
+    g_signal_connect(device_page->return_button, "clicked", return_callback, data);
+
+    return GTK_WIDGET(device_page);
 }
 
 static void
@@ -196,18 +219,23 @@ static void
 l_device_page_init(LDevicePage *self) {
     GtkLayoutManager *bin_layout = gtk_bin_layout_new();
 
-    self->device = NULL;
+    self->device_description = NULL;
     self->device_name_button = gtk_button_new();
     self->device_pref_panel = l_pref_panel_new();
     self->button_pref_panel = l_button_pref_panel_new();
-    self->battery_state = gtk_image_new();
+    self->return_button = gtk_button_new_from_icon_name("go-previous-symbolic");
+    self->battery_state = gtk_button_new();
     self->overlay = gtk_overlay_new();
+    self->background_controller = gtk_gesture_click_new();
     self->buttons = NULL;
 
     gtk_widget_set_layout_manager(GTK_WIDGET(self), bin_layout);
+    gtk_widget_add_controller(GTK_WIDGET(self->overlay),
+                              GTK_EVENT_CONTROLLER(self->background_controller));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->overlay));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_name_button));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->battery_state));
+    gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->return_button));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_pref_panel));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->button_pref_panel));
 
@@ -227,13 +255,24 @@ l_device_page_init(LDevicePage *self) {
                  "halign", GTK_ALIGN_START,
                  NULL);
 
+    g_object_set(self->return_button,
+                 "name", "ReturnButton",
+                 "valign", GTK_ALIGN_START,
+                 "halign", GTK_ALIGN_START,
+                 NULL);
 
     g_object_set(self->overlay,
                  "vexpand", TRUE,
                  "hexpand", TRUE,
                  NULL);
 
+    g_signal_connect(self->background_controller, "released", G_CALLBACK(clicked_background), self);
+    g_signal_connect(self->battery_state, "clicked", G_CALLBACK(clicked_battery_state), NULL);
+
+    gtk_button_set_child(GTK_BUTTON(self->battery_state), gtk_image_new());
     gtk_widget_set_margin_start(self->battery_state, 20);
     gtk_widget_set_margin_bottom(self->battery_state, 17);
     gtk_widget_set_size_request(self->battery_state, 50, 40);
+
+    gtk_widget_set_margin_start(self->return_button, 20);
 }

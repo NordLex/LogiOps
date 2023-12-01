@@ -62,9 +62,7 @@ l_application_class_init(LApplicationClass *klass) {
 }
 
 static void
-l_application_about_action(GSimpleAction *action,
-                                             GVariant *parameter,
-                                             gpointer user_data) {
+l_application_about_action(GSimpleAction *action, GVariant *parameter, gpointer user_data) {
     static const char *developers[] = {"NordLex", NULL};
     LApplication *self = user_data;
     GtkWindow *window = NULL;
@@ -85,9 +83,7 @@ l_application_about_action(GSimpleAction *action,
 }
 
 static void
-l_application_quit_action(GSimpleAction *action,
-                                            GVariant *parameter,
-                                            gpointer user_data) {
+l_application_quit_action(GSimpleAction *action, GVariant *parameter, gpointer user_data) {
     LApplication *self = user_data;
 
     g_assert (L_IS_APPLICATION(self));

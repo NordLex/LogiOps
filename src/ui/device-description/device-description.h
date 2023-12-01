@@ -22,19 +22,8 @@
 
 #include "../../l-application-resources.h"
 
-typedef struct  {
-    gint cid;
-    GString *name;
-    gdouble x_offset;
-    gdouble y_offset;
-    gpointer conf;
-} ButtonDescription;
+DeviceDescription *
+description_mx_master_3(void);
 
-typedef struct  {
-    GString *name;
-    GString *image_path;
-    GSList *buttons;
-    gpointer conf;
-} DeviceDescription;
-
-DeviceDescription * description_mx_master_3(void);
+DeviceDescription *
+description_mx_anywhere_3(void);

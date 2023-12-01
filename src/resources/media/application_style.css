@@ -19,7 +19,22 @@
     background-color: rgba(211, 211, 211, 0.5);
 }
 
+#DeviceCard {
+    padding: 1px;
+    margin: 60px;
+    background-color: transparent;
+}
+
+#DeviceCard:active {
+    padding: 10px;
+    margin: 60px;
+}
+
 #DeviceName {
+    border-radius: 100px;
+}
+
+#ReturnButton {
     border-radius: 100px;
 }
 

@@ -74,11 +74,11 @@ init_apply_button(LPrefPanel *self) {
 }
 
 static void
-l_pref_panel_init_dpi(gint *dpi, GtkWidget *parent) {
+l_pref_panel_init_dpi(Dpi *dpi, GtkWidget *parent) {
     GtkWidget *dpi_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *title = gtk_label_new(NULL);
     GtkWidget *scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,
-                                                200.0, 4000.0, 50.0);
+                                                dpi->min, dpi->max, dpi->step);
 
     g_object_set(scale,
                  "hexpand", TRUE,
@@ -87,8 +87,8 @@ l_pref_panel_init_dpi(gint *dpi, GtkWidget *parent) {
 
     gtk_scale_set_draw_value(GTK_SCALE(scale), TRUE);
     gtk_range_set_increments(GTK_RANGE(scale), 50.0, 500.0);
-    gtk_range_set_value(GTK_RANGE(scale), (gdouble) *dpi);
-    g_signal_connect(scale, "value-changed", G_CALLBACK(callback_set_value), dpi);
+    gtk_range_set_value(GTK_RANGE(scale), (gdouble) dpi->dpi);
+    g_signal_connect(scale, "value-changed", G_CALLBACK(callback_set_value), &dpi->dpi);
     gtk_box_append(GTK_BOX(dpi_box), title);
     gtk_label_set_markup(GTK_LABEL(title), "<span weight=\"bold\">DPI</span>");
     gtk_box_append(GTK_BOX(dpi_box), scale);
@@ -233,7 +233,7 @@ l_pref_panel_clear_content(GtkWidget *container) {
 static void
 l_pref_panel_init_content(LPrefPanel * self, gpointer device_conf) {
     LDevice *device = L_DEVICE(device_conf);
-    gint *dpi = l_device_get_dpi(device);
+    Dpi *dpi = l_device_get_dpi(device);
     Smartshift *smartshift = l_device_get_smartshift(device);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 

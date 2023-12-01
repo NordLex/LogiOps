@@ -1,6 +1,6 @@
-/* l-device-page.h
+/* ui-types.h
  *
- * Copyright 2023 NordLex
+ * Copyright 22.09.2023 nordlex
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,19 @@
 
 #pragma once
 
-#include "../l-application-resources.h"
 
-G_BEGIN_DECLS
+typedef struct  {
+    gint cid;
+    GString *name;
+    gdouble x_offset;
+    gdouble y_offset;
+    gpointer conf;
+} ButtonDescription;
 
-#define L_TYPE_DEVICE_PAGE (l_device_page_get_type())
-
-G_DECLARE_FINAL_TYPE (LDevicePage, l_device_page, L, DEVICE_PAGE, GtkBox)
-
-GtkWidget *
-l_device_page_new(gpointer device, GCallback return_callback, gpointer data);
-
-G_END_DECLS
+typedef struct  {
+    GString *name;
+    GString *full_name;
+    GString *image_path;
+    GSList *buttons;
+    gpointer conf;
+} DeviceDescription;
