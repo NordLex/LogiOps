@@ -42,15 +42,6 @@ callback_close_button(GtkWidget *button, gpointer data) {
 }
 
 static void
-init_close_button(LButtonPrefPanel *self) {
-    GtkWidget *title = gtk_label_new("Close");
-    GCallback on_click = G_CALLBACK(callback_close_button);
-
-    gtk_button_set_child(GTK_BUTTON(self->close_button), title);
-    g_signal_connect(self->close_button, "clicked", on_click, self);
-}
-
-static void
 init_title_label(LButtonPrefPanel *self, GString *name) {
     const char *format = "<span weight=\"bold\">\%s</span>";
     char *markup = g_markup_printf_escaped(format, name->str);
@@ -141,20 +132,23 @@ l_button_pref_panel_class_init(LButtonPrefPanelClass *klass) {}
 
 static void
 l_button_pref_panel_init(LButtonPrefPanel *self) {
+    GtkWidget *title_box = gtk_center_box_new();
     self->title = gtk_label_new(NULL);
+    self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
     self->cid_label = gtk_label_new(NULL);
     self->action_type_label = gtk_label_new(NULL);
     self->action_keys_label = gtk_label_new(NULL);
-    self->close_button = gtk_button_new();
+
+    gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
+    gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
 
     gtk_box_append(GTK_BOX(self->pref_container), self->cid_label);
     gtk_box_append(GTK_BOX(self->pref_container), self->action_type_label);
     gtk_box_append(GTK_BOX(self->pref_container), self->action_keys_label);
 
-    gtk_box_append(GTK_BOX(self), self->title);
+    gtk_box_append(GTK_BOX(self), title_box);
     gtk_box_append(GTK_BOX(self), self->pref_container);
-    gtk_box_append(GTK_BOX(self), self->close_button);
 
     g_object_set(self,
                  "name", "ButtonPrefPanel",
@@ -163,6 +157,9 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
                  "halign", GTK_ALIGN_END,
                  "visible", FALSE,
                  NULL);
+    g_object_set(title_box,
+                 "hexpand", TRUE,
+                 NULL);
     g_object_set(self->title,
                  "halign", GTK_ALIGN_CENTER,
                  NULL);
@@ -170,11 +167,14 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
                  "vexpand", TRUE,
                  "hexpand", TRUE,
                  NULL);
+    g_object_set(self->close_button,
+                 "halign", GTK_ALIGN_END,
+                 NULL);
 
-    init_close_button(self);
-    gtk_widget_set_margin_start(self->close_button, 60);
-    gtk_widget_set_margin_end(self->close_button, 60);
+    gtk_widget_add_css_class(self->close_button, "circular");
     gtk_widget_set_margin_start(self->pref_container, 5);
     gtk_widget_set_margin_end(self->pref_container, 5);
     gtk_widget_set_size_request(GTK_WIDGET(self), PANEL_WIDTH, -1);
+
+    g_signal_connect(self->close_button, "clicked", G_CALLBACK(callback_close_button), self);
 }

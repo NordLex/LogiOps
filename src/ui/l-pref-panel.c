@@ -24,8 +24,9 @@
 struct _LPrefPanel {
     GtkBox parent_instance;
 
-    GtkWidget * pref_container;
-    GtkWidget * apply_button;
+    GtkWidget *main_box;
+    GtkWidget *pref_container;
+    GtkWidget *close_button;
 };
 
 G_DEFINE_FINAL_TYPE (LPrefPanel, l_pref_panel, GTK_TYPE_BOX)
@@ -62,15 +63,6 @@ static void
 callback_close_button(GtkWidget *button, gpointer data) {
     LPrefPanel *self = L_PREF_PANEL(data);
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
-}
-
-static void
-init_apply_button(LPrefPanel *self) {
-    GtkWidget * button_title = gtk_label_new("Close");
-    GCallback on_click = G_CALLBACK(callback_close_button);
-
-    gtk_button_set_child(GTK_BUTTON(self->apply_button), button_title);
-    g_signal_connect(G_OBJECT(self->apply_button), "clicked", on_click, self);
 }
 
 static void
@@ -275,11 +267,14 @@ l_pref_panel_class_init(LPrefPanelClass * klass) {}
 
 static void
 l_pref_panel_init(LPrefPanel * self) {
+    self->main_box = gtk_center_box_new();
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-    self->apply_button = gtk_button_new();
+    self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
 
-    gtk_box_append(GTK_BOX(self), self->pref_container);
-    gtk_box_append(GTK_BOX(self), self->apply_button);
+    gtk_center_box_set_center_widget(GTK_CENTER_BOX(self->main_box), self->pref_container);
+    gtk_center_box_set_end_widget(GTK_CENTER_BOX(self->main_box), self->close_button);
+
+    gtk_box_append(GTK_BOX(self), self->main_box);
 
     g_object_set(self,
                  "name", "PrefPanel",
@@ -297,9 +292,8 @@ l_pref_panel_init(LPrefPanel * self) {
                  "hexpand", TRUE,
                  NULL);
 
-    init_apply_button(self);
-    gtk_widget_set_margin_start(self->apply_button, 80);
-    gtk_widget_set_margin_end(self->apply_button, 80);
     gtk_widget_set_margin_start(self->pref_container, 80);
     gtk_widget_set_margin_end(self->pref_container, 80);
+
+    g_signal_connect(G_OBJECT(self->close_button), "clicked", G_CALLBACK(callback_close_button), self);
 }

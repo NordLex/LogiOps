@@ -53,7 +53,9 @@ l_device_get_dpi(LDevice *self) {
     return &self->dpi;
 }
 
-/**  Smartshift  */
+/**
+ * Smartshift
+ **/
 gboolean
 l_device_get_smartshift_state(LDevice *self) {
     return self->smartshift->on;
@@ -82,7 +84,9 @@ l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque)
     self->settings_is_changed = TRUE;
 }
 
-/**  Hiresscroll */
+/**
+ * Hiresscroll
+ **/
 gboolean
 l_device_get_hiresscroll_hires(LDevice *self) {
     return self->hiresscroll->hires;

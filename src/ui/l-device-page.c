@@ -27,7 +27,6 @@ struct _LDevicePage {
     LPrefPanel *device_pref_panel;
     LButtonPrefPanel *button_pref_panel;
     GtkWidget *device_name_button;
-    GtkWidget *return_button;
     GtkWidget *battery_state;
     GtkWidget *overlay;
     GtkGesture *background_controller;
@@ -201,13 +200,11 @@ page_set_self(LDevicePage *self) {
 }
 
 GtkWidget *
-l_device_page_new(gpointer device_description, GCallback return_callback, gpointer data) {
+l_device_page_new(gpointer device_description) {
     LDevicePage *device_page = g_object_new(L_TYPE_DEVICE_PAGE, NULL);
 
     device_page->device_description = (DeviceDescription *) (device_description);
     page_set_self(device_page);
-
-    g_signal_connect(device_page->return_button, "clicked", return_callback, data);
 
     return GTK_WIDGET(device_page);
 }
@@ -223,7 +220,6 @@ l_device_page_init(LDevicePage *self) {
     self->device_name_button = gtk_button_new();
     self->device_pref_panel = l_pref_panel_new();
     self->button_pref_panel = l_button_pref_panel_new();
-    self->return_button = gtk_button_new_from_icon_name("go-previous-symbolic");
     self->battery_state = gtk_button_new();
     self->overlay = gtk_overlay_new();
     self->background_controller = gtk_gesture_click_new();
@@ -235,7 +231,6 @@ l_device_page_init(LDevicePage *self) {
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->overlay));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_name_button));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->battery_state));
-    gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->return_button));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_pref_panel));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->button_pref_panel));
 
@@ -255,12 +250,6 @@ l_device_page_init(LDevicePage *self) {
                  "halign", GTK_ALIGN_START,
                  NULL);
 
-    g_object_set(self->return_button,
-                 "name", "ReturnButton",
-                 "valign", GTK_ALIGN_START,
-                 "halign", GTK_ALIGN_START,
-                 NULL);
-
     g_object_set(self->overlay,
                  "vexpand", TRUE,
                  "hexpand", TRUE,
@@ -270,9 +259,8 @@ l_device_page_init(LDevicePage *self) {
     g_signal_connect(self->battery_state, "clicked", G_CALLBACK(clicked_battery_state), NULL);
 
     gtk_button_set_child(GTK_BUTTON(self->battery_state), gtk_image_new());
+    gtk_widget_add_css_class(self->battery_state, "flat");
     gtk_widget_set_margin_start(self->battery_state, 20);
     gtk_widget_set_margin_bottom(self->battery_state, 17);
     gtk_widget_set_size_request(self->battery_state, 50, 40);
-
-    gtk_widget_set_margin_start(self->return_button, 20);
 }
