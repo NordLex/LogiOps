@@ -1,4 +1,4 @@
-/* ui-types.h
+/* description-types.h
  *
  * Copyright 22.09.2023 nordlex
  *
