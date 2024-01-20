@@ -130,10 +130,10 @@ l_device_set_name(LDevice *self, const char *name) {
 void
 l_device_set_dpi(LDevice *self, gint dpi, gint min, gint max, gint step, gboolean range) {
     self->dpi.dpi = dpi;
-    self->dpi.min = min;
-    self->dpi.max = max;
-    self->dpi.step = step;
-    self->dpi.range = range;
+    self->dpi.min = 100;//min;
+    self->dpi.max = 3000;//max;
+    self->dpi.step = 20;//step;
+    self->dpi.range = TRUE;//range;
     self->settings_is_changed = TRUE;
 }
 

@@ -44,8 +44,8 @@ typedef enum  {
 #include "ui/l-pref-panel.h"
 #include "data/l-conf-reader.h"
 #include "data/l-key-codes.h"
-#include "data/l-bus-manager.h"
 #include "data/l-data-manager.h"
+#include "data/l-bus-manager.h"
 
 #define L_APP_ID                "org.nordlex.logiops"
 #define L_APP_NAME              "LogiOps"

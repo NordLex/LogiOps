@@ -40,28 +40,13 @@ l_bus_manager_request_device_name(LBusManager *self,
                                   GString *device);
 
 int
-l_bus_manager_request_dpi(LBusManager *self,
-                          GString *device,
-                          guint16 *dpi,
-                          guint16 *dpi_step,
-                          guint16 *dpi_min,
-                          guint16 *dpi_max,
-                          gboolean *range);
+l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi);
 
 int
-l_bus_manager_request_hiresscroll(LBusManager *self,
-                                  GString *device,
-                                  gboolean *hires,
-                                  gboolean *invert,
-                                  gboolean *target);
+l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscroll *hiresscroll);
 
 int
-l_bus_manager_request_smartshift(LBusManager *self,
-                                 GString *device,
-                                 gboolean *torque_support,
-                                 guchar *active,
-                                 guchar *threshold,
-                                 guchar *torque);
+l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift);
 
 int
 l_bus_manager_request_thumb_wheel(LBusManager *self,

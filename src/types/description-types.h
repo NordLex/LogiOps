@@ -20,6 +20,43 @@
 
 #pragma once
 
+typedef struct {
+    gint dpi;
+    gint min;
+    gint max;
+    gint step;
+    gboolean range;
+} Dpi;
+
+typedef struct {
+    gboolean torque_support;
+    gboolean on;
+    gint threshold;
+    gint torque;
+} Smartshift;
+
+typedef struct {
+    gboolean hires;
+    gboolean invert;
+    gboolean target;
+} Hiresscroll;
+
+typedef struct {
+    ActionType type;
+    GSList *keys;
+} Action;
+
+typedef struct {
+    GString direction;
+    GString mode;
+    Action action;
+} Gesture;
+
+typedef struct {
+    gint cid;
+    Gesture gesture;
+    Action action;
+} Button;
 
 typedef struct  {
     gint cid;

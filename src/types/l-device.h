@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LDevice, l_device, L, DEVICE, GObject)
 
-typedef struct {
+/*typedef struct {
     gint dpi;
     gint min;
     gint max;
@@ -63,7 +63,7 @@ typedef struct {
     gint cid;
     Gesture gesture;
     Action action;
-} Button;
+} Button;*/
 
 gboolean
 l_device_settings_is_changed(LDevice *self);

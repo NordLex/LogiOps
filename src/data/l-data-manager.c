@@ -68,8 +68,21 @@ find_conf_cid(gint cid, GSList *buttons_conf) {
     return NULL;
 }
 
-static void /*  Заглушка    */
-fill_device_conf(LBusManager *bus, GString *device, LDevice *device_conf) {
+static void
+fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
+    Dpi *dpi = l_device_get_dpi(device_conf);
+    Hiresscroll *hiresscroll = l_device_get_hiresscroll(device_conf);
+    Smartshift *smartshift = l_device_get_smartshift(device_conf);
+
+    l_bus_manager_request_hiresscroll(bus, device, hiresscroll);
+    l_bus_manager_request_smartshift(bus, device, smartshift);
+    l_bus_manager_request_dpi(bus, device, dpi);
+
+    l_device_set_name(device_conf, device->str);
+}
+
+static void /*************  Заглушка   *********************/
+fill_device_conf(LDevice *device_conf) {
     GSList *middle_actions = NULL;
     GSList *top_actions = NULL;
     GSList *forward_actions = NULL;
@@ -95,10 +108,7 @@ fill_device_conf(LBusManager *bus, GString *device, LDevice *device_conf) {
     gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_LEFTALT");
     gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_Z");
 
-    l_device_set_name(device_conf, "Wireless Mouse MX Master 3");
-    l_device_set_dpi(device_conf, 1700, 150, 6000, 100, true);
-    l_device_set_smartshift(device_conf, false, 30, 50);
-    l_device_set_hiresscroll(device_conf, true, false, false);
+
     l_device_append_button(device_conf, 0x52, KEYPRESS, middle_actions);
     l_device_append_button(device_conf, 0xc4, KEYPRESS, top_actions);
     l_device_append_button(device_conf, 0x56, KEYPRESS, forward_actions);
@@ -135,7 +145,8 @@ description_attach_conf(DeviceDescription *description, LDevice *device_conf) {
 void
 fill_description(DeviceDescription *description, LBusManager *bus, GString *device) {
     LDevice *device_conf = l_device_new();
-    fill_device_conf(bus, device, device_conf);
+    fill_device_conf(device_conf);                 /****************   Заглушка    *******************/
+    fill_device_conf_new(bus, device, device_conf);
     description_attach_conf(description, device_conf);
 }
 

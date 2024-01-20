@@ -28,12 +28,12 @@
 #define logid_button        "pizza.pixl.LogiOps.Button"
 
 struct _LBusManager {
-            GObject parent_instance;
+    GObject parent_instance;
 
-         GDBusProxy *logid_proxy;
+    GDBusProxy *logid_proxy;
     GDBusConnection *bus_connection;
-             GSList *device_paths;
-             GSList *button_paths;
+    GSList *device_paths;
+    GSList *button_paths;
 };
 
 G_DEFINE_FINAL_TYPE(LBusManager, l_bus_manager, G_TYPE_OBJECT)
@@ -80,31 +80,31 @@ get_smartshift_proxy(LBusManager *self, GString *device) {
     GError *error = NULL;
 
     smartshift_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                              G_DBUS_PROXY_FLAGS_NONE,
-                                              NULL,
-                                              logid_name,
-                                              device->str,
-                                              "pizza.pixl.LogiOps.SmartShift",
-                                              NULL,
-                                              &error);
+                                             G_DBUS_PROXY_FLAGS_NONE,
+                                             NULL,
+                                             logid_name,
+                                             device->str,
+                                             "pizza.pixl.LogiOps.SmartShift",
+                                             NULL,
+                                             &error);
     g_assert_no_error(error);
 
     return smartshift_proxy;
 }
 
 GDBusProxy *
-get_hiresscroll_proxy(LBusManager *self, GString  *device) {
+get_hiresscroll_proxy(LBusManager *self, GString *device) {
     GDBusProxy *hiresscroll_proxy;
     GError *error = NULL;
 
     hiresscroll_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                               G_DBUS_PROXY_FLAGS_NONE,
-                                               NULL,
-                                               logid_name,
-                                               device->str,
-                                               "pizza.pixl.LogiOps.HiresScroll",
-                                               NULL,
-                                               &error);
+                                              G_DBUS_PROXY_FLAGS_NONE,
+                                              NULL,
+                                              logid_name,
+                                              device->str,
+                                              "pizza.pixl.LogiOps.HiresScroll",
+                                              NULL,
+                                              &error);
     g_assert_no_error(error);
 
     return hiresscroll_proxy;
@@ -134,13 +134,13 @@ get_buttons_proxy(LBusManager *self, GString *device) {
     GError *error = NULL;
 
     buttons_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                         G_DBUS_PROXY_FLAGS_NONE,
-                                         NULL,
-                                         logid_name,
-                                         device->str,
-                                         "pizza.pixl.LogiOps.Buttons",
-                                         NULL,
-                                         &error);
+                                          G_DBUS_PROXY_FLAGS_NONE,
+                                          NULL,
+                                          logid_name,
+                                          device->str,
+                                          "pizza.pixl.LogiOps.Buttons",
+                                          NULL,
+                                          &error);
     g_assert_no_error(error);
 
     return buttons_proxy;
@@ -202,24 +202,25 @@ callback_dpi(GObject *object, GAsyncResult *result, gpointer data) {
     GVariant *variant;
     GDBusProxy *proxy = G_DBUS_PROXY(object);
     GError *error = NULL;
-    guint16 dpi;
+    Dpi *dpi = (Dpi *) data;
 
     variant = g_dbus_proxy_call_finish(proxy, result, &error);
 
     if (error != NULL && !g_error_matches(error, G_IO_ERROR, G_IO_ERROR_CANCELLED)) {
         g_warning("Failed to read DPI: %s", error->message);
     } else {
-        g_variant_get(variant, "(q)", &dpi);
-
-        g_print("\n|       dpi: %d\n", dpi);
+        guint16 value;
+        g_variant_get(variant, "(q)", &value);
+        dpi->dpi = (gint) value;
     }
     g_variant_unref(variant);
 }
 
 static void
 callback_dpis(GObject *object, GAsyncResult *result, gpointer data) {
-    GVariant *variant;
     GDBusProxy *proxy = G_DBUS_PROXY(object);
+    Dpi *dpi = (Dpi *) data;
+    GVariant *variant;
     GError *error = NULL;
     GVariantIter *dpi_iter;
     guint16 dpi_step, dpis;
@@ -230,30 +231,32 @@ callback_dpis(GObject *object, GAsyncResult *result, gpointer data) {
     if (error != NULL && !g_error_matches(error, G_IO_ERROR, G_IO_ERROR_CANCELLED)) {
         g_warning("Failed to read DPI`s: %s", error->message);
     } else {
+        guint16 dpi_buf = 0;
         g_variant_get(variant, "(aqqb)", &dpi_iter, &dpi_step, &range);
 
         while (g_variant_iter_loop(dpi_iter, "q", &dpis)) {
-            g_print("|      dpis: %d\n", dpis);
+            if (dpi_buf == 0) {
+                dpi_buf = dpis;
+            } else {
+                if (dpi_buf < dpis) {
+                    dpi->min = dpi_buf;
+                    dpi->max = dpis;
+                } else {
+                    dpi->min = dpis;
+                    dpi->max = dpi_buf;
+                }
+            }
         }
 
-        g_print("|  dpi step: %d\n", dpi_step);
-        g_print("| dpi range: %s\n", range ? "true" : "false");
+        dpi->step = (gint) dpi_step;
+        dpi->range = range;
     }
+
     g_variant_unref(variant);
 }
 
-/*
- * Not finished
- *
- */
 int
-l_bus_manager_request_dpi(LBusManager *self,
-                          GString *device,
-                          guint16 *dpi,
-                          guint16 *dpi_step,
-                          guint16 *dpi_min,
-                          guint16 *dpi_max,
-                          gboolean *range) {
+l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
     GDBusProxy *dpi_proxy;
     GVariant *sensor_byte;
     GError *error = NULL;
@@ -261,15 +264,15 @@ l_bus_manager_request_dpi(LBusManager *self,
     dpi_proxy = get_dpi_proxy(self, device);
 
     sensor_byte = g_dbus_proxy_call_sync(dpi_proxy,
-                                    "GetSensors",
-                                    NULL,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
+                                         "GetSensors",
+                                         NULL,
+                                         G_DBUS_CALL_FLAGS_NONE,
+                                         -1,
+                                         NULL,
+                                         &error);
     g_assert_no_error(error);
 
-    sensor_byte = g_variant_new("(y)", 0); /* Заглушка */
+    sensor_byte = g_variant_new("(y)", 0); /** Заглушка **/
 
     g_dbus_proxy_call(dpi_proxy,
                       "GetDPI",
@@ -278,7 +281,7 @@ l_bus_manager_request_dpi(LBusManager *self,
                       -1,
                       NULL,
                       (GAsyncReadyCallback) callback_dpi,
-                      &dpi);
+                      dpi);
 
     g_dbus_proxy_call(dpi_proxy,
                       "GetDPIs",
@@ -287,17 +290,17 @@ l_bus_manager_request_dpi(LBusManager *self,
                       -1,
                       NULL,
                       (GAsyncReadyCallback) callback_dpis,
-                      NULL);
+                      dpi);
 
     return 0;
 }
 
 int
-l_bus_manager_request_hiresscroll(LBusManager *self, GString *device,
-                                   gboolean *hires, gboolean *invert, gboolean *target) {
+l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscroll *hiresscroll) {
     GDBusProxy *hires_scroll_proxy;
     GVariant *result;
-    GError   *error = NULL;
+    GError *error = NULL;
+    gboolean hires, invert, target;
 
     hires_scroll_proxy = get_hiresscroll_proxy(self, device);
 
@@ -309,8 +312,12 @@ l_bus_manager_request_hiresscroll(LBusManager *self, GString *device,
                                     NULL,
                                     &error);
     g_assert_no_error(error);
-    g_variant_get(result, "(bbb)", hires, invert, target);
+    g_variant_get(result, "(bbb)", &hires, &invert, &target);
     g_variant_unref(result);
+
+    hiresscroll->hires = hires;
+    hiresscroll->invert = invert;
+    hiresscroll->target = target;
 
     return 0;
 }
@@ -353,15 +360,21 @@ smartshift_get_config(GDBusProxy *proxy, guchar *active, guchar *threshold, guch
 }
 
 int
-l_bus_manager_request_smartshift(LBusManager *self, GString *device, gboolean *torque_support,
-                                 guchar *active, guchar *threshold, guchar *torque) {
+l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift) {
     GDBusProxy *proxy, *property;
+    gboolean torque_support;
+    guchar active, threshold, torque;
 
     property = get_property_proxy(self, device);
     proxy = get_smartshift_proxy(self, device);
 
-    torque_support_request(property, torque_support);
-    smartshift_get_config(proxy, active, threshold, torque);
+    torque_support_request(property, &torque_support);
+    smartshift_get_config(proxy, &active, &threshold, &torque);
+
+    smartshift->torque_support = torque_support;
+    smartshift->on = active;
+    smartshift->threshold = threshold;
+    smartshift->torque = torque;
 
     return 0;
 }
