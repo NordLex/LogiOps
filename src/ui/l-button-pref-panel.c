@@ -24,11 +24,11 @@ struct _LButtonPrefPanel {
     GtkBox parent_instance;
 
     GtkWidget *title;
+    GtkWidget *close_button;
     GtkWidget *pref_container;
     GtkWidget *cid_label;
     GtkWidget *action_type_label;
     GtkWidget *action_keys_label;
-    GtkWidget *close_button;
 };
 
 G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
