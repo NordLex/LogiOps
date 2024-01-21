@@ -291,6 +291,12 @@ l_pref_panel_init(LPrefPanel * self) {
                  "vexpand", TRUE,
                  "hexpand", TRUE,
                  NULL);
+    g_object_set(self->close_button,
+                 "halign", GTK_ALIGN_END,
+                 "valign", GTK_ALIGN_START,
+                 NULL);
+
+    gtk_widget_add_css_class(self->close_button, "circular");
 
     gtk_widget_set_margin_start(self->pref_container, 80);
     gtk_widget_set_margin_end(self->pref_container, 80);
