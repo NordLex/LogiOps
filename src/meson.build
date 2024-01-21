@@ -15,14 +15,12 @@ logiops_sources = [
   'ui/device-description/mx-anywhere-3-description.c',
   'data/l-data-manager.c',
   'data/l-bus-manager.c',
-  'data/l-conf-reader.c',
   'types/l-device.c',
 ]
 
 logiops_deps = [
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.3'),
-  dependency('libconfig'),
 ]
 
 logiops_sources += gnome.compile_resources('l-resources',

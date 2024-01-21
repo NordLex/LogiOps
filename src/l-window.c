@@ -27,7 +27,6 @@ struct _LWindow {
     AdwApplicationWindow parent_instance;
 
     LContentManager * content_manager;
-    //LConfReader * conf_reader;
     GtkWidget * header_bar;
     LDataManager *data_manager;
 };
@@ -53,7 +52,6 @@ static void l_window_init(LWindow *self) {
 
     self->header_bar = adw_header_bar_new();
     self->data_manager = l_data_manager_new();
-    //self->conf_reader = l_conf_reader_new(NULL);
     self->content_manager = l_content_manager_new(self->data_manager, self->header_bar);
 
     content_box = l_content_manager_get_content(self->content_manager);
