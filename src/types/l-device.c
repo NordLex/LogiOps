@@ -141,10 +141,19 @@ l_device_set_dpi(LDevice *self, gint dpi, gint min, gint max, gint step, gboolea
  * Button configuration
  **/
 void
-l_device_append_button(LDevice *self, gint cid, ActionType action_type, GSList *action_keys) {
+l_device_append_button(LDevice *self,
+                       gint cid,
+                       gint task_id,
+                       gboolean gesture_support,
+                       gboolean remappable,
+                       ActionType action_type,
+                       GSList *action_keys) {
     Button *button = g_malloc(sizeof(Button));
 
     button->cid = cid;
+    button->task_id = task_id;
+    button->gesture_support = gesture_support;
+    button->remappable = remappable;
     button->action.type = action_type;
     button->action.keys = action_keys;
 

@@ -69,7 +69,29 @@ find_conf_cid(gint cid, GSList *buttons_conf) {
 }
 
 static void
-fill_button_conf(LBusManager *bus, gint cid) {}
+fill_button_conf(LBusManager *bus, GString *button, LDevice *device_conf) {
+    guint16 cid, task_id;
+    gboolean gesture_support, remappable;
+    ActionType action_type;
+    GSList *action_keys = NULL;
+
+    l_bus_manager_request_button_info(bus, button, &cid, &task_id, &gesture_support, &remappable);
+
+    l_device_append_button(device_conf, (gint) cid, (gint) task_id,
+                           gesture_support, remappable, action_type, action_keys);
+}
+
+static void
+fill_buttons_list(LBusManager *bus, GString *device, LDevice *device_conf) {
+    GSList *buttons_list = l_bus_manager_request_buttons_list(bus, device);
+    GSList *temp = buttons_list;
+
+    while (temp != NULL) {
+        GString *button = temp->data;
+        fill_button_conf(bus, button, device_conf);
+        temp = g_slist_next(temp);
+    }
+}
 
 static void
 fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
@@ -82,6 +104,8 @@ fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
     l_bus_manager_request_dpi(bus, device, dpi);
 
     l_device_set_name(device_conf, device->str);
+
+    fill_buttons_list(bus, device, device_conf);
 }
 
 static void /*************  Заглушка   *********************/
@@ -112,12 +136,12 @@ fill_device_conf(LDevice *device_conf) {
     gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_Z");
 
 
-    l_device_append_button(device_conf, 0x52, KEYPRESS, middle_actions);
+    /*l_device_append_button(device_conf, 0x52, KEYPRESS, middle_actions);
     l_device_append_button(device_conf, 0xc4, KEYPRESS, top_actions);
     l_device_append_button(device_conf, 0x56, KEYPRESS, forward_actions);
     l_device_append_button(device_conf, 0x53, KEYPRESS, back_actions);
     l_device_append_button(device_conf, 0xd7, KEYPRESS, hwheel_actions);
-    l_device_append_button(device_conf, 0xc3, KEYPRESS, gesture_actions);
+    l_device_append_button(device_conf, 0xc3, KEYPRESS, gesture_actions);*/
     l_device_reset_settings_state(device_conf);
 }
 

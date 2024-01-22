@@ -62,6 +62,8 @@ int
 l_bus_manager_request_button_info(LBusManager *self,
                                   GString *button,
                                   guint16 *cid,
-                                  guint16 *task_id);
+                                  guint16 *task_id,
+                                  gboolean *gesture_support,
+                                  gboolean *remappable);
 
 G_END_DECLS

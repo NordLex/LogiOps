@@ -403,7 +403,9 @@ l_bus_manager_request_thumb_wheel(LBusManager *self, GString *device,
 }
 
 int
-l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *cid, guint16 *task_id) {
+l_bus_manager_request_button_info(LBusManager *self, GString *button,
+                                  guint16 *cid, guint16 *task_id,
+                                  gboolean *gesture_support, gboolean *remappable) {
     GDBusProxy *property_proxy;
     GVariant *result;
     GError *error = NULL;
@@ -433,6 +435,30 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *c
 
     g_variant_get(result, "(v)", &result);
     g_variant_get(result, "q", task_id);
+
+    result = g_dbus_proxy_call_sync(property_proxy,
+                                    "Get",
+                                    g_variant_new("(ss)", logid_button, "GestureSupport"),
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(v)", &result);
+    g_variant_get(result, "b", gesture_support);
+
+    result = g_dbus_proxy_call_sync(property_proxy,
+                                    "Get",
+                                    g_variant_new("(ss)", logid_button, "Remappable"),
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(v)", &result);
+    g_variant_get(result, "b", remappable);
 
     return 0;
 }

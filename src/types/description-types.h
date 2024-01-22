@@ -54,6 +54,9 @@ typedef struct {
 
 typedef struct {
     gint cid;
+    gint task_id;
+    gboolean gesture_support;
+    gboolean remappable;
     Gesture gesture;
     Action action;
 } Button;
