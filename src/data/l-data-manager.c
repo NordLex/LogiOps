@@ -94,7 +94,7 @@ fill_buttons_list(LBusManager *bus, GString *device, LDevice *device_conf) {
 }
 
 static void
-fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
+fill_device_conf(LBusManager *bus, GString *device, LDevice *device_conf) {
     Dpi *dpi = l_device_get_dpi(device_conf);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device_conf);
     Smartshift *smartshift = l_device_get_smartshift(device_conf);
@@ -106,43 +106,6 @@ fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
     l_device_set_name(device_conf, device->str);
 
     fill_buttons_list(bus, device, device_conf);
-}
-
-static void /*************  Заглушка   *********************/
-fill_device_conf(LDevice *device_conf) {
-    GSList *middle_actions = NULL;
-    GSList *top_actions = NULL;
-    GSList *forward_actions = NULL;
-    GSList *back_actions = NULL;
-    GSList *hwheel_actions = NULL;
-    GSList *gesture_actions = NULL;
-
-    middle_actions = g_slist_append(middle_actions, (char *) "KEY_LEFTMETA");
-    middle_actions = g_slist_append(middle_actions, (char *) "KEY_TAB");
-
-    top_actions = g_slist_append(top_actions, (char *) "KEY_LEFTCTRL");
-    top_actions = g_slist_append(top_actions, (char *) "KEY_L");
-
-    forward_actions = g_slist_append(forward_actions, (char *) "KEY_LEFTCTRL");
-    forward_actions = g_slist_append(forward_actions, (char *) "KEY_C");
-
-    back_actions = g_slist_append(back_actions, (char *) "KEY_LEFTCTRL");
-    back_actions = g_slist_append(back_actions, (char *) "KEY_V");
-
-    hwheel_actions = g_slist_append(hwheel_actions, (char *) "REL_HWHEEL");
-    hwheel_actions = g_slist_append(hwheel_actions, (char *) "REL_HWHEEL_HI_RES");
-
-    gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_LEFTALT");
-    gesture_actions = g_slist_append(gesture_actions, (char *) "KEY_Z");
-
-
-    /*l_device_append_button(device_conf, 0x52, KEYPRESS, middle_actions);
-    l_device_append_button(device_conf, 0xc4, KEYPRESS, top_actions);
-    l_device_append_button(device_conf, 0x56, KEYPRESS, forward_actions);
-    l_device_append_button(device_conf, 0x53, KEYPRESS, back_actions);
-    l_device_append_button(device_conf, 0xd7, KEYPRESS, hwheel_actions);
-    l_device_append_button(device_conf, 0xc3, KEYPRESS, gesture_actions);*/
-    l_device_reset_settings_state(device_conf);
 }
 
 static void
@@ -173,8 +136,7 @@ description_attach_conf(DeviceDescription *description, LDevice *device_conf) {
 void
 fill_description(DeviceDescription *description, LBusManager *bus, GString *device) {
     LDevice *device_conf = l_device_new();
-    fill_device_conf(device_conf);                 /****************   Заглушка    *******************/
-    fill_device_conf_new(bus, device, device_conf);
+    fill_device_conf(bus, device, device_conf);
     description_attach_conf(description, device_conf);
 }
 
