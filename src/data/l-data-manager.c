@@ -69,6 +69,9 @@ find_conf_cid(gint cid, GSList *buttons_conf) {
 }
 
 static void
+fill_button_conf(LBusManager *bus, gint cid) {}
+
+static void
 fill_device_conf_new(LBusManager *bus, GString *device, LDevice *device_conf) {
     Dpi *dpi = l_device_get_dpi(device_conf);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device_conf);
@@ -129,6 +132,7 @@ attach_buttons_conf(GSList *buttons_description, GSList *buttons_conf) {
             description->conf = conf;
         } else {
             set_default_button_conf(description->conf);
+            g_print(" \n !!!CID %d not found!!!\n", description->cid);
         }
         temp = g_slist_next(temp);
     }
