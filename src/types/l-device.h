@@ -28,43 +28,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LDevice, l_device, L, DEVICE, GObject)
 
-/*typedef struct {
-    gint dpi;
-    gint min;
-    gint max;
-    gint step;
-    gboolean range;
-} Dpi;
-
-typedef struct {
-    gboolean on;
-    gint threshold;
-    gint torque;
-} Smartshift;
-
-typedef struct {
-    gboolean hires;
-    gboolean invert;
-    gboolean target;
-} Hiresscroll;
-
-typedef struct {
-    ActionType type;
-    GSList *keys;
-} Action;
-
-typedef struct {
-    GString direction;
-    GString mode;
-    Action action;
-} Gesture;
-
-typedef struct {
-    gint cid;
-    Gesture gesture;
-    Action action;
-} Button;*/
-
 gboolean
 l_device_settings_is_changed(LDevice *self);
 
