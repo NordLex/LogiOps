@@ -146,6 +146,42 @@ get_buttons_proxy(LBusManager *self, GString *device) {
     return buttons_proxy;
 }
 
+GDBusProxy *
+get_button_proxy(LBusManager *self, GString *button) {
+    GDBusProxy *button_proxy;
+    GError *error = NULL;
+
+    button_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+                                          G_DBUS_PROXY_FLAGS_NONE,
+                                          NULL,
+                                          logid_name,
+                                          button->str,
+                                          "pizza.pixl.LogiOps.Button",
+                                          NULL,
+                                          &error);
+    g_assert_no_error(error);
+
+    return button_proxy;
+}
+
+GDBusProxy *
+get_action_keypress_proxy(LBusManager *self, GString *button) {
+    GDBusProxy *action_proxy;
+    GError *error = NULL;
+
+    action_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+                                         G_DBUS_PROXY_FLAGS_NONE,
+                                         NULL,
+                                         logid_name,
+                                         button->str,
+                                         "pizza.pixl.LogiOps.Action.Keypress",
+                                         NULL,
+                                         &error);
+    g_assert_no_error(error);
+
+    return action_proxy;
+}
+
 GSList *
 l_bus_manager_request_devices_list(LBusManager *self) {
     GVariant *result;
@@ -461,6 +497,37 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button,
     g_variant_get(result, "b", remappable);
 
     return 0;
+}
+
+GSList *
+l_bus_manager_request_button_action(LBusManager *self, GString *button) {
+    GVariant *result;
+    GError *error = NULL;
+    GVariantIter *iter;
+    GSList *actions = NULL;
+    gchar *key;
+    GDBusProxy *action_proxy = get_action_keypress_proxy(self, button);
+
+    result = g_dbus_proxy_call_sync(action_proxy,
+                                    "GetKeys",
+                                    NULL,
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+
+    if (g_error_matches(error, 146, 19)) return actions;
+
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(as)", &iter);
+    while (g_variant_iter_loop(iter, "s", &key))
+        actions = g_slist_append(actions, g_string_new(key));
+
+    g_variant_iter_free(iter);
+    g_variant_unref(result);
+
+    return actions;
 }
 
 GSList *
