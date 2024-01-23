@@ -42,6 +42,7 @@ typedef enum  {
 #include "ui/l-device-button.h"
 #include "ui/l-button-pref-panel.h"
 #include "ui/l-pref-panel.h"
+#include "ui/l-action-card.h"
 #include "data/l-key-codes.h"
 #include "data/l-data-manager.h"
 #include "data/l-bus-manager.h"

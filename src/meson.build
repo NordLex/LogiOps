@@ -11,6 +11,7 @@ logiops_sources = [
   'ui/l-device-button.c',
   'ui/l-pref-panel.c',
   'ui/l-button-pref-panel.c',
+  'ui/l-action-card.c',
   'ui/device-description/mx-master-3-description.c',
   'ui/device-description/mx-anywhere-3-description.c',
   'data/l-data-manager.c',

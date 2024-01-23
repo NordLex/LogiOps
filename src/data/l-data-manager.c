@@ -76,6 +76,7 @@ fill_button_conf(LBusManager *bus, GString *button, LDevice *device_conf) {
     GSList *action_keys = NULL;
 
     l_bus_manager_request_button_info(bus, button, &cid, &task_id, &gesture_support, &remappable);
+    action_keys = l_bus_manager_request_button_action(bus, button);
 
     l_device_append_button(device_conf, (gint) cid, (gint) task_id,
                            gesture_support, remappable, action_type, action_keys);

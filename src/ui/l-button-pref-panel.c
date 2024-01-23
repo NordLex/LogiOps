@@ -29,6 +29,7 @@ struct _LButtonPrefPanel {
     GtkWidget *cid_label;
     GtkWidget *action_type_label;
     GtkWidget *action_keys_label;
+    LActionCard *action_card;
 };
 
 G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
@@ -74,9 +75,10 @@ init_action_keys_label(LButtonPrefPanel *self, GSList *keys) {
     GSList *temp_keys = keys;
 
     while (temp_keys != NULL) {
-        keys_label = g_string_append(keys_label, temp_keys->data);
+        GString *key = temp_keys->data;
+        keys_label = g_string_append(keys_label, key->str);
         if (temp_keys->next != NULL)
-            keys_label = g_string_append(keys_label, "  ");
+            keys_label = g_string_append(keys_label, "\n");
 
         temp_keys = g_slist_next(temp_keys);
     }
@@ -139,6 +141,7 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->cid_label = gtk_label_new(NULL);
     self->action_type_label = gtk_label_new(NULL);
     self->action_keys_label = gtk_label_new(NULL);
+    self->action_card = l_action_card_new();
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
