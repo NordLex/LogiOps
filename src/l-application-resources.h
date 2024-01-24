@@ -32,17 +32,16 @@ typedef enum  {
 
 
 #include <adwaita.h>
-#include <libconfig.h>
 #include "types/description-types.h"
 #include "types/l-device.h"
 #include "ui/device-description/device-description.h"
 #include "ui/l-device-card.h"
+#include "ui/l-keypress-card.h"
 #include "ui/l-overview-page.h"
 #include "ui/l-device-page.h"
 #include "ui/l-device-button.h"
 #include "ui/l-button-pref-panel.h"
 #include "ui/l-pref-panel.h"
-#include "ui/l-action-card.h"
 #include "data/l-key-codes.h"
 #include "data/l-data-manager.h"
 #include "data/l-bus-manager.h"

@@ -1,6 +1,6 @@
-/* l-action-card.h
+/* l-keypress-card.c
  *
- * Copyright 23.01.2024 NordLex
+ * Copyright 24.01.2024 NordLex
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,22 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
  
-#pragma once
-
-#include "../l-application-resources.h"
+#include "l-keypress-card.h"
 
 
-G_BEGIN_DECLS
+struct _LKeypressCard {
+    GtkBox parent_instance;
+};
 
-#define L_TYPE_ACTION_CARD (l_action_card_get_type())
+G_DEFINE_FINAL_TYPE (LKeypressCard, l_keypress_card, GTK_TYPE_BOX)
 
-G_DECLARE_FINAL_TYPE (LActionCard, l_action_card, L, ACTION_CARD, GtkBox)
+LKeypressCard *
+l_keypress_card_new(void) {
+    return g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
+}
 
-LActionCard *
-l_action_card_new(void);
+static void
+l_keypress_card_class_init(LKeypressCardClass *klass) {}
 
-G_END_DECLS
+static void
+l_keypress_card_init(LKeypressCard *self) {}
