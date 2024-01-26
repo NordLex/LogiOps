@@ -1,4 +1,4 @@
-/* l-keypress-card.c
+/* l-gesture-card.h
  *
  * Copyright 24.01.2024 NordLex
  *
@@ -18,22 +18,18 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
  
-#include "l-keypress-card.h"
+#pragma once
+
+#include "../../l-application-resources.h"
 
 
-struct _LKeypressCard {
-    GtkBox parent_instance;
-};
+G_BEGIN_DECLS
 
-G_DEFINE_FINAL_TYPE (LKeypressCard, l_keypress_card, GTK_TYPE_BOX)
+#define L_TYPE_GESTURE_CARD (l_gesture_card_get_type())
 
-LKeypressCard *
-l_keypress_card_new(void) {
-    return g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
-}
+G_DECLARE_FINAL_TYPE (LGestureCard, l_gesture_card, L, GESTURE_CARD, GtkBox)
 
-static void
-l_keypress_card_class_init(LKeypressCardClass *klass) {}
+LGestureCard *
+l_gesture_card_new(void);
 
-static void
-l_keypress_card_init(LKeypressCard *self) {}
+G_END_DECLS

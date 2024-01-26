@@ -57,6 +57,17 @@
     background-color: alpha(mix(@window_bg_color, rgb(255, 255, 255), 0.4), 0.1);*/
 }
 
+#KeypressCard {
+    border-width: 2px;
+    background: #48845a;
+}
+
+#KeyCard {
+    border-width: 2px;
+    border-color: cadetblue;
+    background: #354e3d;
+}
+
 .green-frame {
     border: 2px solid;
     color: green;
