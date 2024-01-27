@@ -31,12 +31,13 @@ G_DEFINE_FINAL_TYPE (LKeypressCard, l_keypress_card, GTK_TYPE_BOX)
 GtkWidget *
 make_key_card(GString *text) {
     GtkWidget *card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    GtkWidget *label = gtk_label_new(text->str);
 
     g_object_set(card,
                  "name", "KeyCard",
                  NULL);
 
-    gtk_box_append(GTK_BOX(card), gtk_label_new(text->str));
+    gtk_box_append(GTK_BOX(card), label);
 
     return card;
 }
@@ -78,5 +79,6 @@ static void
 l_keypress_card_init(LKeypressCard *self) {
     g_object_set(self,
                  "name", "KeypressCard",
+                 "halign", GTK_ALIGN_CENTER,
                  NULL);
 }

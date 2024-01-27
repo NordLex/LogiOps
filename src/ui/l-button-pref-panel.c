@@ -26,9 +26,6 @@ struct _LButtonPrefPanel {
     GtkWidget *title;
     GtkWidget *close_button;
     GtkWidget *pref_container;
-    GtkWidget *cid_label;
-    GtkWidget *action_type_label;
-    GtkWidget *action_keys_label;
     GtkWidget *action_card;
 };
 
@@ -52,48 +49,10 @@ init_title_label(LButtonPrefPanel *self, GString *name) {
 }
 
 static void
-init_cid_label(LButtonPrefPanel *self, int cid) {
-    const char *format = "<span weight=\"bold\">\%d</span>";
-    char *markup = g_markup_printf_escaped(format, cid);
-
-    gtk_label_set_markup(GTK_LABEL(self->cid_label), markup);
-    g_free(markup);
-}
-
-static void
-init_action_type_label(LButtonPrefPanel *self, ActionType action_type) {
-    const char *format = "<span weight=\"bold\">\%d</span>";
-    char *markup = g_markup_printf_escaped(format, action_type);
-
-    gtk_label_set_markup(GTK_LABEL(self->action_type_label), markup);
-    g_free(markup);
-}
-
-static void
-init_action_keys_label(LButtonPrefPanel *self, GSList *keys) {
-    GString *keys_label = g_string_new("");
-    GSList *temp_keys = keys;
-
-    while (temp_keys != NULL) {
-        GString *key = temp_keys->data;
-        keys_label = g_string_append(keys_label, key->str);
-        if (temp_keys->next != NULL)
-            keys_label = g_string_append(keys_label, "\n");
-
-        temp_keys = g_slist_next(temp_keys);
-    }
-
-    gtk_label_set_markup(GTK_LABEL(self->action_keys_label), keys_label->str);
-}
-
-static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     Button *button_conf = button_description->conf;
 
     init_title_label(self, button_description->name);
-    init_cid_label(self, button_description->cid);
-    init_action_type_label(self, button_conf->action.type);
-    init_action_keys_label(self, button_conf->action.keys);
 
     l_keypress_card_set_data(L_KEYPRESS_CARD(self->action_card), button_conf->action.keys);
 }
@@ -140,17 +99,11 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    self->cid_label = gtk_label_new(NULL);
-    self->action_type_label = gtk_label_new(NULL);
-    self->action_keys_label = gtk_label_new(NULL);
     self->action_card = GTK_WIDGET(l_keypress_card_new());
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
 
-    gtk_box_append(GTK_BOX(self->pref_container), self->cid_label);
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_type_label);
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_keys_label);
     gtk_box_append(GTK_BOX(self->pref_container), self->action_card);
 
     gtk_box_append(GTK_BOX(self), title_box);

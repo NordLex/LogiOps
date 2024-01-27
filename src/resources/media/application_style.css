@@ -59,13 +59,13 @@
 
 #KeypressCard {
     border-width: 2px;
-    background: #48845a;
 }
 
 #KeyCard {
-    border-width: 2px;
-    border-color: cadetblue;
-    background: #354e3d;
+    border-radius: 8px;
+    margin: 4px;
+    padding: 4px 12px;
+    background: rgba(211, 211, 211, 0.5);
 }
 
 .green-frame {
