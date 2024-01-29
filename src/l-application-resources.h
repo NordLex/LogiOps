@@ -24,12 +24,28 @@
 #define L_APPLICATION_RESOURCES
 
 typedef enum  {
+    DEFAULT,
+    NONE,
     KEYPRESS,
     GESTURES,
-    TOGGLE_SMARTSHIFT,
     CYCLE_DPI,
+    TOGGLE_SMARTSHIFT,
+    TOGGLE_HIRESSCROLL,
+    CHANGE_DPI,
+    CHANGE_HOST,
 } ActionType;
 
+static char *action_names[] = {
+    "Default",
+    "None",
+    "Keypress",
+    "Gestures",
+    "CycleDPI",
+    "ToggleSmartShift",
+    "ToggleHiresScroll",
+    "ChangeDPI",
+    "ChangeHost"
+};
 
 #include <adwaita.h>
 #include "types/description-types.h"
@@ -38,6 +54,7 @@ typedef enum  {
 #include "ui/l-device-card.h"
 #include "ui/action-cards/l-keypress-card.h"
 #include "ui/action-cards/l-gesture-card.h"
+#include "ui/action-cards/l-action-row.h"
 #include "ui/l-overview-page.h"
 #include "ui/l-device-page.h"
 #include "ui/l-device-button.h"

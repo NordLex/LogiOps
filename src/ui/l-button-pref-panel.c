@@ -26,7 +26,9 @@ struct _LButtonPrefPanel {
     GtkWidget *title;
     GtkWidget *close_button;
     GtkWidget *pref_container;
-    GtkWidget *action_card;
+    GtkWidget *keypress_row;
+    GtkWidget *gesture_row;
+    GtkWidget *cycle_dpi_row;
 };
 
 G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
@@ -51,10 +53,20 @@ init_title_label(LButtonPrefPanel *self, GString *name) {
 static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     Button *button_conf = button_description->conf;
+    GtkCheckButton *check_group = GTK_CHECK_BUTTON(gtk_check_button_new());
 
     init_title_label(self, button_description->name);
 
-    l_keypress_card_set_data(L_KEYPRESS_CARD(self->action_card), button_conf->action.keys);
+    gtk_check_button_set_group(l_action_row_get_check_button(L_ACTION_ROW(self->keypress_row)),
+                               check_group);
+    gtk_check_button_set_group(l_action_row_get_check_button(L_ACTION_ROW(self->gesture_row)),
+                               check_group);
+    gtk_check_button_set_group(l_action_row_get_check_button(L_ACTION_ROW(self->cycle_dpi_row)),
+                               check_group);
+
+    l_action_row_set_data(L_ACTION_ROW(self->keypress_row), button_conf);
+    l_action_row_set_data(L_ACTION_ROW(self->gesture_row), button_conf);
+    l_action_row_set_data(L_ACTION_ROW(self->cycle_dpi_row), button_conf);
 }
 
 void
@@ -99,12 +111,16 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    self->action_card = GTK_WIDGET(l_keypress_card_new());
+    self->keypress_row = GTK_WIDGET(l_action_row_new());
+    self->gesture_row = GTK_WIDGET(l_action_row_new());
+    self->cycle_dpi_row = GTK_WIDGET(l_action_row_new());
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
 
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_card);
+    gtk_box_append(GTK_BOX(self->pref_container), self->keypress_row);
+    gtk_box_append(GTK_BOX(self->pref_container), self->gesture_row);
+    gtk_box_append(GTK_BOX(self->pref_container), self->cycle_dpi_row);
 
     gtk_box_append(GTK_BOX(self), title_box);
     gtk_box_append(GTK_BOX(self), self->pref_container);
