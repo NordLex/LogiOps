@@ -27,10 +27,7 @@ G_BEGIN_DECLS
 
 #define L_TYPE_ACTION_ROW (l_action_row_get_type())
 
-G_DECLARE_FINAL_TYPE (LActionRow, l_action_row, L, ACTION_ROW, AdwExpanderRow)
-
-GtkCheckButton *
-l_action_row_get_check_button(LActionRow *self);
+G_DECLARE_FINAL_TYPE (LActionRow, l_action_row, L, ACTION_ROW, AdwComboRow)
 
 void
 l_action_row_set_data(LActionRow *self, Button *button);

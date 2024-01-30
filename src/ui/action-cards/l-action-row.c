@@ -22,35 +22,16 @@
 
 
 struct _LActionRow {
-    AdwExpanderRow parent_instance;
+    AdwComboRow parent_instance;
 
-    GtkWidget *label;
-    GtkWidget *check_button;
-    GtkWidget *child;
+    GtkListItemFactory *list_box;
 };
 
-G_DEFINE_FINAL_TYPE (LActionRow, l_action_row, ADW_TYPE_EXPANDER_ROW)
-
-
-void
-sync_expand(GtkCheckButton *check_button, gpointer data) {
-    LActionRow *self = L_ACTION_ROW(data);
-    gboolean state = gtk_check_button_get_active(check_button);
-    if (state)
-        adw_expander_row_set_enable_expansion(ADW_EXPANDER_ROW(self), TRUE);
-    else
-        adw_expander_row_set_enable_expansion(ADW_EXPANDER_ROW(self), FALSE);
-}
-
-GtkCheckButton *
-l_action_row_get_check_button(LActionRow *self) {
-    return GTK_CHECK_BUTTON(self->check_button);
-}
+G_DEFINE_FINAL_TYPE (LActionRow, l_action_row, ADW_TYPE_COMBO_ROW)
 
 void
 l_action_row_set_data(LActionRow *self, Button *button) {
-    gtk_label_set_label(GTK_LABEL(self->label), "Keypress"); 
-    l_keypress_card_set_data(L_KEYPRESS_CARD(self->child), button->action.keys);
+
 }
 
 LActionRow *
@@ -63,14 +44,10 @@ l_action_row_class_init(LActionRowClass *klass) {}
 
 static void
 l_action_row_init(LActionRow *self) {
-    self->label = gtk_label_new("");
-    self->check_button = gtk_check_button_new();
-    self->child = GTK_WIDGET(l_keypress_card_new());
+    self->list_box = adw_combo_row_get_factory(ADW_COMBO_ROW(self));
 
-    adw_expander_row_add_prefix(ADW_EXPANDER_ROW(self), self->check_button);
-    adw_expander_row_add_prefix(ADW_EXPANDER_ROW(self), self->label);
-    adw_expander_row_add_row(ADW_EXPANDER_ROW(self), self->child);
-
-    sync_expand(GTK_CHECK_BUTTON(self->check_button), self);
-    g_signal_connect(self->check_button, "toggled", G_CALLBACK(sync_expand), self);
+    g_object_set(self,
+                 "title", "Action",
+                 "subtitle", "Will be executed when pressed",
+                 NULL);
 }
