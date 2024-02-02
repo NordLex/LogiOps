@@ -40,6 +40,17 @@ callback_close_button(GtkWidget *button, gpointer data) {
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
 }
 
+void
+action_card_clear(GtkWidget *card) {
+    GtkWidget *child = NULL;
+
+    do {
+        child = gtk_widget_get_last_child(GTK_WIDGET(card));
+        if (child != NULL)
+            gtk_box_remove(GTK_BOX(card), child);
+    } while (child != NULL);
+}
+
 static void
 init_title_label(LButtonPrefPanel *self, GString *name) {
     const char *format = "<span weight=\"bold\">\%s</span>";
@@ -58,10 +69,21 @@ init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
 
     if (action.type == KEYPRESS) {
         Keypress *keypress = action.self;
+        LKeypressCard *keypress_card = l_keypress_card_new();
+
         l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
-        l_keypress_card_set_data(L_KEYPRESS_CARD(self->action_card), keypress->keys);
+        l_keypress_card_set_data(keypress_card, keypress->keys);
+
+        action_card_clear(self->action_card);
+        gtk_box_append(GTK_BOX(self->action_card), GTK_WIDGET(keypress_card));
+
     } else {
+        GtkWidget *label = gtk_label_new("Default button functionality");
+
         l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
+
+        action_card_clear(self->action_card);
+        gtk_box_append(GTK_BOX(self->action_card), label);
     }
 }
 
@@ -108,7 +130,7 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
     self->action_row = GTK_WIDGET(l_action_row_new());
-    self->action_card = GTK_WIDGET(l_keypress_card_new());
+    self->action_card = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
