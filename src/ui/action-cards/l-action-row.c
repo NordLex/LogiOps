@@ -24,14 +24,47 @@
 struct _LActionRow {
     AdwComboRow parent_instance;
 
-    GtkListItemFactory *list_box;
+    GListModel *list_model;
 };
 
 G_DEFINE_FINAL_TYPE (LActionRow, l_action_row, ADW_TYPE_COMBO_ROW)
 
-void
-l_action_row_set_data(LActionRow *self, Button *button) {
 
+static void
+setup_list_item_cb(GtkListItemFactory *factory, GtkListItem *item) {
+    GtkWidget *label = gtk_label_new("");
+    gtk_list_item_set_child(item, label);
+}
+
+static void
+bind_list_item_cb(GtkListItemFactory *factory, GtkListItem *item) {
+    GtkWidget *label = gtk_list_item_get_child(item);
+    const char *name = gtk_list_item_get_item(item);
+
+    gtk_label_set_text(GTK_LABEL(label), name);
+    g_print("bind: %s\n", name);
+}
+
+static void
+activate_cb(GtkListView *list, guint position, gpointer unused) {
+    GtkWidget *label = g_list_model_get_item(G_LIST_MODEL(gtk_list_view_get_model(list)),
+                                             position);
+
+}
+
+GListModel *
+make_list_model(void) {
+    GListModel *list_model;
+    GtkListBoxRow *item_box;
+
+    list_model = (GListModel *) gtk_string_list_new((const char *const *) action_names);
+
+    return list_model;
+}
+
+void
+l_action_row_set_selected(LActionRow *self, ActionType type) {
+    adw_combo_row_set_selected(ADW_COMBO_ROW(self), type);
 }
 
 LActionRow *
@@ -44,10 +77,24 @@ l_action_row_class_init(LActionRowClass *klass) {}
 
 static void
 l_action_row_init(LActionRow *self) {
-    self->list_box = adw_combo_row_get_factory(ADW_COMBO_ROW(self));
+    char *subtitle = "Assign an self to the button";
+    GtkListItemFactory *factory = gtk_signal_list_item_factory_new();
+
+
+    self->list_model = make_list_model();
+    /*list_view = gtk_list_view_new(
+            GTK_SELECTION_MODEL(gtk_single_selection_new(self->list_model)),
+            factory);*/
+
+    g_signal_connect(factory, "setup", G_CALLBACK(setup_list_item_cb), NULL);
+    g_signal_connect(factory, "bind", G_CALLBACK(bind_list_item_cb), NULL);
 
     g_object_set(self,
                  "title", "Action",
-                 "subtitle", "Will be executed when pressed",
+                 "subtitle", subtitle,
+                 "model", self->list_model,
+                 //"factory", factory,
                  NULL);
+
+    //adw_combo_row_set_list_factory(ADW_COMBO_ROW(self), factory);
 }

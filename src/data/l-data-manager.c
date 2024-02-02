@@ -72,14 +72,13 @@ static void
 fill_button_conf(LBusManager *bus, GString *button, LDevice *device_conf) {
     guint16 cid, task_id;
     gboolean gesture_support, remappable;
-    ActionType action_type;
-    GSList *action_keys = NULL;
+    Action *action = g_malloc(sizeof(Action));
 
     l_bus_manager_request_button_info(bus, button, &cid, &task_id, &gesture_support, &remappable);
-    action_keys = l_bus_manager_request_button_action(bus, button);
+    l_bus_manager_request_button_action(bus, button, action);
 
     l_device_append_button(device_conf, (gint) cid, (gint) task_id,
-                           gesture_support, remappable, action_type, action_keys);
+                           gesture_support, remappable, *action);
 }
 
 static void

@@ -66,7 +66,9 @@ l_bus_manager_request_button_info(LBusManager *self,
                                   gboolean *gesture_support,
                                   gboolean *remappable);
 
-GSList *
-l_bus_manager_request_button_action(LBusManager *self, GString *button);
+int
+l_bus_manager_request_button_action(LBusManager *self,
+                                    GString *button,
+                                    Action *action);
 
 G_END_DECLS

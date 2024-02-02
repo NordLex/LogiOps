@@ -499,12 +499,12 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button,
     return 0;
 }
 
-GSList *
-l_bus_manager_request_button_action(LBusManager *self, GString *button) {
+int
+request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
     GVariant *result;
     GError *error = NULL;
     GVariantIter *iter;
-    GSList *actions = NULL;
+    GSList *keys = NULL;
     gchar *key;
     GDBusProxy *action_proxy = get_action_keypress_proxy(self, button);
 
@@ -516,18 +516,34 @@ l_bus_manager_request_button_action(LBusManager *self, GString *button) {
                                     NULL,
                                     &error);
 
-    if (g_error_matches(error, 146, 19)) return actions;
+    if (g_error_matches(error, 146, 19)) return 1;
 
     g_assert_no_error(error);
 
     g_variant_get(result, "(as)", &iter);
     while (g_variant_iter_loop(iter, "s", &key))
-        actions = g_slist_append(actions, g_string_new(key));
+        keys = g_slist_append(keys, g_string_new(key));
 
+    keypress->keys = keys;
     g_variant_iter_free(iter);
     g_variant_unref(result);
 
-    return actions;
+    return 0;
+}
+
+int
+l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action) {
+    Keypress *keypress = g_malloc(sizeof(Keypress));
+
+    if (!request_keypress_action(self, button, keypress)) {
+        action->type = KEYPRESS;
+        action->self = keypress;
+    } else {
+        action->type = DEFAULT;
+        action->self = NULL;
+    }
+
+    return 0;
 }
 
 GSList *
@@ -559,11 +575,6 @@ l_bus_manager_request_buttons_list(LBusManager *self, GString *device) {
     g_variant_unref(result);
 
     return self->button_paths;
-}
-
-static void
-test_bus_manager(LBusManager *self) {
-
 }
 
 LBusManager *

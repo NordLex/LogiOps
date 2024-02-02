@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LActionRow, l_action_row, L, ACTION_ROW, AdwComboRow)
 
 void
-l_action_row_set_data(LActionRow *self, Button *button);
+l_action_row_set_selected(LActionRow *self, ActionType type);
 
 LActionRow *
 l_action_row_new(void);

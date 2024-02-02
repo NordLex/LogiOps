@@ -52,10 +52,17 @@ init_title_label(LButtonPrefPanel *self, GString *name) {
 static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     Button *button_conf = button_description->conf;
+    Action action = button_conf->action;
 
     init_title_label(self, button_description->name);
-    l_action_row_set_data(L_ACTION_ROW(self->action_row), button_conf);
-    l_keypress_card_set_data(L_KEYPRESS_CARD(self->action_card), button_conf->action.keys);
+
+    if (action.type == KEYPRESS) {
+        Keypress *keypress = action.self;
+        l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
+        l_keypress_card_set_data(L_KEYPRESS_CARD(self->action_card), keypress->keys);
+    } else {
+        l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
+    }
 }
 
 void

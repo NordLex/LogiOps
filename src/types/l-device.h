@@ -99,7 +99,6 @@ l_device_append_button(LDevice *self,
                        gint task_id,
                        gboolean gesture_support,
                        gboolean remappable,
-                       ActionType action_type,
-                       GSList *action_keys);
+                       Action action);
 
 G_END_DECLS

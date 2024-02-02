@@ -21,58 +21,83 @@
 #pragma once
 
 typedef struct {
-    gint dpi;
-    gint min;
-    gint max;
-    gint step;
-    gboolean range;
+    gint        dpi;
+    gint        min;
+    gint        max;
+    gint        step;
+    gboolean    range;
 } Dpi;
 
 typedef struct {
-    gboolean torque_support;
-    gboolean on;
-    gint threshold;
-    gint torque;
+    gboolean    torque_support;
+    gboolean    on;
+    gint        threshold;
+    gint        torque;
 } Smartshift;
 
 typedef struct {
-    gboolean hires;
-    gboolean invert;
-    gboolean target;
+    gboolean    hires;
+    gboolean    invert;
+    gboolean    target;
 } Hiresscroll;
 
 typedef struct {
-    ActionType type;
-    GSList *keys;
+    ActionType  type;
+    gpointer    self;
 } Action;
 
 typedef struct {
-    GString direction;
-    GString mode;
-    Action action;
+    GSList     *keys;
+} Keypress;
+
+typedef struct {
+    guint       threshold;  // Optional
+    GString     mode;       // Optional
+    gboolean    no_press;
+    Action      action_up;
+    Action      action_down;
+    Action      action_left;
+    Action      action_right;
 } Gesture;
 
 typedef struct {
-    gint cid;
-    gint task_id;
-    gboolean gesture_support;
-    gboolean remappable;
-    Gesture gesture;
-    Action action;
+    guint       sensor;     // Optional
+    GSList     *dpis;
+} CycleDPI;
+
+typedef struct {} ToggleSmartShift;
+
+typedef struct {} ToggleHiresScroll;
+
+typedef struct {
+    guint       sensor;     // Optional
+    guint      *inc;
+} ChangeDPI;
+
+typedef struct {
+    guint       host;
+} ChangeHost;
+
+typedef struct {
+    gint        cid;
+    gint        task_id;
+    gboolean    gesture_support;
+    gboolean    remappable;
+    Action      action;
 } Button;
 
-typedef struct  {
-    gint cid;
-    GString *name;
-    gdouble x_offset;
-    gdouble y_offset;
-    gpointer conf;
+typedef struct {
+    gint        cid;
+    GString    *name;
+    gdouble     x_offset;
+    gdouble     y_offset;
+    gpointer    conf;
 } ButtonDescription;
 
-typedef struct  {
-    GString *name;
-    GString *full_name;
-    GString *image_path;
-    GSList *buttons;
-    gpointer conf;
+typedef struct {
+    GString    *name;
+    GString    *full_name;
+    GString    *image_path;
+    GSList     *buttons;
+    gpointer    conf;
 } DeviceDescription;
