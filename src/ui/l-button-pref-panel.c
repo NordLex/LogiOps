@@ -64,27 +64,45 @@ static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     Button *button_conf = button_description->conf;
     Action action = button_conf->action;
+    GtkWidget *action_card;
 
     init_title_label(self, button_description->name);
+    l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
 
     if (action.type == KEYPRESS) {
         Keypress *keypress = action.self;
-        LKeypressCard *keypress_card = l_keypress_card_new();
+        action_card = GTK_WIDGET(l_keypress_card_new());
 
-        l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
-        l_keypress_card_set_data(keypress_card, keypress->keys);
-
-        action_card_clear(self->action_card);
-        gtk_box_append(GTK_BOX(self->action_card), GTK_WIDGET(keypress_card));
-
-    } else {
-        GtkWidget *label = gtk_label_new("Default button functionality");
-
-        l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
-
-        action_card_clear(self->action_card);
-        gtk_box_append(GTK_BOX(self->action_card), label);
+        l_keypress_card_set_data(L_KEYPRESS_CARD(action_card), keypress->keys);
     }
+    else if (action.type == GESTURES) {
+        action_card = gtk_label_new("GESTURES");
+    }
+    else if (action.type == CYCLE_DPI) {
+        action_card = gtk_label_new("CYCLE_DPI");
+    }
+    else if (action.type == TOGGLE_SMARTSHIFT) {
+        action_card = gtk_label_new("TOGGLE_SMARTSHIFT");
+    }
+    else if (action.type == TOGGLE_HIRESSCROLL) {
+        action_card = gtk_label_new("TOGGLE_HIRESSCROLL");
+    }
+    else if (action.type == CHANGE_DPI) {
+        action_card = gtk_label_new("CHANGE_DPI");
+    }
+    else if (action.type == CHANGE_HOST) {
+        action_card = gtk_label_new("CHANGE_HOST");
+    }
+    else if (action.type == DEFAULT) {
+        action_card = gtk_label_new("Default button functionality");
+    }
+    else if (action.type == NONE) {
+        action_card = gtk_label_new("Button actions are disabled");
+    }
+    else { action_card = gtk_label_new("!!! Error, type unknown !!!"); }
+
+    action_card_clear(self->action_card);
+    gtk_box_append(GTK_BOX(self->action_card), action_card);
 }
 
 void
