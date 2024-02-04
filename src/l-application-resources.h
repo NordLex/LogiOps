@@ -55,6 +55,7 @@ static char *action_names[] = {
 #include "ui/action-cards/l-keypress-card.h"
 #include "ui/action-cards/l-gesture-card.h"
 #include "ui/action-cards/l-action-row.h"
+#include "ui/action-cards/l-action-selector.h"
 #include "ui/l-overview-page.h"
 #include "ui/l-device-page.h"
 #include "ui/l-device-button.h"

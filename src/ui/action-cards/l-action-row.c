@@ -24,7 +24,7 @@
 struct _LActionRow {
     AdwComboRow parent_instance;
 
-    GListModel *list_model;
+    GListModel *model;
 };
 
 G_DEFINE_FINAL_TYPE (LActionRow, l_action_row, ADW_TYPE_COMBO_ROW)
@@ -32,16 +32,16 @@ G_DEFINE_FINAL_TYPE (LActionRow, l_action_row, ADW_TYPE_COMBO_ROW)
 
 static void
 setup_list_item_cb(GtkListItemFactory *factory, GtkListItem *item) {
-    GtkWidget *label = gtk_label_new("");
-    gtk_list_item_set_child(item, label);
+    GtkWidget *box_row = gtk_list_box_row_new();
+    gtk_list_item_set_child(item, box_row);
 }
 
 static void
 bind_list_item_cb(GtkListItemFactory *factory, GtkListItem *item) {
-    GtkWidget *label = gtk_list_item_get_child(item);
+    GtkWidget *box_row = gtk_list_item_get_child(item);
     const char *name = gtk_list_item_get_item(item);
 
-    gtk_label_set_text(GTK_LABEL(label), name);
+    gtk_list_box_row_set_child(GTK_LIST_BOX_ROW(box_row), gtk_label_new("Hello"));
     g_print("bind: %s\n", name);
 }
 
@@ -55,9 +55,9 @@ activate_cb(GtkListView *list, guint position, gpointer unused) {
 GListModel *
 make_list_model(void) {
     GListModel *list_model;
-    GtkListBoxRow *item_box;
+    GtkStringList *string_list = gtk_string_list_new((const char *const *) action_names);
 
-    list_model = (GListModel *) gtk_string_list_new((const char *const *) action_names);
+    list_model = G_LIST_MODEL(string_list);
 
     return list_model;
 }
@@ -65,6 +65,7 @@ make_list_model(void) {
 void
 l_action_row_set_selected(LActionRow *self, ActionType type) {
     adw_combo_row_set_selected(ADW_COMBO_ROW(self), type);
+    //gtk_single_selection_set_selected(GTK_SINGLE_SELECTION(self->model), type);
 }
 
 LActionRow *
@@ -79,12 +80,7 @@ static void
 l_action_row_init(LActionRow *self) {
     char *subtitle = "Assign an self to the button";
     GtkListItemFactory *factory = gtk_signal_list_item_factory_new();
-
-
-    self->list_model = make_list_model();
-    /*list_view = gtk_list_view_new(
-            GTK_SELECTION_MODEL(gtk_single_selection_new(self->list_model)),
-            factory);*/
+    self->model = G_LIST_MODEL(gtk_single_selection_new(make_list_model()));
 
     g_signal_connect(factory, "setup", G_CALLBACK(setup_list_item_cb), NULL);
     g_signal_connect(factory, "bind", G_CALLBACK(bind_list_item_cb), NULL);
@@ -92,9 +88,8 @@ l_action_row_init(LActionRow *self) {
     g_object_set(self,
                  "title", "Action",
                  "subtitle", subtitle,
-                 "model", self->list_model,
-                 //"factory", factory,
                  NULL);
 
-    //adw_combo_row_set_list_factory(ADW_COMBO_ROW(self), factory);
+    adw_combo_row_set_model(ADW_COMBO_ROW(self), self->model);
+    //adw_combo_row_set_factory(ADW_COMBO_ROW(self), factory);
 }

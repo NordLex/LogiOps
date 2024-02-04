@@ -14,6 +14,7 @@ logiops_sources = [
   'ui/action-cards/l-keypress-card.c',
   'ui/action-cards/l-gesture-card.c',
   'ui/action-cards/l-action-row.c',
+  'ui/action-cards/l-action-selector.c',
   'ui/device-description/mx-master-3-description.c',
   'ui/device-description/mx-anywhere-3-description.c',
   'data/l-data-manager.c',

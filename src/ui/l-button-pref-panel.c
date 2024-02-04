@@ -26,7 +26,7 @@ struct _LButtonPrefPanel {
     GtkWidget *title;
     GtkWidget *close_button;
     GtkWidget *pref_container;
-    GtkWidget *action_row;
+    GtkWidget *action_selector;
     GtkWidget *action_card;
 };
 
@@ -67,7 +67,7 @@ init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     GtkWidget *action_card;
 
     init_title_label(self, button_description->name);
-    l_action_row_set_selected(L_ACTION_ROW(self->action_row), action.type);
+    l_action_selector_set_selected( self->action_selector, action.type);
 
     if (action.type == KEYPRESS) {
         Keypress *keypress = action.self;
@@ -147,13 +147,13 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    self->action_row = GTK_WIDGET(l_action_row_new());
+    self->action_selector = l_action_selector_new();//GTK_WIDGET(l_action_row_new());
     self->action_card = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
 
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_row);
+    gtk_box_append(GTK_BOX(self->pref_container), self->action_selector);
     gtk_box_append(GTK_BOX(self->pref_container), self->action_card);
 
     gtk_box_append(GTK_BOX(self), title_box);
