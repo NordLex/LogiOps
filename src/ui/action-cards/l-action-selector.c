@@ -25,15 +25,16 @@ struct _LActionSelector {
     GtkBox parent_instance;
 
     GtkWidget *selector;
+    GtkWidget *view;
 };
 
 G_DEFINE_FINAL_TYPE(LActionSelector, l_action_selector, GTK_TYPE_BOX)
 
 
 static void
-callback(GtkDropDown *self, gpointer data) {
+callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
+    const char *string = g_param_spec_get_name(spec);
     guint item = gtk_drop_down_get_selected(self);
-    g_print("== Selected %d ==\n", item);
 }
 
 void
@@ -65,5 +66,5 @@ l_action_selector_init(LActionSelector *self) {
     gtk_widget_set_margin_bottom(GTK_WIDGET(self), (int) (margin * 0.5));
     gtk_box_append(GTK_BOX(self), self->selector);
 
-    g_signal_connect(self->selector, "activate", G_CALLBACK(callback), NULL);
+    g_signal_connect(self->selector, "notify::selected-item", G_CALLBACK(callback), NULL);
 }

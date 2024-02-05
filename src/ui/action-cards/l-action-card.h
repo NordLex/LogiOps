@@ -1,6 +1,6 @@
-/* l-action-row.h
+/* l-action-card.h
  *
- * Copyright 27.01.2024 NordLex
+ * Copyright 04.02.24 NordLex
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
- 
+
 #pragma once
 
 #include "../../l-application-resources.h"
@@ -25,14 +25,11 @@
 
 G_BEGIN_DECLS
 
-#define L_TYPE_ACTION_ROW (l_action_row_get_type())
+#define L_TYPE_ACTION_CARD (l_action_card_get_type())
 
-G_DECLARE_FINAL_TYPE (LActionRow, l_action_row, L, ACTION_ROW, AdwComboRow)
+G_DECLARE_FINAL_TYPE (LActionCard, l_action_card, L, ACTION_CARD, GObject)
 
-void
-l_action_row_set_selected(LActionRow *self, ActionType type);
-
-LActionRow *
-l_action_row_new(void);
+LActionCard *
+l_action_card_new(void);
 
 G_END_DECLS
