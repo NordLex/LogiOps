@@ -28,6 +28,11 @@ l_action_card_default_init(LActionCardInterface *iface) {}
 
 void
 l_action_card_set_action(LActionCard *self, Action action) {
-    LActionCardInterface *iface  = L_ACTION_CARD_GET_IFACE(self);
+    LActionCardInterface *iface;
+
+    //g_return_if_fail(L_IS_ACTION_CARD(self));
+
+    iface = L_ACTION_CARD_GET_IFACE(self);
+    //g_return_if_fail(iface->set_action != NULL);
     iface->set_action(self, action);
 }
