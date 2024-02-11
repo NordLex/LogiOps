@@ -39,24 +39,25 @@ selected_callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
 
 static void
 fill_cards(LActionSelector *self) {
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("Default button functionality"), action_names[DEFAULT]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("Button actions are disabled"), action_names[NONE]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("KEYPRESS"), action_names[KEYPRESS]);//GTK_WIDGET(l_keypress_card_new());
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("GESTURES"), action_names[GESTURES]);//GTK_WIDGET(l_gesture_card_new());
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("CYCLE_DPI"), action_names[CYCLE_DPI]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("TOGGLE_SMARTSHIFT"), action_names[TOGGLE_SMARTSHIFT]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("TOGGLE_HIRESSCROLL"), action_names[TOGGLE_HIRESSCROLL]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("CHANGE_DPI"), action_names[CHANGE_DPI]);
-    gtk_stack_add_named(GTK_STACK(self->card_view),
-                        gtk_label_new("CHANGE_HOST"), action_names[CHANGE_HOST]);
+    GtkWidget *default_action = GTK_WIDGET(l_default_card_new());
+    GtkWidget *none = gtk_label_new("Button actions are disabled");
+    GtkWidget *keypress = GTK_WIDGET(l_keypress_card_new());
+    GtkWidget *gestures = GTK_WIDGET(l_gesture_card_new());
+    GtkWidget *cycle_dpi = gtk_label_new("CYCLE_DPI");
+    GtkWidget *toggle_smsh = gtk_label_new("TOGGLE_SMARTSHIFT");
+    GtkWidget *toggle_hisc = gtk_label_new("TOGGLE_HIRESSCROLL");
+    GtkWidget *change_dpi = gtk_label_new("CHANGE_DPI");
+    GtkWidget *change_host = gtk_label_new("CHANGE_HOST");
+
+    gtk_stack_add_named(GTK_STACK(self->card_view), default_action, action_names[DEFAULT]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), none, action_names[NONE]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), keypress, action_names[KEYPRESS]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), gestures, action_names[GESTURES]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), cycle_dpi, action_names[CYCLE_DPI]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), toggle_smsh, action_names[TOGGLE_SMARTSHIFT]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), toggle_hisc, action_names[TOGGLE_HIRESSCROLL]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), change_dpi, action_names[CHANGE_DPI]);
+    gtk_stack_add_named(GTK_STACK(self->card_view), change_host, action_names[CHANGE_HOST]);
 }
 
 static void
