@@ -20,19 +20,16 @@
 
 #include "l-keypress-card.h"
 
-/*static void
-action_card_interface_init(LActionCardInterface *iface);*/
+static void
+keypress_action_card_interface_init(LActionCardInterface *iface);
 
 
 struct _LKeypressCard {
     GtkBox parent_instance;
 };
 
-/*
-G_DEFINE_TYPE_WITH_CODE (LKeypressCard, l_keypress_card, GTK_TYPE_BOX,
-                         G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, action_card_interface_init))
-*/
-G_DEFINE_FINAL_TYPE(LKeypressCard, l_keypress_card, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_CODE(LKeypressCard, l_keypress_card, GTK_TYPE_BOX,
+                         G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, keypress_action_card_interface_init))
 
 
 static GtkWidget *
@@ -60,8 +57,8 @@ keypress_card_clear(LKeypressCard *self) {
     } while (child != NULL);
 }
 
-void
-l_keypress_card_set_data(LKeypressCard *self, GSList *keys) {
+static void
+keypress_card_set_data(LKeypressCard *self, GSList *keys) {
     GSList *temp_keys = keys;
 
     keypress_card_clear(self);
@@ -74,22 +71,22 @@ l_keypress_card_set_data(LKeypressCard *self, GSList *keys) {
     }
 }
 
-/*static void
-action_card_set_action(LActionCard *self, Action action) {
-    LKeypressCard *keypress_card = L_KEYPRESS_CARD(self);
-    Keypress *keypress = action.self;
-    l_keypress_card_set_data(keypress_card, keypress->keys);
-}*/
+static void
+keypress_card_set_action(LActionCard *self, Action action) {
+    //LKeypressCard *keypress_card = L_KEYPRESS_CARD(self);
+    //Keypress *keypress = action.self;
+    //keypress_card_set_data(keypress_card, keypress->keys);
+}
 
 LKeypressCard *
 l_keypress_card_new(void) {
     return g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
 }
 
-/*static void
-action_card_interface_init(LActionCardInterface *iface) {
-    iface->set_action = action_card_set_action;
-}*/
+static void
+keypress_action_card_interface_init(LActionCardInterface *iface) {
+    iface->set_action = keypress_card_set_action;
+}
 
 static void
 l_keypress_card_class_init(LKeypressCardClass *klass) {}
