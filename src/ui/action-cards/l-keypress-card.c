@@ -35,7 +35,7 @@ G_DEFINE_TYPE_WITH_CODE (LKeypressCard, l_keypress_card, GTK_TYPE_BOX,
 G_DEFINE_FINAL_TYPE(LKeypressCard, l_keypress_card, GTK_TYPE_BOX)
 
 
-GtkWidget *
+static GtkWidget *
 make_key_card(GString *text) {
     GtkWidget *card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *label = gtk_label_new(text->str);
@@ -49,7 +49,7 @@ make_key_card(GString *text) {
     return card;
 }
 
-void
+static void
 keypress_card_clear(LKeypressCard *self) {
     GtkWidget *child = NULL;
 
