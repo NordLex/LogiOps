@@ -35,18 +35,6 @@ typedef enum  {
     CHANGE_HOST,
 } ActionType;
 
-static char *action_names[] = {
-    "Default",
-    "None",
-    "Keypress",
-    "Gestures",
-    "CycleDPI",
-    "ToggleSmartShift",
-    "ToggleHiresScroll",
-    "ChangeDPI",
-    "ChangeHost"
-};
-
 #include <adwaita.h>
 #include "types/description-types.h"
 #include "types/l-device.h"
@@ -74,7 +62,6 @@ static char *action_names[] = {
 #define MX_ANYWHERE_3_IMAGE         "/org/nordlex/logiops/resources/media/mx-anywhere-3.png"
 #define MX_ANYWHERE_3_IMAGE_LIGHT   "/org/nordlex/logiops/resources/media/mx-anywhere-3-light..."
 
-#define L_NUMBER_OF_ACTIONS      9
 #define L_DEVICE_BUTTON_SIZE    45
 
 #define L_BATTERY_0             "/org/nordlex/logiops/resources/media/battery/0.svg"
@@ -84,6 +71,7 @@ static char *action_names[] = {
 #define L_BATTERY_100           "/org/nordlex/logiops/resources/media/battery/100.svg"
 
 extern const char *frame[1];
+extern const char *action_names[9];
 
 #define SET_FRAME(widget) (gtk_widget_set_css_classes(widget, frame))
 

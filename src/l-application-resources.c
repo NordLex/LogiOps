@@ -21,3 +21,15 @@
 #include "l-application-resources.h"
 
 const char * frame[1] = {"frame"};
+
+const char *action_names[9] = {
+        "Default",
+        "None",
+        "Keypress",
+        "Gestures",
+        "CycleDPI",
+        "ToggleSmartShift",
+        "ToggleHiresScroll",
+        "ChangeDPI",
+        "ChangeHost"
+};
