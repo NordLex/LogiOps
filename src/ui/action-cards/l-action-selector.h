@@ -30,9 +30,12 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(LActionSelector, l_action_selector, L, ACTION_SELECTOR, GtkBox)
 
 void
-l_action_selector_set_selected(GtkWidget *self, ActionType type);
+l_action_selector_set_selected(LActionSelector *self, Action action);
 
 GtkWidget *
+l_action_selector_get_view(LActionSelector *self);
+
+LActionSelector *
 l_action_selector_new(void);
 
 G_END_DECLS

@@ -25,27 +25,66 @@ struct _LActionSelector {
     GtkBox parent_instance;
 
     GtkWidget *selector;
-    GtkWidget *view;
+    GtkWidget *card_view;
 };
 
 G_DEFINE_FINAL_TYPE(LActionSelector, l_action_selector, GTK_TYPE_BOX)
 
 
 static void
-callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
-    const char *string = g_param_spec_get_name(spec);
+selected_callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
+    LActionSelector *selector = L_ACTION_SELECTOR(data);
     guint item = gtk_drop_down_get_selected(self);
 }
 
+static void
+fill_cards(LActionSelector *self) {
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("Default button functionality"), action_names[DEFAULT]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("Button actions are disabled"), action_names[NONE]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("KEYPRESS"), action_names[KEYPRESS]);//GTK_WIDGET(l_keypress_card_new());
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("GESTURES"), action_names[GESTURES]);//GTK_WIDGET(l_gesture_card_new());
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("CYCLE_DPI"), action_names[CYCLE_DPI]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("TOGGLE_SMARTSHIFT"), action_names[TOGGLE_SMARTSHIFT]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("TOGGLE_HIRESSCROLL"), action_names[TOGGLE_HIRESSCROLL]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("CHANGE_DPI"), action_names[CHANGE_DPI]);
+    gtk_stack_add_named(GTK_STACK(self->card_view),
+                        gtk_label_new("CHANGE_HOST"), action_names[CHANGE_HOST]);
+}
+
+static void
+set_data_in_card(GtkWidget *card, Action action) {
+    if (L_IS_ACTION_CARD(card)) {
+        l_action_card_set_action(L_ACTION_CARD(card), action);
+    } else {
+        g_print("== Card \"%s\" is not implemented Interface ==\n", action_names[action.type]);
+    }
+}
+
 void
-l_action_selector_set_selected(GtkWidget *self, ActionType type) {
-    LActionSelector *main = L_ACTION_SELECTOR(self);
-    gtk_drop_down_set_selected(GTK_DROP_DOWN(main->selector), type);
+l_action_selector_set_selected(LActionSelector *self, Action action) {
+    gtk_drop_down_set_selected(GTK_DROP_DOWN(self->selector), action.type);
+    set_data_in_card(gtk_stack_get_child_by_name(GTK_STACK(self->card_view),
+                                                 action_names[action.type]), action);
+    gtk_stack_set_visible_child_name(GTK_STACK(self->card_view), action_names[action.type]);
+}
+
+LActionSelector *
+l_action_selector_new(void) {
+    LActionSelector *self = g_object_new(L_TYPE_ACTION_SELECTOR, NULL);
+    return self;
 }
 
 GtkWidget *
-l_action_selector_new(void) {
-    return g_object_new(L_TYPE_ACTION_SELECTOR, NULL);
+l_action_selector_get_view(LActionSelector *self) {
+    return self->card_view;
 }
 
 static void
@@ -55,6 +94,8 @@ static void
 l_action_selector_init(LActionSelector *self) {
     int margin = 20;
     self->selector = gtk_drop_down_new_from_strings((const char *const *) action_names);
+    self->card_view = gtk_stack_new();
+    fill_cards(self);
 
     g_object_set(self,
                  "orientation", GTK_ORIENTATION_VERTICAL,
@@ -66,5 +107,5 @@ l_action_selector_init(LActionSelector *self) {
     gtk_widget_set_margin_bottom(GTK_WIDGET(self), (int) (margin * 0.5));
     gtk_box_append(GTK_BOX(self), self->selector);
 
-    g_signal_connect(self->selector, "notify::selected-item", G_CALLBACK(callback), NULL);
+    g_signal_connect(self->selector, "notify::selected-item", G_CALLBACK(selected_callback), self);
 }

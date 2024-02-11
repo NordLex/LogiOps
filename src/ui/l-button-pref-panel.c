@@ -26,8 +26,7 @@ struct _LButtonPrefPanel {
     GtkWidget *title;
     GtkWidget *close_button;
     GtkWidget *pref_container;
-    GtkWidget *action_selector;
-    GtkWidget *action_card;
+    LActionSelector *action_selector;
 };
 
 G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
@@ -38,17 +37,6 @@ static void
 callback_close_button(GtkWidget *button, gpointer data) {
     LButtonPrefPanel *self = L_BUTTON_PREF_PANEL(data);
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
-}
-
-void
-action_card_clear(GtkWidget *card) {
-    GtkWidget *child = NULL;
-
-    do {
-        child = gtk_widget_get_last_child(GTK_WIDGET(card));
-        if (child != NULL)
-            gtk_box_remove(GTK_BOX(card), child);
-    } while (child != NULL);
 }
 
 static void
@@ -64,45 +52,9 @@ static void
 init_content(LButtonPrefPanel *self, ButtonDescription *button_description) {
     Button *button_conf = button_description->conf;
     Action action = button_conf->action;
-    GtkWidget *action_card;
 
     init_title_label(self, button_description->name);
-    l_action_selector_set_selected( self->action_selector, action.type);
-
-    if (action.type == KEYPRESS) {
-        Keypress *keypress = action.self;
-        action_card = GTK_WIDGET(l_keypress_card_new());
-
-        l_keypress_card_set_data(L_KEYPRESS_CARD(action_card), keypress->keys);
-    }
-    else if (action.type == GESTURES) {
-        action_card = gtk_label_new("GESTURES");
-    }
-    else if (action.type == CYCLE_DPI) {
-        action_card = gtk_label_new("CYCLE_DPI");
-    }
-    else if (action.type == TOGGLE_SMARTSHIFT) {
-        action_card = gtk_label_new("TOGGLE_SMARTSHIFT");
-    }
-    else if (action.type == TOGGLE_HIRESSCROLL) {
-        action_card = gtk_label_new("TOGGLE_HIRESSCROLL");
-    }
-    else if (action.type == CHANGE_DPI) {
-        action_card = gtk_label_new("CHANGE_DPI");
-    }
-    else if (action.type == CHANGE_HOST) {
-        action_card = gtk_label_new("CHANGE_HOST");
-    }
-    else if (action.type == DEFAULT) {
-        action_card = gtk_label_new("Default button functionality");
-    }
-    else if (action.type == NONE) {
-        action_card = gtk_label_new("Button actions are disabled");
-    }
-    else { action_card = gtk_label_new("!!! Error, type unknown !!!"); }
-
-    action_card_clear(self->action_card);
-    gtk_box_append(GTK_BOX(self->action_card), action_card);
+    l_action_selector_set_selected( self->action_selector, action);
 }
 
 void
@@ -147,14 +99,14 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    self->action_selector = l_action_selector_new();//GTK_WIDGET(l_action_row_new());
-    self->action_card = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    self->action_selector = l_action_selector_new();
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
 
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_selector);
-    gtk_box_append(GTK_BOX(self->pref_container), self->action_card);
+    gtk_box_append(GTK_BOX(self->pref_container), GTK_WIDGET(self->action_selector));
+    gtk_box_append(GTK_BOX(self->pref_container),
+                   l_action_selector_get_view(self->action_selector));
 
     gtk_box_append(GTK_BOX(self), title_box);
     gtk_box_append(GTK_BOX(self), self->pref_container);

@@ -21,22 +21,13 @@
 #include "l-action-card.h"
 
 
-struct _LActionCard {
-    GObject parent_instance;
-};
+G_DEFINE_INTERFACE(LActionCard, l_action_card, G_TYPE_OBJECT)
 
-G_DEFINE_FINAL_TYPE (LActionCard, l_action_card, G_TYPE_OBJECT)
+static void
+l_action_card_default_init(LActionCardInterface *iface) {}
 
-
-LActionCard *
-l_action_card_new(void) {
-    LActionCard *self = g_object_new(L_TYPE_ACTION_CARD, NULL);
-
-    return self;
+void
+l_action_card_set_action(LActionCard *self, Action action) {
+    LActionCardInterface *iface  = L_ACTION_CARD_GET_IFACE(self);
+    iface->set_action(self, action);
 }
-
-static void
-l_action_card_class_init(LActionCardClass *klass) {}
-
-static void
-l_action_card_init(LActionCard *self) {}

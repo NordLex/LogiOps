@@ -74,6 +74,7 @@ static char *action_names[] = {
 #define MX_ANYWHERE_3_IMAGE         "/org/nordlex/logiops/resources/media/mx-anywhere-3.png"
 #define MX_ANYWHERE_3_IMAGE_LIGHT   "/org/nordlex/logiops/resources/media/mx-anywhere-3-light..."
 
+#define L_NUMBER_OF_ACTIONS      9
 #define L_DEVICE_BUTTON_SIZE    45
 
 #define L_BATTERY_0             "/org/nordlex/logiops/resources/media/battery/0.svg"

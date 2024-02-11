@@ -22,14 +22,19 @@
 
 #include "../../l-application-resources.h"
 
-
 G_BEGIN_DECLS
 
-#define L_TYPE_ACTION_CARD (l_action_card_get_type())
+#define L_TYPE_ACTION_CARD l_action_card_get_type()
 
-G_DECLARE_FINAL_TYPE (LActionCard, l_action_card, L, ACTION_CARD, GObject)
+G_DECLARE_INTERFACE(LActionCard, l_action_card, L, ACTION_CARD, GObject)
 
-LActionCard *
-l_action_card_new(void);
+struct _LActionCardInterface {
+    GTypeInstance *parent;
+
+    void (*set_action) (LActionCard *, Action);
+};
+
+void
+l_action_card_set_action(LActionCard *self, Action action);
 
 G_END_DECLS
