@@ -160,7 +160,7 @@ page_set_buttons_layer(LDevicePage *self) {
     gtk_overlay_add_overlay(GTK_OVERLAY(self->overlay), container);
 }
 
-gboolean
+static gboolean
 page_resize(GtkOverlay *overlay, GtkWidget *widget, GdkRectangle *allocation, gpointer data) {
     int width = gtk_widget_get_width(GTK_WIDGET(overlay));
     int height = gtk_widget_get_height(GTK_WIDGET(overlay));

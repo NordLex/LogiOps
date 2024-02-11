@@ -38,7 +38,7 @@ struct _LBusManager {
 
 G_DEFINE_FINAL_TYPE(LBusManager, l_bus_manager, G_TYPE_OBJECT)
 
-GDBusProxy *
+static GDBusProxy *
 get_property_proxy(LBusManager *self, GString *device) {
     GDBusProxy *property_proxy;
     GError *error = NULL;
@@ -56,7 +56,7 @@ get_property_proxy(LBusManager *self, GString *device) {
     return property_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_dpi_proxy(LBusManager *self, GString *device) {
     GDBusProxy *dpi_proxy;
     GError *error = NULL;
@@ -74,7 +74,7 @@ get_dpi_proxy(LBusManager *self, GString *device) {
     return dpi_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_smartshift_proxy(LBusManager *self, GString *device) {
     GDBusProxy *smartshift_proxy;
     GError *error = NULL;
@@ -92,7 +92,7 @@ get_smartshift_proxy(LBusManager *self, GString *device) {
     return smartshift_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_hiresscroll_proxy(LBusManager *self, GString *device) {
     GDBusProxy *hiresscroll_proxy;
     GError *error = NULL;
@@ -110,7 +110,7 @@ get_hiresscroll_proxy(LBusManager *self, GString *device) {
     return hiresscroll_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_thumb_wheel_proxy(LBusManager *self, GString *device) {
     GDBusProxy *thumb_wheel_proxy;
     GError *error = NULL;
@@ -128,7 +128,7 @@ get_thumb_wheel_proxy(LBusManager *self, GString *device) {
     return thumb_wheel_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_buttons_proxy(LBusManager *self, GString *device) {
     GDBusProxy *buttons_proxy;
     GError *error = NULL;
@@ -146,7 +146,7 @@ get_buttons_proxy(LBusManager *self, GString *device) {
     return buttons_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_button_proxy(LBusManager *self, GString *button) {
     GDBusProxy *button_proxy;
     GError *error = NULL;
@@ -164,7 +164,7 @@ get_button_proxy(LBusManager *self, GString *button) {
     return button_proxy;
 }
 
-GDBusProxy *
+static GDBusProxy *
 get_action_keypress_proxy(LBusManager *self, GString *button) {
     GDBusProxy *action_proxy;
     GError *error = NULL;
@@ -499,7 +499,7 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button,
     return 0;
 }
 
-int
+static int
 request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
     GVariant *result;
     GError *error = NULL;

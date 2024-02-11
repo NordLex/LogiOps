@@ -29,7 +29,7 @@ struct _LDataManager {
 
 G_DEFINE_FINAL_TYPE(LDataManager, l_data_manager, G_TYPE_OBJECT)
 
-GString *
+static GString *
 find_device(LBusManager *bus, GSList *list, GString *description_name) {
     GSList *temp;
 
@@ -53,7 +53,7 @@ set_default_button_conf(gpointer *conf) {
     conf = NULL;
 }
 
-gpointer
+static gpointer
 find_conf_cid(gint cid, GSList *buttons_conf) {
     GSList *temp = buttons_conf;
 
@@ -133,7 +133,7 @@ description_attach_conf(DeviceDescription *description, LDevice *device_conf) {
     attach_buttons_conf(description->buttons, buttons_conf);
 }
 
-void
+static void
 fill_description(DeviceDescription *description, LBusManager *bus, GString *device) {
     LDevice *device_conf = l_device_new();
     fill_device_conf(bus, device, device_conf);

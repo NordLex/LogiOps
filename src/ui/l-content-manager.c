@@ -76,7 +76,7 @@ fill_cards(LContentManager *self) {
     return cards;
 }
 
-GtkWidget *
+static GtkWidget *
 get_start_page(LContentManager *self) {
     self->device_cards = fill_cards(self);
     self->overview_page = l_overview_page_new(self->device_cards);
