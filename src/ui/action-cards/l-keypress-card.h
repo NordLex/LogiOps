@@ -27,10 +27,7 @@ G_BEGIN_DECLS
 
 #define L_TYPE_KEYPRESS_CARD (l_keypress_card_get_type())
 
-G_DECLARE_FINAL_TYPE (LKeypressCard, l_keypress_card, L, KEYPRESS_CARD, GtkBox)
-
-void
-l_keypress_card_set_data(LKeypressCard *self, GSList *keys);
+G_DECLARE_FINAL_TYPE(LKeypressCard, l_keypress_card, L, KEYPRESS_CARD, GtkBox)
 
 LKeypressCard *
 l_keypress_card_new(void);
