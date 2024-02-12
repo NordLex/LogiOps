@@ -29,7 +29,7 @@ G_BEGIN_DECLS
 G_DECLARE_INTERFACE(LActionCard, l_action_card, L, ACTION_CARD, GObject)
 
 struct _LActionCardInterface {
-    GTypeInstance *parent;
+    GTypeInterface parent;
 
     void (*set_action) (LActionCard *, Action);
 };

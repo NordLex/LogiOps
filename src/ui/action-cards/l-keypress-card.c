@@ -21,7 +21,7 @@
 #include "l-keypress-card.h"
 
 static void
-keypress_action_card_interface_init(LActionCardInterface *iface);
+action_card_interface_init(LActionCardInterface *iface);
 
 
 struct _LKeypressCard {
@@ -29,7 +29,7 @@ struct _LKeypressCard {
 };
 
 G_DEFINE_TYPE_WITH_CODE(LKeypressCard, l_keypress_card, GTK_TYPE_BOX,
-                         G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, keypress_action_card_interface_init))
+                        G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, action_card_interface_init))
 
 
 static GtkWidget *
@@ -73,9 +73,9 @@ keypress_card_set_data(LKeypressCard *self, GSList *keys) {
 
 static void
 keypress_card_set_action(LActionCard *self, Action action) {
-    //LKeypressCard *keypress_card = L_KEYPRESS_CARD(self);
-    //Keypress *keypress = action.self;
-    //keypress_card_set_data(keypress_card, keypress->keys);
+    LKeypressCard *keypress_card = L_KEYPRESS_CARD(self);
+    Keypress *keypress = action.self;
+    keypress_card_set_data(keypress_card, keypress->keys);
 }
 
 LKeypressCard *
@@ -84,7 +84,7 @@ l_keypress_card_new(void) {
 }
 
 static void
-keypress_action_card_interface_init(LActionCardInterface *iface) {
+action_card_interface_init(LActionCardInterface *iface) {
     iface->set_action = keypress_card_set_action;
 }
 

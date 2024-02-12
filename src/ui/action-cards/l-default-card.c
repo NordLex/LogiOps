@@ -21,7 +21,7 @@
 #include "l-default-card.h"
 
 static void
-default_action_card_interface_init(LActionCardInterface *iface);
+action_card_interface_init(LActionCardInterface *iface);
 
 
 struct _LDefaultCard {
@@ -29,7 +29,7 @@ struct _LDefaultCard {
 };
 
 G_DEFINE_TYPE_WITH_CODE(LDefaultCard, l_default_card, GTK_TYPE_BOX,
-                        G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, default_action_card_interface_init))
+                        G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, action_card_interface_init))
 
 
 static void
@@ -39,7 +39,7 @@ default_card_set_action(LActionCard *self, Action action) {
 }
 
 static void
-default_action_card_interface_init(LActionCardInterface *iface) {
+action_card_interface_init(LActionCardInterface *iface) {
     iface->set_action = default_card_set_action;
 }
 
