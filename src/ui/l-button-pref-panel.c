@@ -35,8 +35,7 @@ G_DEFINE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, GTK_TYPE_BOX)
 
 static void
 callback_close_button(GtkWidget *button, gpointer data) {
-    LButtonPrefPanel *self = L_BUTTON_PREF_PANEL(data);
-    g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
+    g_object_set(G_OBJECT(data), "visible", FALSE, NULL);
 }
 
 static void
