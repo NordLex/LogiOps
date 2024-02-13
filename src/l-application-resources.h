@@ -41,7 +41,7 @@ typedef enum  {
 #include "ui/device-description/device-description.h"
 #include "ui/l-device-card.h"
 #include "ui/action-cards/l-action-card.h"
-#include "ui/action-cards/l-default-card.h"
+#include "ui/action-cards/l-cycle-card.h"
 #include "ui/action-cards/l-keypress-card.h"
 #include "ui/action-cards/l-gesture-card.h"
 #include "ui/action-cards/l-action-selector.h"

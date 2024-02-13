@@ -49,11 +49,11 @@ selected_callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
 
 static void
 fill_cards(LActionSelector *self) {
-    GtkWidget *default_action = GTK_WIDGET(l_default_card_new());
+    GtkWidget *default_action = gtk_label_new("Default action");
     GtkWidget *none = gtk_label_new("Button actions are disabled");
     GtkWidget *keypress = GTK_WIDGET(l_keypress_card_new());
     GtkWidget *gestures = GTK_WIDGET(l_gesture_card_new());
-    GtkWidget *cycle_dpi = gtk_label_new("CYCLE_DPI");
+    GtkWidget *cycle_dpi = GTK_WIDGET(l_cycle_card_new());
     GtkWidget *toggle_smsh = gtk_label_new("TOGGLE_SMARTSHIFT");
     GtkWidget *toggle_hisc = gtk_label_new("TOGGLE_HIRESSCROLL");
     GtkWidget *change_dpi = gtk_label_new("CHANGE_DPI");

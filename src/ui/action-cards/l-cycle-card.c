@@ -1,4 +1,4 @@
-/* l-default-card.c
+/* l-cycle-card.c
  *
  * Copyright 11.02.24 NordLex
  *
@@ -18,40 +18,39 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "l-default-card.h"
+#include "l-cycle-card.h"
 
 static void
 action_card_interface_init(LActionCardInterface *iface);
 
 
-struct _LDefaultCard {
+struct _LCycleCard {
     GtkBox parent_instance;
 };
 
-G_DEFINE_TYPE_WITH_CODE(LDefaultCard, l_default_card, GTK_TYPE_BOX,
+G_DEFINE_TYPE_WITH_CODE(LCycleCard, l_cycle_card, GTK_TYPE_BOX,
                         G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, action_card_interface_init))
 
 
 static void
-default_card_set_action(LActionCard *self, Action action) {
-    //LDefaultCard *card = L_DEFAULT_CARD(self);
-    g_print("== Default card set Action ==\n");
+cycle_card_set_action(LActionCard *self, Action action) {
+    g_print("=Cycle DPI=\n");
 }
 
 static void
 action_card_interface_init(LActionCardInterface *iface) {
-    iface->set_action = default_card_set_action;
+    iface->set_action = cycle_card_set_action;
 }
 
-LDefaultCard *
-l_default_card_new(void) {
-    return g_object_new(L_TYPE_DEFAULT_CARD, NULL);
+LCycleCard *
+l_cycle_card_new(void) {
+    return g_object_new(L_TYPE_CYCLE_CARD, NULL);
 }
 
 static void
-l_default_card_class_init(LDefaultCardClass *klass) {}
+l_cycle_card_class_init(LCycleCardClass *klass) {}
 
 static void
-l_default_card_init(LDefaultCard *self) {
-    gtk_box_append(GTK_BOX(self), gtk_label_new("Default button functionality"));
+l_cycle_card_init(LCycleCard *self) {
+    gtk_box_append(GTK_BOX(self), gtk_label_new("Cycle DPI"));
 }

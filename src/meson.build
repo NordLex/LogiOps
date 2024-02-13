@@ -12,7 +12,7 @@ logiops_sources = [
   'ui/l-pref-panel.c',
   'ui/l-button-pref-panel.c',
   'ui/action-cards/l-action-card.c',
-  'ui/action-cards/l-default-card.c',
+  'ui/action-cards/l-cycle-card.c',
   'ui/action-cards/l-keypress-card.c',
   'ui/action-cards/l-gesture-card.c',
   'ui/action-cards/l-action-selector.c',

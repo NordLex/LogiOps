@@ -1,4 +1,4 @@
-/* l-default-card.h
+/* l-cycle-card.h
  *
  * Copyright 11.02.24 NordLex
  *
@@ -25,11 +25,11 @@
 
 G_BEGIN_DECLS
 
-#define L_TYPE_DEFAULT_CARD (l_default_card_get_type())
+#define L_TYPE_CYCLE_CARD (l_cycle_card_get_type())
 
-G_DECLARE_FINAL_TYPE(LDefaultCard, l_default_card, L, DEFAULT_CARD, GtkBox)
+G_DECLARE_FINAL_TYPE(LCycleCard, l_cycle_card, L, CYCLE_CARD, GtkBox)
 
-LDefaultCard *
-l_default_card_new(void);
+LCycleCard *
+l_cycle_card_new(void);
 
 G_END_DECLS
