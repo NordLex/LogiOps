@@ -40,8 +40,7 @@ callback_close_button(GtkWidget *button, gpointer data) {
 
 static void
 init_title_label(LButtonPrefPanel *self, GString *name) {
-    const char *format = "<span weight=\"bold\">\%s</span>";
-    char *markup = g_markup_printf_escaped(format, name->str);
+    char *markup = g_markup_printf_escaped("<span weight=\"bold\">%s</span>", name->str);
 
     gtk_label_set_markup(GTK_LABEL(self->title), markup);
     g_free(markup);
