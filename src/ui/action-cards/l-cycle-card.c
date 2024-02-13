@@ -52,5 +52,16 @@ l_cycle_card_class_init(LCycleCardClass *klass) {}
 
 static void
 l_cycle_card_init(LCycleCard *self) {
-    gtk_box_append(GTK_BOX(self), gtk_label_new("Cycle DPI"));
+    GtkWidget *label = gtk_label_new(NULL);
+    const char *label_text = "Cycle DPI";
+    char *markup = g_markup_printf_escaped("<span weight=\"bold\">%s</span>", label_text);
+
+    gtk_label_set_markup(GTK_LABEL(label), markup);
+    gtk_box_append(GTK_BOX(self), label);
+
+    g_object_set(self,
+                 "orientation", GTK_ORIENTATION_VERTICAL,
+                 "spacing", 10,
+                 "halign", GTK_ALIGN_CENTER,
+                 NULL);
 }
