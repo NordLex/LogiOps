@@ -30,11 +30,21 @@ struct _LActionSelector {
 
 G_DEFINE_FINAL_TYPE(LActionSelector, l_action_selector, GTK_TYPE_BOX)
 
+static void
+set_data_in_card(GtkWidget *card, Action action) {
+    if (L_IS_ACTION_CARD(card)) {
+        l_action_card_set_action(L_ACTION_CARD(card), action);
+    } else {
+        g_print("== Card \"%s\" is not implemented Interface ==\n", action_names[action.type]);
+    }
+}
 
 static void
 selected_callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
     LActionSelector *selector = L_ACTION_SELECTOR(data);
     guint item = gtk_drop_down_get_selected(self);
+
+    gtk_stack_set_visible_child_name(GTK_STACK(selector->card_view), action_names[item]);
 }
 
 static void
@@ -60,21 +70,11 @@ fill_cards(LActionSelector *self) {
     gtk_stack_add_named(GTK_STACK(self->card_view), change_host, action_names[CHANGE_HOST]);
 }
 
-static void
-set_data_in_card(GtkWidget *card, Action action) {
-    if (L_IS_ACTION_CARD(card)) {
-        l_action_card_set_action(L_ACTION_CARD(card), action);
-    } else {
-        g_print("== Card \"%s\" is not implemented Interface ==\n", action_names[action.type]);
-    }
-}
-
 void
 l_action_selector_set_selected(LActionSelector *self, Action action) {
     gtk_drop_down_set_selected(GTK_DROP_DOWN(self->selector), action.type);
     set_data_in_card(gtk_stack_get_child_by_name(GTK_STACK(self->card_view),
                                                  action_names[action.type]), action);
-    gtk_stack_set_visible_child_name(GTK_STACK(self->card_view), action_names[action.type]);
 }
 
 LActionSelector *
