@@ -162,13 +162,18 @@ page_set_buttons_layer(LDevicePage *self) {
 
 static gboolean
 page_resize(GtkOverlay *overlay, GtkWidget *widget, GdkRectangle *allocation, gpointer data) {
+    LDevicePage *page;
+    GSList *buttons;
+
     int width = gtk_widget_get_width(GTK_WIDGET(overlay));
     int height = gtk_widget_get_height(GTK_WIDGET(overlay));
     int size = MIN(width, height);
     int half_button_size = (L_DEVICE_BUTTON_SIZE / 2);
 
-    LDevicePage *page = (LDevicePage *) data;
-    GSList *buttons = page->buttons;
+    if (NULL == data) return FALSE;
+
+    page = L_DEVICE_PAGE(data);
+    buttons = page->buttons;
 
     gtk_widget_set_size_request(widget, size, size);
     page_panels_resize(page);
