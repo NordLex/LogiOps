@@ -29,35 +29,95 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE(LBusManager, l_bus_manager, L, BUS_MANAGER, GObject)
 
+/**
+ * @brief D-BUS manager constructor.
+ * @return D-BUS manager instance.
+ * */
 LBusManager *
 l_bus_manager_new(void);
 
+/**
+ * @brief Request device list from D-BUS.
+ * @param [in] self D-BUS manager instance.
+ * @return Devices paths list.
+ * */
 GSList *
 l_bus_manager_request_devices_list(LBusManager *self);
 
+/**
+ * @brief Request device name.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to device.
+ * @return Device name string.
+ * */
 GString *
 l_bus_manager_request_device_name(LBusManager *self,
                                   GString *device);
 
+/**
+ * @brief Request DPIs data.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to device.
+ * @param [out] dpi Pointer to a structure that will be filled with data.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi);
 
+/**
+ * @brief Request Hiresscroll data.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to device.
+ * @param [out] hiresscroll Pointer to a structure that will be filled with data.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscroll *hiresscroll);
 
+/**
+ * @brief Request SmartShift data.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to device.
+ * @param [out] smartshift Pointer to a structure that will be filled with data.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift);
 
+/**
+ * @brief Request thumb wheel data.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to the device.
+ * @param [out] divert
+ * @param [out] invert
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_thumb_wheel(LBusManager *self,
                                   GString *device,
                                   gboolean *divert,
                                   gboolean *invert);
 
+/**
+ * @brief Request buttons list
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device Path to device.
+ * @return Devices paths list.
+ * */
 GSList *
 l_bus_manager_request_buttons_list(LBusManager *self,
                                    GString *device);
 
+/**
+ * @brief Request button info.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] button Path to the button.
+ * @param [out] cid Control ID.
+ * @param [out] task_id
+ * @param [out] gesture_support
+ * @param [out] remappable
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_button_info(LBusManager *self,
                                   GString *button,
@@ -66,6 +126,13 @@ l_bus_manager_request_button_info(LBusManager *self,
                                   gboolean *gesture_support,
                                   gboolean *remappable);
 
+/**
+ * @brief Request button action.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] button Path to the button.
+ * @param [out] action Pointer to the action structure.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_request_button_action(LBusManager *self,
                                     GString *button,
