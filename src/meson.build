@@ -20,6 +20,7 @@ logiops_sources = [
   'ui/device-description/mx-anywhere-3-description.c',
   'data/l-data-manager.c',
   'data/l-bus-manager.c',
+  'data/l-key-code.c',
   'types/l-device.c',
 ]
 

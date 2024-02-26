@@ -258,7 +258,7 @@
 #define KEY_VIDEO_NEXT          241 	/* drive next video source */
 #define KEY_VIDEO_PREV          242 	/* drive previous video source */
 #define KEY_BRIGHTNESS_CYCLE    243 	/* brightness up, after max is min */
-#define KEY_BRIGHTNESS_AUTO     244 	/* Set Auto Brightness: manual},
+#define KEY_BRIGHTNESS_AUTO     244 	/* Set Auto Brightness: manual,
                                         * brightness control is off,
                                         * rely on ambient */
 #define KEY_BRIGHTNESS_ZERO     KEY_BRIGHTNESS_AUTO
