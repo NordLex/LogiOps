@@ -33,7 +33,7 @@ G_DECLARE_FINAL_TYPE(LKeyCode, l_key_code, L, KEY_CODE, GObject)
  * @brief Converted Kernel key code to GDK key code.
  * @param [in] self Converter instance.
  * @param [in] key Kernel key code.
- * @return Pointer to GDK key code (guint).
+ * @return Pointer to GDK key code (guint). Returned NULL if not found.
  * */
 void *
 l_key_code_kernel_to_gdk(LKeyCode *self, char *key);
@@ -42,10 +42,10 @@ l_key_code_kernel_to_gdk(LKeyCode *self, char *key);
  * @brief Converted GDK key cod to Kernel key code.
  * @param [in] self Converter instance.
  * @param [in] key GDK key code.
- * @return Pointer to Kernel key code (char*).
+ * @return Pointer to Kernel key code (char**). Returned NULL if not found.
  * */
 void *
-l_key_code_gdk_to_kernel(LKeyCode *self, guint *key);
+l_key_code_gdk_to_kernel(LKeyCode *self, guint key);
 
 /**
  * @brief Key codes converter.

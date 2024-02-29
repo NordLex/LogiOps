@@ -21,9 +21,46 @@
 #include "l-key-code.h"
 
 typedef struct {
-    const char* kernel;
+    char *kernel;
     guint gdk;
 } KeyCode;
+
+KeyCode codes[] = {
+        (KeyCode) {"KEY_ESC",        GDK_KEY_Escape},
+        (KeyCode) {"KEY_DELETE",     GDK_KEY_Delete},
+        (KeyCode) {"KEY_1",          GDK_KEY_1},
+        (KeyCode) {"KEY_2",          GDK_KEY_2},
+        (KeyCode) {"KEY_3",          GDK_KEY_3},
+        (KeyCode) {"KEY_4",          GDK_KEY_4},
+        (KeyCode) {"KEY_5",          GDK_KEY_5},
+        (KeyCode) {"KEY_6",          GDK_KEY_6},
+        (KeyCode) {"KEY_7",          GDK_KEY_7},
+        (KeyCode) {"KEY_8",          GDK_KEY_8},
+        (KeyCode) {"KEY_9",          GDK_KEY_9},
+        (KeyCode) {"KEY_0",          GDK_KEY_0},
+        (KeyCode) {"KEY_MINUS",      GDK_KEY_minus},
+        (KeyCode) {"KEY_EQUAL",      GDK_KEY_equal},
+        (KeyCode) {"KEY_BACKSPACE",  GDK_KEY_BackSpace},
+        (KeyCode) {"KEY_TAB",        GDK_KEY_Tab},
+        (KeyCode) {"KEY_LEFTSHIFT",  GDK_KEY_Shift_L},
+        (KeyCode) {"KEY_RIGHTSHIFT", GDK_KEY_Shift_R},
+        (KeyCode) {"KEY_LEFTCTRL",   GDK_KEY_Control_L},
+        (KeyCode) {"KEY_RIGHTCTRL",  GDK_KEY_Control_R},
+        (KeyCode) {"KEY_LEFTALT",    GDK_KEY_Alt_L},
+        (KeyCode) {"KEY_RIGHTALT",   GDK_KEY_Alt_R},
+        (KeyCode) {"KEY_F1",         GDK_KEY_F1},
+        (KeyCode) {"KEY_F2",         GDK_KEY_F2},
+        (KeyCode) {"KEY_F3",         GDK_KEY_F3},
+        (KeyCode) {"KEY_F4",         GDK_KEY_F4},
+        (KeyCode) {"KEY_F5",         GDK_KEY_F5},
+        (KeyCode) {"KEY_F6",         GDK_KEY_F6},
+        (KeyCode) {"KEY_F7",         GDK_KEY_F7},
+        (KeyCode) {"KEY_F8",         GDK_KEY_F8},
+        (KeyCode) {"KEY_F9",         GDK_KEY_F9},
+        (KeyCode) {"KEY_F10",        GDK_KEY_F10},
+        (KeyCode) {"KEY_F11",        GDK_KEY_F11},
+        (KeyCode) {"KEY_F12",        GDK_KEY_F12},
+};
 
 struct _LKeyCode {
     GObject parent_instance;
@@ -35,70 +72,31 @@ struct _LKeyCode {
 G_DEFINE_FINAL_TYPE(LKeyCode, l_key_code, G_TYPE_OBJECT)
 
 
-static GSList *
-get_key_codes_list(void) {
-    GSList *codes = NULL;
-
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_ESC", GDK_KEY_Escape});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_DELETE", GDK_KEY_Delete});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_1", GDK_KEY_1});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_2", GDK_KEY_2});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_3", GDK_KEY_3});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_4", GDK_KEY_4});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_5", GDK_KEY_5});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_6", GDK_KEY_6});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_7", GDK_KEY_7});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_8", GDK_KEY_8});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_9", GDK_KEY_9});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_0", GDK_KEY_0});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_MINUS", GDK_KEY_minus});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_EQUAL", GDK_KEY_equal});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_BACKSPACE", GDK_KEY_BackSpace});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_TAB", GDK_KEY_Tab});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_LEFTSHIFT", GDK_KEY_Shift_L});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_RIGHTSHIFT", GDK_KEY_Shift_R});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_LEFTCTRL", GDK_KEY_Control_L});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_RIGHTCTRL", GDK_KEY_Control_R});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_LEFTALT", GDK_KEY_Alt_L});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_RIGHTALT", GDK_KEY_Alt_R});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F1", GDK_KEY_F1});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F2", GDK_KEY_F2});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F3", GDK_KEY_F3});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F4", GDK_KEY_F4});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F5", GDK_KEY_F5});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F6", GDK_KEY_F6});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F7", GDK_KEY_F7});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F8", GDK_KEY_F8});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F9", GDK_KEY_F9});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F10", GDK_KEY_F10});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F11", GDK_KEY_F11});
-    codes = g_slist_append(codes, &(KeyCode) {"KEY_F12", GDK_KEY_F12});
-
-    return codes;
-}
-
 static void
-init_key_tables(LKeyCode *self) {
-    GSList *codes = get_key_codes_list();
+init_codes_tables(LKeyCode *self) {
+    int iter = 0;
 
-    while (codes != NULL) {
-        KeyCode *code = codes->data;
+    while (iter < (sizeof codes / sizeof(KeyCode))) {
+        char **kernel = &codes[iter].kernel;
+        guint *gdk = &codes[iter].gdk;
 
-        g_hash_table_insert(self->kernel_to_gdk, &code->kernel, &code->gdk);
-        g_hash_table_insert(self->gdk_to_kernel, &code->gdk, &code->kernel);
+        g_hash_table_insert(self->kernel_to_gdk,*kernel,gdk);
+        g_hash_table_insert(self->gdk_to_kernel,gdk,kernel);
 
-        codes = g_slist_next(codes);
+        iter++;
     }
 }
 
 void *
 l_key_code_kernel_to_gdk(LKeyCode *self, char *key) {
-    return g_hash_table_lookup(self->kernel_to_gdk, key);
+    guint *gdk_key = g_hash_table_lookup(self->kernel_to_gdk, key);
+    return gdk_key;
 }
 
 void *
-l_key_code_gdk_to_kernel(LKeyCode *self, guint *key) {
-    return g_hash_table_lookup(self->gdk_to_kernel, key);
+l_key_code_gdk_to_kernel(LKeyCode *self, guint key) {
+    char **kernel_key = g_hash_table_lookup(self->gdk_to_kernel, &key);
+    return kernel_key;
 }
 
 LKeyCode *
@@ -113,5 +111,5 @@ static void
 l_key_code_init(LKeyCode *self) {
     self->kernel_to_gdk = g_hash_table_new(g_str_hash, g_str_equal);
     self->gdk_to_kernel = g_hash_table_new(g_int_hash, g_int_equal);
-    init_key_tables(self);
+    init_codes_tables(self);
 }

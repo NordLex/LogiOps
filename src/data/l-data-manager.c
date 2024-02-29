@@ -25,6 +25,7 @@ struct _LDataManager {
     GObject parent_instance;
 
     LBusManager *bus_manager;
+    LKeyCode *key_code_converter;
 };
 
 G_DEFINE_FINAL_TYPE(LDataManager, l_data_manager, G_TYPE_OBJECT)
@@ -50,7 +51,7 @@ find_device(LBusManager *bus, GSList *list, GString *description_name) {
 
 static void
 set_default_button_conf(gpointer *conf) {
-    conf = NULL;
+    *conf = NULL;
 }
 
 static gpointer
@@ -173,4 +174,5 @@ l_data_manager_class_init(LDataManagerClass *klass) {}
 static void
 l_data_manager_init(LDataManager *self) {
     self->bus_manager = l_bus_manager_new();
+    self->key_code_converter = l_key_code_new();
 }
