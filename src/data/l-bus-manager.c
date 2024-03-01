@@ -34,6 +34,7 @@ struct _LBusManager {
     GDBusConnection *bus_connection;
     GSList *device_paths;
     GSList *button_paths;
+    LKeyCode *key_code_converter;
 };
 
 G_DEFINE_FINAL_TYPE(LBusManager, l_bus_manager, G_TYPE_OBJECT)
@@ -588,7 +589,7 @@ l_bus_manager_class_init(LBusManagerClass *klass) {}
 static void
 l_bus_manager_init(LBusManager *self) {
     GError *error = NULL;
-
+    self->key_code_converter = l_key_code_new();
     self->bus_connection = g_bus_get_sync(G_BUS_TYPE_SYSTEM, NULL, &error);
     g_assert_no_error(error);
 
