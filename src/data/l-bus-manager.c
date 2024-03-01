@@ -522,8 +522,11 @@ request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) 
     g_assert_no_error(error);
 
     g_variant_get(result, "(as)", &iter);
-    while (g_variant_iter_loop(iter, "s", &key))
-        keys = g_slist_append(keys, g_string_new(key));
+
+    while (g_variant_iter_loop(iter, "s", &key)) {
+        guint *key_code = l_key_code_kernel_to_gdk(self->key_code_converter, key);
+        keys = g_slist_append(keys, GUINT_TO_POINTER(*key_code));
+    }
 
     keypress->keys = keys;
     g_variant_iter_free(iter);
