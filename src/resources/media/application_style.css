@@ -70,6 +70,15 @@
     background: rgba(211, 211, 211, 0.5);
 }
 
+#KeyCardDelimiter {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.blurred {
+    filter: blur(6px);
+}
+
 .green-frame {
     border: 2px solid;
     color: green;

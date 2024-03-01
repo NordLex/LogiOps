@@ -46,6 +46,13 @@ make_key_card(GString *text) {
     return card;
 }
 
+static GtkWidget *
+make_key_card_delimiter(void) {
+    GtkWidget *delimiter = gtk_label_new(" + ");
+    g_object_set(delimiter, "name", "KeyCardDelimiter", NULL);
+    return delimiter;
+}
+
 static void
 keypress_card_clear(LKeypressCard *self) {
     GtkWidget *child = NULL;
@@ -67,6 +74,8 @@ keypress_card_set_data(LKeypressCard *self, GSList *keys) {
         GString *key = temp_keys->data;
         GtkWidget *card = make_key_card(key);
         gtk_box_append(GTK_BOX(self), card);
+        if (temp_keys->next != NULL)
+            gtk_box_append(GTK_BOX(self), make_key_card_delimiter());
         temp_keys = g_slist_next(temp_keys);
     }
 }
