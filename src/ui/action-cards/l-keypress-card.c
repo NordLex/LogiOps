@@ -33,9 +33,10 @@ G_DEFINE_TYPE_WITH_CODE(LKeypressCard, l_keypress_card, GTK_TYPE_BOX,
 
 
 static GtkWidget *
-make_key_card(GString *text) {
+make_key_card(guint key_code) {
+    const char *key_name = gdk_keyval_name(key_code);
     GtkWidget *card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    GtkWidget *label = gtk_label_new(text->str);
+    GtkWidget *label = gtk_label_new(key_name);
 
     g_object_set(card,
                  "name", "KeyCard",
@@ -71,8 +72,9 @@ keypress_card_set_data(LKeypressCard *self, GSList *keys) {
     keypress_card_clear(self);
 
     while (temp_keys != NULL) {
-        GString *key = temp_keys->data;
-        GtkWidget *card = make_key_card(key);
+        guint key_code = GPOINTER_TO_UINT(temp_keys->data);
+        GtkWidget *card = make_key_card(key_code);
+
         gtk_box_append(GTK_BOX(self), card);
         if (temp_keys->next != NULL)
             gtk_box_append(GTK_BOX(self), make_key_card_delimiter());
