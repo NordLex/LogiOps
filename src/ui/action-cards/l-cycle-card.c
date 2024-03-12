@@ -33,8 +33,46 @@ G_DEFINE_TYPE_WITH_CODE(LCycleCard, l_cycle_card, GTK_TYPE_BOX,
 
 
 static void
+card_clear(LCycleCard *self) {
+    GtkWidget *child = NULL;
+
+    do {
+        child = gtk_widget_get_last_child(GTK_WIDGET(self));
+        if (child != NULL)
+            gtk_box_remove(GTK_BOX(self), child);
+    } while (child != NULL);
+}
+
+static GtkWidget *
+make_dpi_card(guint dpi) {
+    char *markup = g_markup_printf_escaped("<span weight=\"bold\">%d</span>", dpi);
+    GtkWidget *dpi_card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    GtkWidget *label = gtk_label_new(NULL);
+
+    g_object_set(dpi_card,
+                 "name", "KeyCard",
+                 "halign", GTK_ALIGN_CENTER,
+                 NULL);
+
+    gtk_label_set_markup(GTK_LABEL(label), markup);
+    gtk_box_append(GTK_BOX(dpi_card), label);
+
+    return dpi_card;
+}
+
+static void
 cycle_card_set_action(LActionCard *self, Action action) {
-    g_print("=Cycle DPI=\n");
+    LCycleCard *cycle_card = L_CYCLE_CARD(self);
+    CycleDPI *cycle_dpi = action.self;
+    GSList *temp_dpis = cycle_dpi->dpis;
+
+    card_clear(cycle_card);
+
+    while (temp_dpis != NULL) {
+        guint dpi = GPOINTER_TO_UINT(temp_dpis->data);
+        gtk_box_append(GTK_BOX(cycle_card), make_dpi_card(dpi));
+        temp_dpis = g_slist_next(temp_dpis);
+    }
 }
 
 static void
