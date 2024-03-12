@@ -106,6 +106,7 @@ static void
 l_keypress_card_init(LKeypressCard *self) {
     g_object_set(self,
                  "name", "KeypressCard",
+                 "valign", GTK_ALIGN_START,
                  "halign", GTK_ALIGN_CENTER,
                  NULL);
 }
