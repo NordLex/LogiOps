@@ -575,10 +575,14 @@ request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi
 int
 l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action) {
     Keypress *keypress = g_malloc(sizeof(Keypress));
+    CycleDPI *cycle_dpi = g_malloc(sizeof(CycleDPI));
 
     if (!request_keypress_action(self, button, keypress)) {
         action->type = KEYPRESS;
         action->self = keypress;
+    } else if (!request_cycle_dpi_action(self, button, cycle_dpi)) {
+        action->type = CYCLE_DPI;
+        action->self = cycle_dpi;
     } else {
         action->type = DEFAULT;
         action->self = NULL;
