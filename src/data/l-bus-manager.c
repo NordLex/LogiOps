@@ -20,12 +20,17 @@
 
 #include "l-bus-manager.h"
 
-#define logid_name          "pizza.pixl.LogiOps"
-#define logid_path          "/pizza/pixl/logiops"
-#define logid_devices       "pizza.pixl.LogiOps.Devices"
-#define logid_device        "pizza.pixl.LogiOps.Device"
-#define logid_smart_shift   "pizza.pixl.LogiOps.SmartShift"
-#define logid_button        "pizza.pixl.LogiOps.Button"
+#define logid_name                  "pizza.pixl.LogiOps"
+#define logid_path                  "/pizza/pixl/logiops"
+#define logid_devices               "pizza.pixl.LogiOps.Devices"
+#define logid_device                "pizza.pixl.LogiOps.Device"
+#define logid_smart_shift           "pizza.pixl.LogiOps.SmartShift"
+#define logid_button                "pizza.pixl.LogiOps.Button"
+#define iface_action_keypress       "pizza.pixl.LogiOps.Action.Keypress"
+#define iface_action_gesture        "pizza.pixl.LogiOps.Action.Gesture"
+#define iface_action_cycle_dpi      "pizza.pixl.LogiOps.Action.CycleDPI"
+#define iface_action_change_dpi     "pizza.pixl.LogiOps.Action.ChangeDPI"
+#define iface_action_change_host    "pizza.pixl.LogiOps.Action.ChangeHost"
 
 struct _LBusManager {
     GObject parent_instance;
@@ -166,7 +171,7 @@ get_button_proxy(LBusManager *self, GString *button) {
 }
 
 static GDBusProxy *
-get_action_keypress_proxy(LBusManager *self, GString *button) {
+get_action_proxy(LBusManager *self, GString *button, const char *iface_name) {
     GDBusProxy *action_proxy;
     GError *error = NULL;
 
@@ -175,7 +180,7 @@ get_action_keypress_proxy(LBusManager *self, GString *button) {
                                          NULL,
                                          logid_name,
                                          button->str,
-                                         "pizza.pixl.LogiOps.Action.Keypress",
+                                         iface_name,
                                          NULL,
                                          &error);
     g_assert_no_error(error);
@@ -507,7 +512,7 @@ request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) 
     GVariantIter *iter;
     GSList *keys = NULL;
     gchar *key;
-    GDBusProxy *action_proxy = get_action_keypress_proxy(self, button);
+    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_keypress);
 
     result = g_dbus_proxy_call_sync(action_proxy,
                                     "GetKeys",
@@ -518,7 +523,6 @@ request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) 
                                     &error);
 
     if (g_error_matches(error, 146, 19)) return 1;
-
     g_assert_no_error(error);
 
     g_variant_get(result, "(as)", &iter);
