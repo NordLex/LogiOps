@@ -539,6 +539,37 @@ request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) 
     return 0;
 }
 
+int
+l_bus_manager_set_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
+    GError *error = NULL;
+    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_keypress);
+    GSList *temp = keypress->keys;
+    GVariantBuilder *builder = g_variant_builder_new(G_VARIANT_TYPE("as"));
+    GVariant *parameters;
+
+    while (temp != NULL) {
+        char **key = l_key_code_gdk_to_kernel(self->key_code_converter,
+                                              GPOINTER_TO_UINT(temp->data));
+        g_variant_builder_add(builder, "s", *key);
+        temp = g_slist_next(temp);
+    }
+
+    parameters = g_variant_new("(as)", builder);
+    g_variant_builder_unref(builder);
+
+    g_dbus_proxy_call_sync(action_proxy,
+                           "SetKeys",
+                           parameters,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
+
+    return 0;
+}
+
 static int
 request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi) {
     GVariant *result;

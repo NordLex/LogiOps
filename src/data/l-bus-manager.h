@@ -138,4 +138,16 @@ l_bus_manager_request_button_action(LBusManager *self,
                                     GString *button,
                                     Action *action);
 
+/**
+ * @brief Set keypress action.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] button Path to the button.
+ * @param [in] keypress Pointer to the keypress action structure.
+ * @return The execution status of the operation.
+ * */
+int
+l_bus_manager_set_keypress_action(LBusManager *self,
+                                  GString *button,
+                                  Keypress *keypress);
+
 G_END_DECLS
