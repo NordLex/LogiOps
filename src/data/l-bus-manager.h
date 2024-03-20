@@ -150,4 +150,16 @@ l_bus_manager_set_keypress_action(LBusManager *self,
                                   GString *button,
                                   Keypress *keypress);
 
+/**
+ * @brief Set Cycle DPI action.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] button Path to the button.
+ * @param [in] keypress Pointer to the Cycle DPI action structure.
+ * @return The execution status of the operation.
+ * */
+int
+l_bus_manager_set_cycle_dpi_action(LBusManager *self,
+                                   GString *button,
+                                   CycleDPI *cycle_dpi);
+
 G_END_DECLS

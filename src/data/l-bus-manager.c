@@ -604,6 +604,35 @@ request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi
 }
 
 int
+l_bus_manager_set_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi) {
+    GError *error = NULL;
+    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_cycle_dpi);
+    GSList *dpis = cycle_dpi->dpis;
+    GVariantBuilder *builder = g_variant_builder_new(G_VARIANT_TYPE("ai"));
+    GVariant *parameters;
+
+    while (dpis != NULL) {
+        g_variant_builder_add(builder, "i", GPOINTER_TO_UINT(dpis->data));
+        dpis = g_slist_next(dpis);
+    }
+
+    parameters = g_variant_new("(ai)", builder);
+    g_variant_builder_unref(builder);
+
+    g_dbus_proxy_call_sync(action_proxy,
+                           "SetDPIs",
+                           parameters,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
+
+    return 0;
+}
+
+int
 l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action) {
     Keypress *keypress = g_malloc(sizeof(Keypress));
     CycleDPI *cycle_dpi = g_malloc(sizeof(CycleDPI));
