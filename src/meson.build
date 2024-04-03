@@ -27,7 +27,7 @@ logiops_sources = [
 
 logiops_deps = [
   dependency('gtk4'),
-  dependency('libadwaita-1', version: '>= 1.3'),
+  dependency('libadwaita-1', version: '>= 1.4'),
 ]
 
 logiops_sources += gnome.compile_resources('l-resources',
