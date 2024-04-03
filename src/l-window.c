@@ -27,8 +27,8 @@ struct _LWindow {
     AdwApplicationWindow parent_instance;
 
     LContentManager * content_manager;
-    GtkWidget * header_bar;
     LDataManager *data_manager;
+    GtkWidget * header_bar;
 };
 
 G_DEFINE_FINAL_TYPE (LWindow, l_window, ADW_TYPE_APPLICATION_WINDOW)
