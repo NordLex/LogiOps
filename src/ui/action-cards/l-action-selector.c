@@ -48,10 +48,10 @@ selected_callback(GtkDropDown *self, GParamSpec *spec, gpointer data) {
 }
 
 static void
-fill_cards(LActionSelector *self) {
+fill_cards(LActionSelector *self, GtkWindow *key_grab_window) {
     GtkWidget *default_action = gtk_label_new("Default action");
     GtkWidget *none = gtk_label_new("Button actions are disabled");
-    GtkWidget *keypress = GTK_WIDGET(l_keypress_card_new());
+    GtkWidget *keypress = GTK_WIDGET(l_keypress_card_new(key_grab_window));
     GtkWidget *gestures = GTK_WIDGET(l_gesture_card_new());
     GtkWidget *cycle_dpi = GTK_WIDGET(l_cycle_card_new());
     GtkWidget *toggle_smsh = gtk_label_new("TOGGLE_SMARTSHIFT");
@@ -78,8 +78,11 @@ l_action_selector_set_selected(LActionSelector *self, Action action) {
 }
 
 LActionSelector *
-l_action_selector_new(void) {
+l_action_selector_new(GtkWindow *key_grab_window) {
     LActionSelector *self = g_object_new(L_TYPE_ACTION_SELECTOR, NULL);
+
+    fill_cards(self, key_grab_window);
+
     return self;
 }
 
@@ -96,7 +99,6 @@ l_action_selector_init(LActionSelector *self) {
     int margin = 20;
     self->selector = gtk_drop_down_new_from_strings((const char *const *) action_names);
     self->card_view = gtk_stack_new();
-    fill_cards(self);
 
     g_object_set(self,
                  "orientation", GTK_ORIENTATION_VERTICAL,

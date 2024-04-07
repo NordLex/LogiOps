@@ -29,7 +29,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LButtonPrefPanel, l_button_pref_panel, L, BUTTON_PREF_PANEL, GtkBox)
 
 LButtonPrefPanel *
-l_button_pref_panel_new(void);
+l_button_pref_panel_new(GtkWindow *key_grab_window);
 
 void
 l_button_pref_panel_centered(LButtonPrefPanel *self, int width);

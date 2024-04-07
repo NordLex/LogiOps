@@ -84,8 +84,15 @@ l_button_pref_panel_configure(LButtonPrefPanel *self, gpointer button_conf) {
 }
 
 LButtonPrefPanel *
-l_button_pref_panel_new(void) {
-    return g_object_new(L_TYPE_BUTTON_PREF_PANEL, NULL);
+l_button_pref_panel_new(GtkWindow *key_grab_window) {
+    LButtonPrefPanel *self = g_object_new(L_TYPE_BUTTON_PREF_PANEL, NULL);
+
+    self->action_selector = l_action_selector_new(key_grab_window);
+    gtk_box_append(GTK_BOX(self->pref_container), GTK_WIDGET(self->action_selector));
+    gtk_box_append(GTK_BOX(self->pref_container),
+                   l_action_selector_get_view(self->action_selector));
+
+    return self;
 }
 
 static void
@@ -97,14 +104,9 @@ l_button_pref_panel_init(LButtonPrefPanel *self) {
     self->title = gtk_label_new(NULL);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    self->action_selector = l_action_selector_new();
 
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(title_box), self->title);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(title_box), self->close_button);
-
-    gtk_box_append(GTK_BOX(self->pref_container), GTK_WIDGET(self->action_selector));
-    gtk_box_append(GTK_BOX(self->pref_container),
-                   l_action_selector_get_view(self->action_selector));
 
     gtk_box_append(GTK_BOX(self), title_box);
     gtk_box_append(GTK_BOX(self), self->pref_container);
