@@ -22,16 +22,44 @@
 
 
 struct _LKeyGrabWindow {
-    GObject parent_instance;
+    AdwWindow parent_instance;
+
+    GtkWidget *window_container;
+    GtkWidget *header_bar;
+    GtkWidget *content;
 };
 
 G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
+
+
+
+static void
+close_callback(GtkButton *button, gpointer data) {
+    GtkWindow *window = GTK_WINDOW(data);
+
+    gtk_window_close(window);
+}
+
+static GtkWidget *
+make_header_bar(GtkWindow *window) {
+    GtkWidget *bar = gtk_center_box_new();
+    GtkWidget *close_button = gtk_button_new_from_icon_name("window-close-symbolic");
+
+    gtk_center_box_set_end_widget(GTK_CENTER_BOX(bar), close_button);
+
+    g_object_set(bar, "hexpand", TRUE, NULL);
+
+    g_signal_connect(close_button, "clicked", G_CALLBACK(close_callback), window);
+
+    return bar;
+}
 
 LKeyGrabWindow *
 l_key_grab_window_new(GtkWindow *parent) {
     LKeyGrabWindow *self = g_object_new(L_TYPE_KEY_GRAB_WINDOW, NULL);
 
-    
+    gtk_window_set_modal(GTK_WINDOW(self), TRUE);
+    gtk_window_set_transient_for(GTK_WINDOW(self), parent);
 
     return self;
 }
@@ -40,4 +68,17 @@ static void
 l_key_grab_window_class_init(LKeyGrabWindowClass *klass) {}
 
 static void
-l_key_grab_window_init(LKeyGrabWindow *self) {}
+l_key_grab_window_init(LKeyGrabWindow *self) {
+    GtkWidget *child = gtk_label_new("This KeyPress Grab Window");
+
+    self->window_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    self->header_bar = make_header_bar(GTK_WINDOW(self));
+    self->content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+
+    gtk_window_set_default_size(GTK_WINDOW(self), 400, 200);
+    gtk_box_append(GTK_BOX(self->content), child);
+
+    gtk_box_append(GTK_BOX(self->window_container), self->header_bar);
+    gtk_box_append(GTK_BOX(self->window_container), self->content);
+    adw_window_set_content(ADW_WINDOW(self), self->window_container);
+}
