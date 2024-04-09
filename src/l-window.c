@@ -29,7 +29,6 @@ struct _LWindow {
     LContentManager * content_manager;
     LDataManager *data_manager;
     GtkWidget * header_bar;
-    LKeyGrabWindow *key_grab_window;
 };
 
 G_DEFINE_FINAL_TYPE (LWindow, l_window, ADW_TYPE_APPLICATION_WINDOW)
@@ -53,8 +52,7 @@ static void l_window_init(LWindow *self) {
 
     self->header_bar = adw_header_bar_new();
     self->data_manager = l_data_manager_new();
-    self->key_grab_window = l_key_grab_window_new(GTK_WINDOW(self));
-    self->content_manager = l_content_manager_new(self->data_manager, self->header_bar, self->key_grab_window);
+    self->content_manager = l_content_manager_new(self->data_manager, self->header_bar);
 
     content_box = l_content_manager_get_content(self->content_manager);
 

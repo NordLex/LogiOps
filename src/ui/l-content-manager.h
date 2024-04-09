@@ -29,7 +29,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LContentManager, l_content_manager, L, CONTENT_MANAGER, GObject)
 
 LContentManager *
-l_content_manager_new(LDataManager *data_manager, GtkWidget *header_bar, LKeyGrabWindow *key_grab_window);
+l_content_manager_new(LDataManager *data_manager, GtkWidget *header_bar);
 
 GtkWidget *
 l_content_manager_get_content(LContentManager * self);

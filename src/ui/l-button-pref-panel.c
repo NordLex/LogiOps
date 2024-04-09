@@ -84,10 +84,10 @@ l_button_pref_panel_configure(LButtonPrefPanel *self, gpointer button_conf) {
 }
 
 LButtonPrefPanel *
-l_button_pref_panel_new(GtkWindow *key_grab_window) {
+l_button_pref_panel_new(void) {
     LButtonPrefPanel *self = g_object_new(L_TYPE_BUTTON_PREF_PANEL, NULL);
 
-    self->action_selector = l_action_selector_new(key_grab_window);
+    self->action_selector = l_action_selector_new();
     gtk_box_append(GTK_BOX(self->pref_container), GTK_WIDGET(self->action_selector));
     gtk_box_append(GTK_BOX(self->pref_container),
                    l_action_selector_get_view(self->action_selector));

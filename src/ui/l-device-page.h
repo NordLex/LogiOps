@@ -29,6 +29,6 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (LDevicePage, l_device_page, L, DEVICE_PAGE, GtkBox)
 
 GtkWidget *
-l_device_page_new(gpointer device, GtkWindow *key_grab_window);
+l_device_page_new(gpointer device);
 
 G_END_DECLS

@@ -25,7 +25,6 @@ struct _LContentManager {
     GObject parent_instance;
 
     LDataManager *data_manager;
-    LKeyGrabWindow *key_grab_window;
     LOverviewPage *overview_page;
     GtkWidget *back_button;
     GtkWidget *main_box;
@@ -51,8 +50,7 @@ card_selected_callback(LDeviceCard *card, gpointer data) {
                                                    description->name->str);
 
     if (NULL == child) {
-        GtkWidget *device_page = l_device_page_new(description,
-                                                   GTK_WINDOW(manager->key_grab_window));
+        GtkWidget *device_page = l_device_page_new(description);
         gtk_stack_add_named(GTK_STACK(manager->main_box),
                             device_page,
                             description->name->str);
@@ -98,10 +96,9 @@ l_content_manager_get_content(LContentManager *self) {
 }
 
 LContentManager *
-l_content_manager_new(LDataManager *data_manager, GtkWidget *header_bar, LKeyGrabWindow *key_grab_window) {
+l_content_manager_new(LDataManager *data_manager, GtkWidget *header_bar) {
     LContentManager *manager = g_object_new(L_TYPE_CONTENT_MANAGER, NULL);
 
-    manager->key_grab_window = key_grab_window;
     manager->data_manager = data_manager;
 
     adw_header_bar_pack_start(ADW_HEADER_BAR(header_bar), manager->back_button);

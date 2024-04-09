@@ -205,12 +205,10 @@ page_set_self(LDevicePage *self) {
 }
 
 GtkWidget *
-l_device_page_new(gpointer device_description, GtkWindow *key_grab_window) {
+l_device_page_new(gpointer device_description) {
     LDevicePage *self = g_object_new(L_TYPE_DEVICE_PAGE, NULL);
 
     self->device_description = (DeviceDescription *) (device_description);
-    self->button_pref_panel = l_button_pref_panel_new(key_grab_window);
-    gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->button_pref_panel));
     page_set_self(self);
 
     return GTK_WIDGET(self);
@@ -226,6 +224,7 @@ l_device_page_init(LDevicePage *self) {
     self->device_description = NULL;
     self->device_name_button = gtk_button_new();
     self->device_pref_panel = l_pref_panel_new();
+    self->button_pref_panel = l_button_pref_panel_new();
     self->battery_state = gtk_button_new();
     self->overlay = gtk_overlay_new();
     self->background_controller = gtk_gesture_click_new();
@@ -238,6 +237,8 @@ l_device_page_init(LDevicePage *self) {
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_name_button));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->battery_state));
     gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->device_pref_panel));
+    gtk_box_append(GTK_BOX(self), GTK_WIDGET(self->button_pref_panel));
+
 
     g_object_set(self,
                  "vexpand", TRUE,

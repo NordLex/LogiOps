@@ -36,6 +36,6 @@ GtkWidget *
 l_action_selector_get_view(LActionSelector *self);
 
 LActionSelector *
-l_action_selector_new(GtkWindow *key_grab_window);
+l_action_selector_new(void);
 
 G_END_DECLS

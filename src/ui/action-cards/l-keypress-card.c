@@ -98,11 +98,30 @@ self_clicked_callback(GtkWidget *self, gpointer data) {
     gtk_window_present(GTK_WINDOW(self_card->key_grab_window));
 }
 
+
+static GtkWindow *
+get_parent_window(void) {
+    GListModel *window_list = gtk_window_get_toplevels();
+    guint n_items = g_list_model_get_n_items(window_list);
+
+    g_print("Windows = %d\n", g_list_model_get_n_items(window_list));
+
+    while (n_items > 0) {
+        GtkWindow *window = GTK_WINDOW(g_list_model_get_item(window_list, n_items));
+
+        if (L_IS_WINDOW(window)) {
+            return window;
+        }
+        n_items--;
+    }
+    return NULL;
+}
+
 LKeypressCard *
-l_keypress_card_new(GtkWindow *key_grab_window) {
+l_keypress_card_new(void) {
     LKeypressCard *self = g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
 
-    self->key_grab_window = key_grab_window;
+    self->key_grab_window = GTK_WINDOW(l_key_grab_window_new(get_parent_window()));
 
     return self;
 }
