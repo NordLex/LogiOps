@@ -132,11 +132,6 @@ action_card_interface_init(LActionCardInterface *iface) {
 }
 
 static void
-make_event_window(LKeypressCard *self) {
-
-}
-
-static void
 l_keypress_card_class_init(LKeypressCardClass *klass) {}
 
 static void
