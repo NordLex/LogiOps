@@ -21,6 +21,7 @@
 #pragma once
 
 #include "../../l-application-resources.h"
+#include "../../l-window.h"
 
 
 G_BEGIN_DECLS
