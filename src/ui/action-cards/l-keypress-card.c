@@ -92,38 +92,30 @@ keypress_card_set_action(LActionCard *self, Action action) {
     keypress_card_set_data(GTK_BOX(keypress_card->container), keypress->keys);
 }
 
+static GtkWindow *
+get_root_window(GtkWidget *child) {
+    GtkRoot *root = gtk_widget_get_root(child);
+    GtkWindow *window = GTK_WINDOW(root);
+
+    if (L_IS_WINDOW(window))
+        return window;
+    else
+        return NULL;
+}
+
 static void
 self_clicked_callback(GtkWidget *self, gpointer data) {
     LKeypressCard *self_card = L_KEYPRESS_CARD(self);
+    GtkWindow *root_window = get_root_window(GTK_WIDGET(self));
+
+    self_card->key_grab_window = GTK_WINDOW(l_key_grab_window_new());
+    l_key_grab_window_set_parent(L_KEY_GRAB_WINDOW(self_card->key_grab_window), root_window);
     gtk_window_present(GTK_WINDOW(self_card->key_grab_window));
-}
-
-
-static GtkWindow *
-get_parent_window(void) {
-    GListModel *window_list = gtk_window_get_toplevels();
-    guint n_items = g_list_model_get_n_items(window_list);
-
-    g_print("Windows = %d\n", g_list_model_get_n_items(window_list));
-
-    while (n_items > 0) {
-        GtkWindow *window = GTK_WINDOW(g_list_model_get_item(window_list, n_items));
-
-        if (L_IS_WINDOW(window)) {
-            return window;
-        }
-        n_items--;
-    }
-    return NULL;
 }
 
 LKeypressCard *
 l_keypress_card_new(void) {
-    LKeypressCard *self = g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
-
-    self->key_grab_window = GTK_WINDOW(l_key_grab_window_new(get_parent_window()));
-
-    return self;
+    return g_object_new(L_TYPE_KEYPRESS_CARD, NULL);
 }
 
 static void
