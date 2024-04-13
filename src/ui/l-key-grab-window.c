@@ -32,7 +32,6 @@ struct _LKeyGrabWindow {
 G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
 
 
-
 static void
 close_callback(GtkButton *button, gpointer data) {
     GtkWindow *window = GTK_WINDOW(data);
@@ -54,12 +53,14 @@ make_header_bar(GtkWindow *window) {
     return bar;
 }
 
-LKeyGrabWindow *
-l_key_grab_window_new(GtkWindow *parent) {
-    LKeyGrabWindow *self = g_object_new(L_TYPE_KEY_GRAB_WINDOW, NULL);
-
-    gtk_window_set_modal(GTK_WINDOW(self), TRUE);
+void
+l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent) {
     gtk_window_set_transient_for(GTK_WINDOW(self), parent);
+}
+
+LKeyGrabWindow *
+l_key_grab_window_new(void) {
+    LKeyGrabWindow *self = g_object_new(L_TYPE_KEY_GRAB_WINDOW, NULL);
 
     return self;
 }
@@ -75,10 +76,12 @@ l_key_grab_window_init(LKeyGrabWindow *self) {
     self->header_bar = make_header_bar(GTK_WINDOW(self));
     self->content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 
+    gtk_window_set_modal(GTK_WINDOW(self), TRUE);
     gtk_window_set_default_size(GTK_WINDOW(self), 400, 200);
     gtk_box_append(GTK_BOX(self->content), child);
 
     gtk_box_append(GTK_BOX(self->window_container), self->header_bar);
     gtk_box_append(GTK_BOX(self->window_container), self->content);
+
     adw_window_set_content(ADW_WINDOW(self), self->window_container);
 }

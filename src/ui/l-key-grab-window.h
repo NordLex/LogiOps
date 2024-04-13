@@ -30,6 +30,9 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, L, KEY_GRAB_WINDOW, AdwWindow)
 
 LKeyGrabWindow *
-l_key_grab_window_new(GtkWindow *parent);
+l_key_grab_window_new(void);
+
+void
+l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent);
 
 G_END_DECLS
