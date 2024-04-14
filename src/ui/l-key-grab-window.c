@@ -90,9 +90,7 @@ l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent) {
 
 LKeyGrabWindow *
 l_key_grab_window_new(void) {
-    LKeyGrabWindow *self = g_object_new(L_TYPE_KEY_GRAB_WINDOW, NULL);
-
-    return self;
+    return g_object_new(L_TYPE_KEY_GRAB_WINDOW, NULL);
 }
 
 static void
