@@ -53,6 +53,31 @@ make_header_bar(GtkWindow *window) {
     return bar;
 }
 
+static GtkWidget *
+make_content(void) {
+    int margin = 20;
+    GtkWidget *image = gtk_picture_new_for_resource(L_KEYBOARD_SVG);
+    GtkWidget *content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
+    GtkWidget *label = gtk_label_new(NULL);
+
+    gtk_label_set_markup(GTK_LABEL(label),
+                         "<span weight=\"bold\">Press the button combination, "
+                         "you want to install</span>");
+
+    gtk_box_append(GTK_BOX(content), label);
+    gtk_box_append(GTK_BOX(content), image);
+
+    gtk_widget_set_margin_top   (content, margin);
+    gtk_widget_set_margin_bottom(content, margin);
+    gtk_widget_set_margin_start (content, margin);
+    gtk_widget_set_margin_end   (content, margin);
+
+    g_object_set(content,"vexpand", TRUE, "hexpand", TRUE, NULL);
+    g_object_set(image,"vexpand", TRUE, "hexpand", TRUE, NULL);
+
+    return content;
+}
+
 void
 l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent) {
     gtk_window_set_transient_for(GTK_WINDOW(self), parent);
@@ -70,15 +95,12 @@ l_key_grab_window_class_init(LKeyGrabWindowClass *klass) {}
 
 static void
 l_key_grab_window_init(LKeyGrabWindow *self) {
-    GtkWidget *child = gtk_label_new("This KeyPress Grab Window");
-
     self->window_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     self->header_bar = make_header_bar(GTK_WINDOW(self));
-    self->content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+    self->content = make_content();
 
     gtk_window_set_modal(GTK_WINDOW(self), TRUE);
-    gtk_window_set_default_size(GTK_WINDOW(self), 400, 200);
-    gtk_box_append(GTK_BOX(self->content), child);
+    gtk_window_set_default_size(GTK_WINDOW(self), 450, 250);
 
     gtk_box_append(GTK_BOX(self->window_container), self->header_bar);
     gtk_box_append(GTK_BOX(self->window_container), self->content);

@@ -66,6 +66,8 @@ typedef enum  {
 
 #define L_DEVICE_BUTTON_SIZE    45
 
+#define L_KEYBOARD_SVG          "/org/nordlex/logiops/resources/media/keyboard.svg"
+#define L_KEYBOARD_PNG          "/org/nordlex/logiops/resources/media/keyboard.png"
 #define L_BATTERY_0             "/org/nordlex/logiops/resources/media/battery/0.svg"
 #define L_BATTERY_20            "/org/nordlex/logiops/resources/media/battery/20.svg"
 #define L_BATTERY_50            "/org/nordlex/logiops/resources/media/battery/50.svg"
