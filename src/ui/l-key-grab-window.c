@@ -41,10 +41,15 @@ close_callback(GtkButton *button, gpointer data) {
 
 static GtkWidget *
 make_header_bar(GtkWindow *window) {
+    int margin = 8;
     GtkWidget *bar = gtk_center_box_new();
-    GtkWidget *close_button = gtk_button_new_from_icon_name("window-close-symbolic");
+    GtkWidget *close_button = gtk_button_new_with_label("Cancel");
 
+    gtk_widget_add_css_class(close_button, "suggested-action");
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(bar), close_button);
+    gtk_widget_set_margin_top(GTK_WIDGET(close_button), margin);
+    gtk_widget_set_margin_end(GTK_WIDGET(close_button), margin);
+    gtk_widget_set_margin_bottom(GTK_WIDGET(close_button), margin);
 
     g_object_set(bar, "hexpand", TRUE, NULL);
 
