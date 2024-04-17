@@ -27,6 +27,7 @@ struct _LKeyGrabWindow {
     GtkWidget *window_container;
     GtkWidget *header_bar;
     GtkWidget *content;
+    GtkEventController *controller;
 };
 
 G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
@@ -37,6 +38,26 @@ close_window_callback(GtkButton *button, gpointer data) {
     GtkWindow *window = GTK_WINDOW(data);
 
     gtk_window_close(window);
+}
+
+static gboolean
+key_pressed_callback(GtkEventControllerKey *event_controller,
+                   guint keyval,
+                   guint keycode,
+                   GdkModifierType state,
+                   gpointer data) {
+    g_print(" Pressed: keyval - %s | keycode - %d\n", gdk_keyval_name(keycode), keycode);
+    return TRUE;
+}
+
+static gboolean
+key_released_callback(GtkEventControllerKey *event_controller,
+                   guint keyval,
+                   guint keycode,
+                   GdkModifierType state,
+                   gpointer data) {
+    g_print("Released: keyval - %s | keycode - %d\n", gdk_keyval_name(keyval), keycode);
+    return TRUE;
 }
 
 static GtkWidget *
@@ -101,12 +122,17 @@ l_key_grab_window_init(LKeyGrabWindow *self) {
     self->window_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     self->header_bar = make_header_bar(GTK_WINDOW(self));
     self->content = make_content();
+    self->controller = gtk_event_controller_key_new();
 
     gtk_window_set_modal(GTK_WINDOW(self), TRUE);
     gtk_window_set_default_size(GTK_WINDOW(self), 450, 250);
+    gtk_widget_add_controller(GTK_WIDGET(self), self->controller);
 
     gtk_box_append(GTK_BOX(self->window_container), self->header_bar);
     gtk_box_append(GTK_BOX(self->window_container), self->content);
 
     adw_window_set_content(ADW_WINDOW(self), self->window_container);
+
+    g_signal_connect(self->controller, "key-pressed", G_CALLBACK(key_pressed_callback), NULL);
+    g_signal_connect(self->controller, "key-released", G_CALLBACK(key_released_callback), NULL);
 }
