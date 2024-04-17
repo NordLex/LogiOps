@@ -33,7 +33,7 @@ G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
 
 
 static void
-close_callback(GtkButton *button, gpointer data) {
+close_window_callback(GtkButton *button, gpointer data) {
     GtkWindow *window = GTK_WINDOW(data);
 
     gtk_window_close(window);
@@ -53,7 +53,7 @@ make_header_bar(GtkWindow *window) {
 
     g_object_set(bar, "hexpand", TRUE, NULL);
 
-    g_signal_connect(close_button, "clicked", G_CALLBACK(close_callback), window);
+    g_signal_connect(close_button, "clicked", G_CALLBACK(close_window_callback), window);
 
     return bar;
 }
