@@ -33,6 +33,10 @@ struct _LKeyGrabWindow {
 G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
 
 
+#define CANCEL      "Cancel"
+#define SAVE        "Save"
+#define EXPLANATION "Press the button combination, you want to install"
+
 static void
 close_window_callback(GtkButton *button, gpointer data) {
     gtk_window_close(GTK_WINDOW(data));
@@ -82,11 +86,7 @@ make_content(void) {
     int margin = 20;
     GtkWidget *image = gtk_picture_new_for_resource(L_KEYBOARD_SVG);
     GtkWidget *content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
-    GtkWidget *label = gtk_label_new(NULL);
-
-    gtk_label_set_markup(GTK_LABEL(label),
-                         "<span weight=\"bold\">Press the button combination, "
-                         "you want to install</span>");
+    GtkWidget *label = gtk_label_new(EXPLANATION);
 
     gtk_box_append(GTK_BOX(content), label);
     gtk_box_append(GTK_BOX(content), image);
