@@ -38,7 +38,12 @@ G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
 #define EXPLANATION "Press the button combination, you want to install"
 
 static void
-close_window_callback(GtkButton *button, gpointer data) {
+cancel_callback(GtkButton *button, gpointer data) {
+    gtk_window_close(GTK_WINDOW(data));
+}
+
+static void
+save_callback(GtkButton *button, gpointer data) {
     gtk_window_close(GTK_WINDOW(data));
 }
 
@@ -76,7 +81,8 @@ make_header_bar(GtkWindow *window) {
 
     g_object_set(bar, "hexpand", TRUE, NULL);
 
-    g_signal_connect(close_button, "clicked", G_CALLBACK(close_window_callback), window);
+    g_signal_connect(save_button, "clicked", G_CALLBACK(save_callback), window);
+    g_signal_connect(cancel_button, "clicked", G_CALLBACK(cancel_callback), window);
 
     return bar;
 }
