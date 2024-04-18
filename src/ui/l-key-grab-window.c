@@ -70,14 +70,22 @@ key_released_callback(GtkEventControllerKey *event_controller,
 static GtkWidget *
 make_header_bar(GtkWindow *window) {
     int margin = 8;
+    int button_width = 90;
+    int button_height = -1;
     GtkWidget *bar = gtk_center_box_new();
-    GtkWidget *close_button = gtk_button_new_with_label("Cancel");
+    GtkWidget *cancel_button = gtk_button_new_with_label(CANCEL);
+    GtkWidget *save_button = gtk_button_new_with_label(SAVE);
 
-    gtk_widget_add_css_class(close_button, "suggested-action");
-    gtk_center_box_set_end_widget(GTK_CENTER_BOX(bar), close_button);
-    gtk_widget_set_margin_top(GTK_WIDGET(close_button), margin);
-    gtk_widget_set_margin_end(GTK_WIDGET(close_button), margin);
-    gtk_widget_set_margin_bottom(GTK_WIDGET(close_button), margin);
+    gtk_center_box_set_start_widget(GTK_CENTER_BOX(bar), save_button);
+    gtk_center_box_set_end_widget(GTK_CENTER_BOX(bar), cancel_button);
+
+    gtk_widget_set_margin_top(GTK_WIDGET(bar), margin);
+    gtk_widget_set_margin_start(GTK_WIDGET(bar), margin);
+    gtk_widget_set_margin_end(GTK_WIDGET(bar), margin);
+
+    gtk_widget_add_css_class(cancel_button, "suggested-action");
+    gtk_widget_set_size_request(save_button, button_width, button_height);
+    gtk_widget_set_size_request(cancel_button, button_width, button_height);
 
     g_object_set(bar, "hexpand", TRUE, NULL);
 
