@@ -28,68 +28,18 @@ struct _LKeypressCard {
     GtkButton parent_instance;
 
     GtkWindow *key_grab_window;
-    GtkWidget *container;
 };
 
 G_DEFINE_TYPE_WITH_CODE(LKeypressCard, l_keypress_card, GTK_TYPE_BUTTON,
                         G_IMPLEMENT_INTERFACE(L_TYPE_ACTION_CARD, action_card_interface_init))
 
 
-static GtkWidget *
-make_key_card(guint key_code) {
-    const char *key_name = gdk_keyval_name(key_code);
-    GtkWidget *card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    GtkWidget *label = gtk_label_new(key_name);
-
-    g_object_set(card,
-                 "name", "KeyCard",
-                 NULL);
-
-    gtk_box_append(GTK_BOX(card), label);
-
-    return card;
-}
-
-static GtkWidget *
-make_key_card_delimiter(void) {
-    GtkWidget *delimiter = gtk_label_new(" + ");
-    g_object_set(delimiter, "name", "KeyCardDelimiter", NULL);
-    return delimiter;
-}
-
-static void
-keypress_card_clear(GtkBox *container) {
-    GtkWidget *child = NULL;
-
-    do {
-        child = gtk_widget_get_last_child(GTK_WIDGET(container));
-        if (child != NULL)
-            gtk_box_remove(container, child);
-    } while (child != NULL);
-}
-
-static void
-keypress_card_set_data(GtkBox *container, GSList *keys) {
-    GSList *temp_keys = keys;
-
-    keypress_card_clear(container);
-
-    while (temp_keys != NULL) {
-        guint key_code = GPOINTER_TO_UINT(temp_keys->data);
-        GtkWidget *card = make_key_card(key_code);
-
-        gtk_box_append(container, card);
-        if (temp_keys->next != NULL)
-            gtk_box_append(container, make_key_card_delimiter());
-        temp_keys = g_slist_next(temp_keys);
-    }
-}
-
 static void
 keypress_card_set_action(LActionCard *self, Action action) {
-    LKeypressCard *keypress_card = L_KEYPRESS_CARD(self);
     Keypress *keypress = action.self;
-    keypress_card_set_data(GTK_BOX(keypress_card->container), keypress->keys);
+
+    gtk_button_set_child(GTK_BUTTON(self),
+                         GTK_WIDGET(l_keys_label_new(keypress->keys)));
 }
 
 static GtkWindow *
@@ -128,15 +78,8 @@ l_keypress_card_class_init(LKeypressCardClass *klass) {}
 
 static void
 l_keypress_card_init(LKeypressCard *self) {
-    self->container = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-
     g_object_set(self,
                  "name", "KeypressCard",
-                 "valign", GTK_ALIGN_START,
-                 "halign", GTK_ALIGN_CENTER,
-                 NULL);
-
-    g_object_set(self->container,
                  "valign", GTK_ALIGN_START,
                  "halign", GTK_ALIGN_CENTER,
                  NULL);
@@ -144,5 +87,4 @@ l_keypress_card_init(LKeypressCard *self) {
     g_signal_connect(self, "clicked", G_CALLBACK(self_clicked_callback), NULL);
 
     gtk_button_set_has_frame(GTK_BUTTON(self), FALSE);
-    gtk_button_set_child(GTK_BUTTON(self), self->container);
 }
