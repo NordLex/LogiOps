@@ -40,6 +40,7 @@ typedef enum  {
 #include "types/l-device.h"
 #include "ui/device-description/device-description.h"
 #include "ui/l-device-card.h"
+#include "ui/action-cards/l-keys-label.h"
 #include "ui/action-cards/l-action-card.h"
 #include "ui/action-cards/l-cycle-card.h"
 #include "ui/action-cards/l-keypress-card.h"
