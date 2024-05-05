@@ -48,16 +48,6 @@ save_callback(GtkButton *button, gpointer data) {
 }
 
 static gboolean
-key_pressed_callback(GtkEventControllerKey *event_controller,
-                   guint keyval,
-                   guint keycode,
-                   GdkModifierType state,
-                   gpointer data) {
-    g_print(" Pressed: keyval - %s | keycode - %d\n", gdk_keyval_name(keycode), keycode);
-    return TRUE;
-}
-
-static gboolean
 key_released_callback(GtkEventControllerKey *event_controller,
                    guint keyval,
                    guint keycode,
@@ -145,6 +135,5 @@ l_key_grab_window_init(LKeyGrabWindow *self) {
 
     adw_window_set_content(ADW_WINDOW(self), self->window_container);
 
-    g_signal_connect(self->controller, "key-pressed", G_CALLBACK(key_pressed_callback), NULL);
-    g_signal_connect(self->controller, "key-released", G_CALLBACK(key_released_callback), NULL);
+    g_signal_connect(self->controller, "key-released", G_CALLBACK(key_released_callback), self);
 }
