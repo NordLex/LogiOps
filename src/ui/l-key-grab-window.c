@@ -28,6 +28,7 @@ struct _LKeyGrabWindow {
     GtkWidget *header_bar;
     GtkWidget *content;
     GtkEventController *controller;
+    GSList *keys;
 };
 
 G_DEFINE_FINAL_TYPE(LKeyGrabWindow, l_key_grab_window, ADW_TYPE_WINDOW)
@@ -49,11 +50,24 @@ save_callback(GtkButton *button, gpointer data) {
 
 static gboolean
 key_released_callback(GtkEventControllerKey *event_controller,
-                   guint keyval,
-                   guint keycode,
-                   GdkModifierType state,
-                   gpointer data) {
-    g_print("Released: keyval - %s | keycode - %d\n", gdk_keyval_name(keyval), keycode);
+                      guint keyval,
+                      guint keycode,
+                      GdkModifierType state,
+                      gpointer data) {
+    const char *child_name = "key-labels";
+    LKeyGrabWindow *self = L_KEY_GRAB_WINDOW(data);
+    GtkWidget *child = gtk_stack_get_child_by_name(GTK_STACK(self->content), child_name);
+
+    self->keys = g_slist_append(self->keys, GUINT_TO_POINTER(gdk_keyval_to_upper(keyval)));
+
+    if (NULL != child)
+        gtk_stack_remove(GTK_STACK(self->content), child);
+
+    gtk_stack_add_named(GTK_STACK(self->content),
+                        GTK_WIDGET(l_keys_label_new(self->keys)),
+                        child_name);
+    gtk_stack_set_visible_child_name(GTK_STACK(self->content), child_name);
+
     return TRUE;
 }
 
@@ -134,6 +148,7 @@ l_key_grab_window_init(LKeyGrabWindow *self) {
     self->header_bar = make_header_bar(GTK_WINDOW(self));
     self->content = make_content();
     self->controller = gtk_event_controller_key_new();
+    self->keys = NULL;
 
     gtk_window_set_modal(GTK_WINDOW(self), TRUE);
     gtk_window_set_default_size(GTK_WINDOW(self), 450, 250);
