@@ -86,7 +86,7 @@ make_header_bar(GtkWindow *window) {
 }
 
 static GtkWidget *
-make_content(void) {
+preview_layer(void) {
     int margin = 20;
     GtkWidget *image = gtk_picture_new_for_resource(L_KEYBOARD_SVG);
     GtkWidget *content = gtk_box_new(GTK_ORIENTATION_VERTICAL, 15);
@@ -100,10 +100,19 @@ make_content(void) {
     gtk_widget_set_margin_start (content, margin);
     gtk_widget_set_margin_end   (content, margin);
 
-    g_object_set(content,"vexpand", TRUE, "hexpand", TRUE, NULL);
-    g_object_set(image,"vexpand", TRUE, "hexpand", TRUE, NULL);
+    g_object_set(content, "vexpand", TRUE, "hexpand", TRUE, NULL);
+    g_object_set(image,   "vexpand", TRUE, "hexpand", TRUE, NULL);
 
     return content;
+}
+
+static GtkWidget *
+make_content(void) {
+    GtkWidget *stack = gtk_stack_new();
+
+    gtk_stack_add_named(GTK_STACK(stack), preview_layer(), "preview-layer");
+
+    return stack;
 }
 
 void
