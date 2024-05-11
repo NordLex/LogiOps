@@ -20,6 +20,7 @@
 
 #include "l-key-grab-window.h"
 
+static guint save_signal;
 
 struct _LKeyGrabWindow {
     AdwWindow parent_instance;
@@ -45,6 +46,9 @@ cancel_callback(GtkButton *button, gpointer data) {
 
 static void
 save_callback(GtkButton *button, gpointer data) {
+    LKeyGrabWindow *self = L_KEY_GRAB_WINDOW(data);
+
+    g_signal_emit(self, save_signal, 0);
     gtk_window_close(GTK_WINDOW(data));
 }
 
@@ -140,7 +144,18 @@ l_key_grab_window_new(void) {
 }
 
 static void
-l_key_grab_window_class_init(LKeyGrabWindowClass *klass) {}
+l_key_grab_window_class_init(LKeyGrabWindowClass *klass) {
+    save_signal = g_signal_new("save-keys",
+                               G_TYPE_FROM_CLASS(klass),
+                               G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                               0,
+                               NULL,
+                               NULL,
+                               NULL,
+                               G_TYPE_NONE,
+                               0,
+                               NULL);
+}
 
 static void
 l_key_grab_window_init(LKeyGrabWindow *self) {
