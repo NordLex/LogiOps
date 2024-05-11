@@ -54,12 +54,23 @@ get_root_window(GtkWidget *child) {
 }
 
 static void
+save_keys_callback(LKeyGrabWindow *window, gpointer data) {
+    GSList *keys_list = l_key_grab_window_get_keys(window);
+
+    gtk_button_set_child(GTK_BUTTON(data),
+                         GTK_WIDGET(l_keys_label_new(keys_list)));
+}
+
+static void
 self_clicked_callback(GtkWidget *self, gpointer data) {
     LKeypressCard *self_card = L_KEYPRESS_CARD(self);
     GtkWindow *root_window = get_root_window(GTK_WIDGET(self));
 
     self_card->key_grab_window = GTK_WINDOW(l_key_grab_window_new());
     l_key_grab_window_set_parent(L_KEY_GRAB_WINDOW(self_card->key_grab_window), root_window);
+
+    g_signal_connect(self_card->key_grab_window, "save-keys", G_CALLBACK(save_keys_callback), self);
+
     gtk_window_present(GTK_WINDOW(self_card->key_grab_window));
 }
 
