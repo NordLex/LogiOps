@@ -9,7 +9,8 @@
 
 ![App](data/readme-media/app.png)
 ![Device Settings](data/readme-media/app_device_settings.png)
-![Button Settings](data/readme-media/app_button_setting.png)
+![Button Settings](data/readme-media/app_button_settings.png)
+![Key Grab Window](data/readme-media/key_grab_window.png)
 
 >###### Help resources
 >
