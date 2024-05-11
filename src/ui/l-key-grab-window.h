@@ -35,4 +35,7 @@ l_key_grab_window_new(void);
 void
 l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent);
 
+GSList*
+l_key_grab_window_get_keys(LKeyGrabWindow *self);
+
 G_END_DECLS

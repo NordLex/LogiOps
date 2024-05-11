@@ -146,6 +146,11 @@ make_content(void) {
     return stack;
 }
 
+GSList*
+l_key_grab_window_get_keys(LKeyGrabWindow *self) {
+    return self->keys;
+}
+
 void
 l_key_grab_window_set_parent(LKeyGrabWindow *self, GtkWindow *parent) {
     gtk_window_set_transient_for(GTK_WINDOW(self), parent);
