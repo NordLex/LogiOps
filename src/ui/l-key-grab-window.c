@@ -52,6 +52,17 @@ save_callback(GtkButton *button, gpointer data) {
     gtk_window_close(GTK_WINDOW(data));
 }
 
+static guint
+get_keyval_en(guint keycode) {
+    int entries = 1;
+    GdkDisplay *display = gdk_display_get_default();
+    guint *key_values[entries];
+
+    gdk_display_map_keycode(display, keycode, NULL, key_values, &entries);
+
+    return *key_values[0];
+}
+
 static gboolean
 key_released_callback(GtkEventControllerKey *event_controller,
                       guint keyval,
@@ -61,8 +72,10 @@ key_released_callback(GtkEventControllerKey *event_controller,
     const char *child_name = "key-labels";
     LKeyGrabWindow *self = L_KEY_GRAB_WINDOW(data);
     GtkWidget *child = gtk_stack_get_child_by_name(GTK_STACK(self->content), child_name);
+    guint key_value = get_keyval_en(keycode);
 
-    self->keys = g_slist_append(self->keys, GUINT_TO_POINTER(gdk_keyval_to_upper(keyval)));
+    self->keys = g_slist_append(self->keys,
+                                GUINT_TO_POINTER(gdk_keyval_to_upper(key_value)));
 
     if (NULL != child)
         gtk_stack_remove(GTK_STACK(self->content), child);
