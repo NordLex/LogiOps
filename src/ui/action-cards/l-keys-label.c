@@ -28,9 +28,22 @@ struct _LKeysLabel {
 G_DEFINE_FINAL_TYPE(LKeysLabel, l_keys_label, GTK_TYPE_BOX)
 
 
-static GtkWidget *
-key_label(guint key_code) {
+static const char *
+keyval_name(guint key_code) {
     const char *key_name = gdk_keyval_name(key_code);
+
+    if (key_code == 65507 || key_code == 65508)
+        key_name = "Control";
+    if (key_code == 65505 || key_code == 65506)
+        key_name = "Shift";
+    if (key_code == 65513 || key_code == 65027)
+        key_name = "Alt";
+
+    return key_name;
+}
+
+static GtkWidget *
+key_label(const char *key_name) {
     GtkWidget *card = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *label = gtk_label_new(key_name);
 
@@ -56,11 +69,13 @@ set_labels(LKeysLabel *self, GSList *key_codes) {
 
     while (NULL != temp_keys) {
         guint key_code = GPOINTER_TO_UINT(temp_keys->data);
-        GtkWidget *card = key_label(key_code);
+        GtkWidget *card = key_label(keyval_name(key_code));
 
         gtk_box_append(GTK_BOX(self), card);
+
         if (NULL != temp_keys->next)
             gtk_box_append(GTK_BOX(self), key_label_delimiter());
+
         temp_keys = g_slist_next(temp_keys);
     }
 }
