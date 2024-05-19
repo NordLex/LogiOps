@@ -63,6 +63,11 @@ get_keyval_en(guint keycode) {
     return *key_values[0];
 }
 
+static gint
+compare_keys(gconstpointer item_one, gconstpointer item_two) {
+    return (gint) (GPOINTER_TO_UINT(item_one) - GPOINTER_TO_UINT(item_two));
+}
+
 static gboolean
 key_released_callback(GtkEventControllerKey *event_controller,
                       guint keyval,
@@ -76,6 +81,8 @@ key_released_callback(GtkEventControllerKey *event_controller,
 
     self->keys = g_slist_append(self->keys,
                                 GUINT_TO_POINTER(gdk_keyval_to_upper(key_value)));
+    self->keys = g_slist_reverse(g_slist_sort(self->keys,
+                                              (GCompareFunc)compare_keys));
 
     if (NULL != child)
         gtk_stack_remove(GTK_STACK(self->content), child);
