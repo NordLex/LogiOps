@@ -24,6 +24,7 @@ logiops_sources = [
   'data/l-bus-manager.c',
   'data/l-key-code.c',
   'types/l-device.c',
+  'types/l-device-concept.c',
 ]
 
 logiops_deps = [
