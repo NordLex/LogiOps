@@ -38,6 +38,8 @@ keyval_name(guint key_code) {
         key_name = "Shift";
     if (key_code == 65513 || key_code == 65027)
         key_name = "Alt";
+    if (key_code == 0xffe7 || key_code == 0xffe8)
+        key_name = "Meta";
 
     return key_name;
 }
