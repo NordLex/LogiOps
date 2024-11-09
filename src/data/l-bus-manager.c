@@ -359,25 +359,71 @@ l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscrol
 
 int
 l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi) {
-    g_print("BusManager Set DPI: Name : %s value: %d\n",device_name->str, dpi.dpi);
+    GDBusProxy *dpi_proxy = get_dpi_proxy(self, device_name);
+    GVariant *parameters = g_variant_new("(qy)", (guint16) dpi.dpi, 0 /** Заглушка **/);
+
+    g_dbus_proxy_call(dpi_proxy,
+                      "SetDPI",
+                      parameters,
+                      G_DBUS_CALL_FLAGS_NONE,
+                      -1,
+                      NULL,
+                      NULL,
+                      NULL);
     return 0;
 }
 
 int
 l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires) {
-    g_print("BusManager Set hires: Name : %s value: %b\n",device_name->str, hires);
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", hires);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetHires",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
     return 0;
 }
 
 int
 l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert) {
-    g_print("BusManager Set invert: Name : %s value: %b\n",device_name->str, invert);
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", invert);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetInvert",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
     return 0;
 }
 
 int
 l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target) {
-    g_print("BusManager Set target: Name : %s value: %b\n",device_name->str, target);
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", target);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetTarget",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
     return 0;
 }
 
