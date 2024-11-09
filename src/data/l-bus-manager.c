@@ -364,6 +364,30 @@ l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscrol
     return 0;
 }
 
+int
+l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi) {
+    g_print("BusManager Set DPI: Name : %s value: %d\n",device_name->str, dpi.dpi);
+    return 0;
+}
+
+int
+l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires) {
+    g_print("BusManager Set hires: Name : %s value: %b\n",device_name->str, hires);
+    return 0;
+}
+
+int
+l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert) {
+    g_print("BusManager Set invert: Name : %s value: %b\n",device_name->str, invert);
+    return 0;
+}
+
+int
+l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target) {
+    g_print("BusManager Set target: Name : %s value: %b\n",device_name->str, target);
+    return 0;
+}
+
 static void
 torque_support_request(GDBusProxy *proxy, gboolean *state) {
     GVariant *result;

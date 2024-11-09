@@ -134,9 +134,19 @@ l_bus_manager_request_button_info(LBusManager *self,
  * @return The execution status of the operation.
  * */
 int
-l_bus_manager_request_button_action(LBusManager *self,
-                                    GString *button,
-                                    Action *action);
+l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action);
+
+int
+l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi);
+
+int
+l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires);
+
+int
+l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert);
+
+int
+l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target);
 
 /**
  * @brief Set keypress action.
