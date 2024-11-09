@@ -334,12 +334,10 @@ l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
 
 int
 l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscroll *hiresscroll) {
-    GDBusProxy *hires_scroll_proxy;
     GVariant *result;
     GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device);
     gboolean hires, invert, target;
-
-    hires_scroll_proxy = get_hiresscroll_proxy(self, device);
 
     result = g_dbus_proxy_call_sync(hires_scroll_proxy,
                                     "GetConfig",
