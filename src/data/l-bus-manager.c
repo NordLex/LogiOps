@@ -240,13 +240,11 @@ l_bus_manager_request_device_name(LBusManager *self, GString *device) {
 }
 
 static void
-callback_dpi(GObject *object, GAsyncResult *result, gpointer data) {
-    GVariant *variant;
+callback_get_dpi(GObject *object, GAsyncResult *result, gpointer data) {
     GDBusProxy *proxy = G_DBUS_PROXY(object);
     GError *error = NULL;
     Dpi *dpi = (Dpi *) data;
-
-    variant = g_dbus_proxy_call_finish(proxy, result, &error);
+    GVariant *variant = g_dbus_proxy_call_finish(proxy, result, &error);
 
     if (error != NULL && !g_error_matches(error, G_IO_ERROR, G_IO_ERROR_CANCELLED)) {
         g_warning("Failed to read DPI: %s", error->message);
@@ -259,7 +257,7 @@ callback_dpi(GObject *object, GAsyncResult *result, gpointer data) {
 }
 
 static void
-callback_dpis(GObject *object, GAsyncResult *result, gpointer data) {
+callback_get_dpis(GObject *object, GAsyncResult *result, gpointer data) {
     GDBusProxy *proxy = G_DBUS_PROXY(object);
     Dpi *dpi = (Dpi *) data;
     GVariant *variant;
@@ -299,19 +297,16 @@ callback_dpis(GObject *object, GAsyncResult *result, gpointer data) {
 
 int
 l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
-    GDBusProxy *dpi_proxy;
-    GVariant *sensor_byte;
     GError *error = NULL;
+    GDBusProxy *dpi_proxy = get_dpi_proxy(self, device);
+    GVariant *sensor_byte = g_dbus_proxy_call_sync(dpi_proxy,
+                                                   "GetSensors",
+                                                   NULL,
+                                                   G_DBUS_CALL_FLAGS_NONE,
+                                                   -1,
+                                                   NULL,
+                                                   &error);
 
-    dpi_proxy = get_dpi_proxy(self, device);
-
-    sensor_byte = g_dbus_proxy_call_sync(dpi_proxy,
-                                         "GetSensors",
-                                         NULL,
-                                         G_DBUS_CALL_FLAGS_NONE,
-                                         -1,
-                                         NULL,
-                                         &error);
     g_assert_no_error(error);
 
     sensor_byte = g_variant_new("(y)", 0); /** Заглушка **/
@@ -322,7 +317,7 @@ l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
                       G_DBUS_CALL_FLAGS_NONE,
                       -1,
                       NULL,
-                      (GAsyncReadyCallback) callback_dpi,
+                      (GAsyncReadyCallback) callback_get_dpi,
                       dpi);
 
     g_dbus_proxy_call(dpi_proxy,
@@ -331,7 +326,7 @@ l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
                       G_DBUS_CALL_FLAGS_NONE,
                       -1,
                       NULL,
-                      (GAsyncReadyCallback) callback_dpis,
+                      (GAsyncReadyCallback) callback_get_dpis,
                       dpi);
 
     return 0;
