@@ -27,6 +27,7 @@ struct _LPrefPanel {
     GtkWidget *main_box;
     GtkWidget *pref_container;
     GtkWidget *close_button;
+    GtkWidget *save_button;
 };
 
 G_DEFINE_FINAL_TYPE (LPrefPanel, l_pref_panel, GTK_TYPE_BOX)
@@ -41,7 +42,6 @@ static void
 callback_set_sm_state(GtkSwitch *widget, gboolean state, gpointer data) {
     ExpanderSwitch *exp_switch = (ExpanderSwitch *) data;
 
-    callback_set_state(widget, state, exp_switch->state);
     adw_expander_row_set_enable_expansion(ADW_EXPANDER_ROW(exp_switch->expander), state);
 }
 
@@ -86,6 +86,11 @@ static void
 callback_close_button(GtkWidget *button, gpointer data) {
     LPrefPanel *self = L_PREF_PANEL(data);
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
+}
+
+static void
+callback_save_button(GtkWidget *button, gpointer data) {
+    g_print("== Save ==\n");
 }
 
 static void
@@ -248,6 +253,8 @@ l_pref_panel_init_content(LPrefPanel * self, gpointer device_conf) {
     Smartshift *smartshift = l_device_get_smartshift(device);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 
+    g_signal_connect(G_OBJECT(self->save_button), "clicked", G_CALLBACK(callback_save_button), device);
+
     l_pref_panel_clear_content(self->pref_container);
     l_pref_panel_init_hiresscroll(device, self->pref_container);
     l_pref_panel_init_smartshift(smartshift, self->pref_container);
@@ -286,10 +293,12 @@ l_pref_panel_class_init(LPrefPanelClass * klass) {}
 
 static void
 l_pref_panel_init(LPrefPanel * self) {
+    self->save_button = gtk_button_new_from_icon_name("object-select-symbolic");
     self->main_box = gtk_center_box_new();
     self->pref_container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     self->close_button = gtk_button_new_from_icon_name("window-close-symbolic");
 
+    gtk_center_box_set_start_widget(GTK_CENTER_BOX(self->main_box), self->save_button);
     gtk_center_box_set_center_widget(GTK_CENTER_BOX(self->main_box), self->pref_container);
     gtk_center_box_set_end_widget(GTK_CENTER_BOX(self->main_box), self->close_button);
 
@@ -314,8 +323,13 @@ l_pref_panel_init(LPrefPanel * self) {
                  "halign", GTK_ALIGN_END,
                  "valign", GTK_ALIGN_START,
                  NULL);
+    g_object_set(self->save_button,
+                 "halign", GTK_ALIGN_END,
+                 "valign", GTK_ALIGN_START,
+                 NULL);
 
     gtk_widget_add_css_class(self->close_button, "circular");
+    gtk_widget_add_css_class(self->save_button, "circular");
 
     gtk_widget_set_margin_start(self->pref_container, 80);
     gtk_widget_set_margin_end(self->pref_container, 80);
