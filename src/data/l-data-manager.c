@@ -24,6 +24,7 @@
 struct _LDataManager {
     GObject parent_instance;
 
+    LSaver *saver;
     LBusManager *bus_manager;
 };
 
@@ -134,10 +135,44 @@ description_attach_conf(DeviceDescription *description, LDevice *device_conf) {
 }
 
 static void
-fill_description(DeviceDescription *description, LBusManager *bus, GString *device) {
-    LDevice *device_conf = l_device_new();
+fill_description(DeviceDescription *description, LBusManager *bus, LSaver *saver, GString *device) {
+    LDevice *device_conf = l_device_new(saver);
     fill_device_conf(bus, device, device_conf);
     description_attach_conf(description, device_conf);
+}
+
+static void
+callback_set_dpi(LSaver *saver, GString *name, gpointer dpi, gpointer data) {
+    LDataManager *self = L_DATA_MANAGER(data);
+    Dpi *dp = (Dpi*) dpi;
+
+    l_bus_manager_set_dpi(self->bus_manager, name, *dp);
+}
+
+static void
+callback_set_hires(LSaver *saver, GString *name, gboolean value, gpointer data) {
+    LDataManager *self = L_DATA_MANAGER(data);
+    l_bus_manager_set_hires(self->bus_manager, name, value);
+}
+
+static void
+callback_set_invert(LSaver *saver, GString *name, gboolean value, gpointer data) {
+    LDataManager *self = L_DATA_MANAGER(data);
+    l_bus_manager_set_invert(self->bus_manager, name, value);
+}
+
+static void
+callback_set_target(LSaver *saver, GString *name, gboolean value, gpointer data) {
+    LDataManager *self = L_DATA_MANAGER(data);
+    l_bus_manager_set_target(self->bus_manager, name, value);
+}
+
+static void
+linc_signal(LDataManager *self) {
+    g_signal_connect(self->saver, "set-dpi", G_CALLBACK(callback_set_dpi), self);
+    g_signal_connect(self->saver, "set-hires", G_CALLBACK(callback_set_hires), self);
+    g_signal_connect(self->saver, "set-invert", G_CALLBACK(callback_set_invert), self);
+    g_signal_connect(self->saver, "set-target", G_CALLBACK(callback_set_target), self);
 }
 
 GSList *
@@ -153,7 +188,7 @@ l_data_manager_get_devices_list(LDataManager *self, GSList *descriptions_list) {
         device = find_device(self->bus_manager, devices,
                              description->full_name);
         if (device != NULL) {
-            fill_description(description, self->bus_manager, device);
+            fill_description(description, self->bus_manager, self->saver, device);
             sorted_list = g_slist_append(sorted_list, description);
         }
 
@@ -172,5 +207,8 @@ l_data_manager_class_init(LDataManagerClass *klass) {}
 
 static void
 l_data_manager_init(LDataManager *self) {
+    self->saver = l_saver_new();
     self->bus_manager = l_bus_manager_new();
+
+    linc_signal(self);
 }
