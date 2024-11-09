@@ -23,6 +23,7 @@ logiops_sources = [
   'data/l-data-manager.c',
   'data/l-bus-manager.c',
   'data/l-key-code.c',
+  'types/l-saver.c',
   'types/l-device.c',
   'types/l-device-concept.c',
 ]

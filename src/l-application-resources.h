@@ -37,6 +37,7 @@ typedef enum  {
 
 #include <adwaita.h>
 #include "types/description-types.h"
+#include "types/l-saver.h"
 #include "types/l-device.h"
 #include "types/l-device-concept.h"
 #include "ui/device-description/device-description.h"
