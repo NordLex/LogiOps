@@ -23,6 +23,7 @@
 struct _LDevice {
     GObject parent_instance;
 
+    LSaver *saver;
     GString *name;
     gboolean settings_is_changed;
     Dpi dpi;
@@ -108,11 +109,21 @@ l_device_get_hiresscroll(LDevice *self) {
 }
 
 void
-l_device_set_hiresscroll(LDevice *self, gboolean hires, gboolean invert, gboolean target) {
+l_device_set_hiresscroll_hires(LDevice *self, gboolean hires) {
     self->hiresscroll->hires = hires;
+    l_saver_set_hires(self->saver, self->name, hires);
+}
+
+void
+l_device_set_hiresscroll_invert(LDevice *self, gboolean invert) {
     self->hiresscroll->invert = invert;
+    l_saver_set_invert(self->saver, self->name, invert);
+}
+
+void
+l_device_set_hiresscroll_target(LDevice *self, gboolean target) {
     self->hiresscroll->target = target;
-    self->settings_is_changed = TRUE;
+    l_saver_set_target(self->saver, self->name, target);
 }
 
 /**
@@ -128,13 +139,10 @@ l_device_set_name(LDevice *self, const char *name) {
  * DPI
  **/
 void
-l_device_set_dpi(LDevice *self, gint dpi, gint min, gint max, gint step, gboolean range) {
+l_device_set_dpi(LDevice *self, gint dpi) {
     self->dpi.dpi = dpi;
-    self->dpi.min = 100;//min;
-    self->dpi.max = 3000;//max;
-    self->dpi.step = 20;//step;
-    self->dpi.range = TRUE;//range;
-    self->settings_is_changed = TRUE;
+
+    l_saver_set_dpi(self->saver, self->name, &self->dpi);
 }
 
 /**
@@ -164,8 +172,10 @@ l_device_get_buttons_conf(LDevice *self) {
 }
 
 LDevice *
-l_device_new(void) {
-    return g_object_new(L_TYPE_DEVICE, NULL);
+l_device_new(gpointer saver) {
+    LDevice *self = g_object_new(L_TYPE_DEVICE, NULL);
+    self->saver = L_SAVER(saver);
+    return self;
 }
 
 static void

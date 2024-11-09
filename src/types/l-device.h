@@ -35,7 +35,7 @@ void
 l_device_reset_settings_state(LDevice *self);
 
 LDevice *
-l_device_new(void);
+l_device_new(gpointer saver);
 
 GSList *
 l_device_get_buttons_conf(LDevice *self);
@@ -74,31 +74,22 @@ void
 l_device_set_name(LDevice *self, const char *name);
 
 void
-l_device_set_dpi(LDevice *self,
-                 gint dpi,
-                 gint min,
-                 gint max,
-                 gint step,
-                 gboolean range);
+l_device_set_dpi(LDevice *self, gint dpi);
 
 void
-l_device_set_smartshift(LDevice *self,
-                        gboolean on,
-                        gint threshold,
-                        gint torque);
+l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque);
 
 void
-l_device_set_hiresscroll(LDevice *self,
-                         gboolean hires,
-                         gboolean invert,
-                         gboolean target);
+l_device_set_hiresscroll_hires(LDevice *self, gboolean hires);
 
 void
-l_device_append_button(LDevice *self,
-                       gint sid,
-                       gint task_id,
-                       gboolean gesture_support,
-                       gboolean remappable,
-                       Action action);
+l_device_set_hiresscroll_invert(LDevice *self, gboolean invert);
+
+void
+l_device_set_hiresscroll_target(LDevice *self, gboolean target);
+
+void
+l_device_append_button(LDevice *self, gint sid, gint task_id,
+                       gboolean gesture_support, gboolean remappable, Action action);
 
 G_END_DECLS
