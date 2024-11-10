@@ -140,7 +140,7 @@ l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *
  * @return The execution status of the operation.
  * */
 int
-l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi);
+l_bus_manager_set_dpi(LBusManager *self, GString *device_name, guint16 dpi);
 
 /**
  * @brief Request set hires of HiresScroll.

@@ -146,7 +146,7 @@ callback_set_dpi(LSaver *saver, GString *name, gpointer dpi, gpointer data) {
     LDataManager *self = L_DATA_MANAGER(data);
     Dpi *dp = (Dpi*) dpi;
 
-    l_bus_manager_set_dpi(self->bus_manager, name, *dp);
+    l_bus_manager_set_dpi(self->bus_manager, name, (guint16) dp->dpi);
 }
 
 static void
