@@ -430,58 +430,6 @@ l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscrol
 }
 
 int
-l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi) {
-    GDBusProxy *dpi_proxy = get_dpi_proxy(self, device_name);
-    GVariant *parameters = g_variant_new("(qy)", (guint16) dpi.dpi, 0 /** Заглушка **/);
-
-    g_dbus_proxy_call(dpi_proxy,
-                      "SetDPI",
-                      parameters,
-                      G_DBUS_CALL_FLAGS_NONE,
-                      -1,
-                      NULL,
-                      NULL,
-                      NULL);
-    return 0;
-}
-
-int
-l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires) {
-    GError *error = NULL;
-    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
-    GVariant *value = g_variant_new("(b)", hires);
-
-    g_dbus_proxy_call_sync(hires_scroll_proxy,
-                           "SetHires",
-                           value,
-                           G_DBUS_CALL_FLAGS_NONE,
-                           -1,
-                           NULL,
-                           &error);
-
-    g_assert_no_error(error);
-    return 0;
-}
-
-int
-l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert) {
-    GError *error = NULL;
-    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
-    GVariant *value = g_variant_new("(b)", invert);
-
-    g_dbus_proxy_call_sync(hires_scroll_proxy,
-                           "SetInvert",
-                           value,
-                           G_DBUS_CALL_FLAGS_NONE,
-                           -1,
-                           NULL,
-                           &error);
-
-    g_assert_no_error(error);
-    return 0;
-}
-
-int
 l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target) {
     GError *error = NULL;
     GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
@@ -595,6 +543,107 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *c
 }
 
 int
+l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action) {
+    Keypress *keypress = g_malloc(sizeof(Keypress));
+    CycleDPI *cycle_dpi = g_malloc(sizeof(CycleDPI));
+
+    if (!request_keypress_action(self, button, keypress)) {
+        action->type = KEYPRESS;
+        action->self = keypress;
+    } else if (!request_cycle_dpi_action(self, button, cycle_dpi)) {
+        action->type = CYCLE_DPI;
+        action->self = cycle_dpi;
+    } else {
+        action->type = DEFAULT;
+        action->self = NULL;
+    }
+
+    return 0;
+}
+
+GSList *
+l_bus_manager_request_buttons_list(LBusManager *self, GString *device) {
+    GVariant *result;
+    GError *error = NULL;
+    GVariantIter *iter;
+    gchar *path;
+    GDBusProxy *device_proxy = get_buttons_proxy(self, device);
+
+    result = g_dbus_proxy_call_sync(device_proxy,
+                                    "Enumerate",
+                                    NULL,
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(ao)", &iter);
+    self->button_paths = NULL;
+
+    while (g_variant_iter_loop(iter, "o", &path))
+        self->button_paths = g_slist_append(self->button_paths, g_string_new(path));
+
+    g_variant_iter_free(iter);
+    g_variant_unref(result);
+
+    return self->button_paths;
+}
+
+/**Setters*/
+int
+l_bus_manager_set_dpi(LBusManager *self, GString *device_name, guint16 dpi) {
+    GDBusProxy *dpi_proxy = get_dpi_proxy(self, device_name);
+    GVariant *parameters = g_variant_new("(qy)", dpi, 0 /** Заглушка **/);
+
+    g_dbus_proxy_call(dpi_proxy,
+                      "SetDPI",
+                      parameters,
+                      G_DBUS_CALL_FLAGS_NONE,
+                      -1,
+                      NULL,
+                      NULL,
+                      NULL);
+    return 0;
+}
+
+int
+l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires) {
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", hires);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetHires",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
+    return 0;
+}
+
+int
+l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert) {
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", invert);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetInvert",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
+    return 0;
+}
+
+int
 l_bus_manager_set_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
     GError *error = NULL;
     GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_keypress);
@@ -652,54 +701,6 @@ l_bus_manager_set_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI 
     g_assert_no_error(error);
 
     return 0;
-}
-
-int
-l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action) {
-    Keypress *keypress = g_malloc(sizeof(Keypress));
-    CycleDPI *cycle_dpi = g_malloc(sizeof(CycleDPI));
-
-    if (!request_keypress_action(self, button, keypress)) {
-        action->type = KEYPRESS;
-        action->self = keypress;
-    } else if (!request_cycle_dpi_action(self, button, cycle_dpi)) {
-        action->type = CYCLE_DPI;
-        action->self = cycle_dpi;
-    } else {
-        action->type = DEFAULT;
-        action->self = NULL;
-    }
-
-    return 0;
-}
-
-GSList *
-l_bus_manager_request_buttons_list(LBusManager *self, GString *device) {
-    GVariant *result;
-    GError *error = NULL;
-    GVariantIter *iter;
-    gchar *path;
-    GDBusProxy *device_proxy = get_buttons_proxy(self, device);
-
-    result = g_dbus_proxy_call_sync(device_proxy,
-                                    "Enumerate",
-                                    NULL,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
-    g_assert_no_error(error);
-
-    g_variant_get(result, "(ao)", &iter);
-    self->button_paths = NULL;
-
-    while (g_variant_iter_loop(iter, "o", &path))
-        self->button_paths = g_slist_append(self->button_paths, g_string_new(path));
-
-    g_variant_iter_free(iter);
-    g_variant_unref(result);
-
-    return self->button_paths;
 }
 
 LBusManager *
