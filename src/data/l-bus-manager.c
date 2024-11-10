@@ -25,7 +25,9 @@
 #define logid_devices               "pizza.pixl.LogiOps.Devices"
 #define logid_device                "pizza.pixl.LogiOps.Device"
 #define logid_smart_shift           "pizza.pixl.LogiOps.SmartShift"
+#define logid_hiresscroll           "pizza.pixl.LogiOps.HiresScroll"
 #define logid_button                "pizza.pixl.LogiOps.Button"
+#define logid_buttons               "pizza.pixl.LogiOps.Buttons"
 #define iface_action_keypress       "pizza.pixl.LogiOps.Action.Keypress"
 #define iface_action_gesture        "pizza.pixl.LogiOps.Action.Gesture"
 #define iface_action_cycle_dpi      "pizza.pixl.LogiOps.Action.CycleDPI"
@@ -46,10 +48,8 @@ G_DEFINE_FINAL_TYPE(LBusManager, l_bus_manager, G_TYPE_OBJECT)
 
 static GDBusProxy *
 get_property_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *property_proxy;
     GError *error = NULL;
-
-    property_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *property_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                            G_DBUS_PROXY_FLAGS_NONE,
                                            NULL,
                                            logid_name,
@@ -64,10 +64,8 @@ get_property_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_dpi_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *dpi_proxy;
     GError *error = NULL;
-
-    dpi_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *dpi_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                       G_DBUS_PROXY_FLAGS_NONE,
                                       NULL,
                                       logid_name,
@@ -82,17 +80,15 @@ get_dpi_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_smartshift_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *smartshift_proxy;
     GError *error = NULL;
-
-    smartshift_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                             G_DBUS_PROXY_FLAGS_NONE,
-                                             NULL,
-                                             logid_name,
-                                             device->str,
-                                             "pizza.pixl.LogiOps.SmartShift",
-                                             NULL,
-                                             &error);
+    GDBusProxy *smartshift_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+                                                         G_DBUS_PROXY_FLAGS_NONE,
+                                                         NULL,
+                                                         logid_name,
+                                                         device->str,
+                                                         logid_smart_shift,
+                                                         NULL,
+                                                         &error);
     g_assert_no_error(error);
 
     return smartshift_proxy;
@@ -100,15 +96,13 @@ get_smartshift_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_hiresscroll_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *hiresscroll_proxy;
     GError *error = NULL;
-
-    hiresscroll_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *hiresscroll_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                               G_DBUS_PROXY_FLAGS_NONE,
                                               NULL,
                                               logid_name,
                                               device->str,
-                                              "pizza.pixl.LogiOps.HiresScroll",
+                                              logid_hiresscroll,
                                               NULL,
                                               &error);
     g_assert_no_error(error);
@@ -118,10 +112,8 @@ get_hiresscroll_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_thumb_wheel_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *thumb_wheel_proxy;
     GError *error = NULL;
-
-    thumb_wheel_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *thumb_wheel_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                               G_DBUS_PROXY_FLAGS_NONE,
                                               NULL,
                                               logid_name,
@@ -136,15 +128,13 @@ get_thumb_wheel_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_buttons_proxy(LBusManager *self, GString *device) {
-    GDBusProxy *buttons_proxy;
     GError *error = NULL;
-
-    buttons_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *buttons_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                           G_DBUS_PROXY_FLAGS_NONE,
                                           NULL,
                                           logid_name,
                                           device->str,
-                                          "pizza.pixl.LogiOps.Buttons",
+                                          logid_buttons,
                                           NULL,
                                           &error);
     g_assert_no_error(error);
@@ -154,17 +144,15 @@ get_buttons_proxy(LBusManager *self, GString *device) {
 
 static GDBusProxy *
 get_button_proxy(LBusManager *self, GString *button) {
-    GDBusProxy *button_proxy;
     GError *error = NULL;
-
-    button_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                          G_DBUS_PROXY_FLAGS_NONE,
-                                          NULL,
-                                          logid_name,
-                                          button->str,
-                                          "pizza.pixl.LogiOps.Button",
-                                          NULL,
-                                          &error);
+    GDBusProxy *button_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+                                         G_DBUS_PROXY_FLAGS_NONE,
+                                         NULL,
+                                         logid_name,
+                                         button->str,
+                                         logid_button,
+                                         NULL,
+                                         &error);
     g_assert_no_error(error);
 
     return button_proxy;
@@ -188,15 +176,31 @@ get_action_proxy(LBusManager *self, GString *button, const char *iface_name) {
     return action_proxy;
 }
 
-GSList *
-l_bus_manager_request_devices_list(LBusManager *self) {
+static void
+torque_support_request(GDBusProxy *proxy, gboolean *state) {
+    GVariant *arguments = g_variant_new("(ss)", logid_smart_shift, "TorqueSupport");
+    GError *error = NULL;
+    GVariant *result = g_dbus_proxy_call_sync(proxy,
+                                    "Get",
+                                    arguments,
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(v)", &result);
+    g_variant_get(result, "b", state);
+    g_variant_unref(result);
+}
+
+static void
+smartshift_get_config(GDBusProxy *proxy, guchar *active, guchar *threshold, guchar *torque) {
     GVariant *result;
     GError *error = NULL;
-    GVariantIter *iter;
-    gchar *path;
 
-    result = g_dbus_proxy_call_sync(self->logid_proxy,
-                                    "Enumerate",
+    result = g_dbus_proxy_call_sync(proxy,
+                                    "GetConfig",
                                     NULL,
                                     G_DBUS_CALL_FLAGS_NONE,
                                     -1,
@@ -204,39 +208,70 @@ l_bus_manager_request_devices_list(LBusManager *self) {
                                     &error);
     g_assert_no_error(error);
 
-    g_variant_get(result, "(ao)", &iter);
+    g_variant_get(result, "(yyy)", active, threshold, torque);
+}
 
-    while (g_variant_iter_loop(iter, "o", &path))
-        self->device_paths = g_slist_append(self->device_paths, g_string_new(path));
+static int
+request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
+    GError *error = NULL;
+    GVariantIter *iter;
+    GSList *keys = NULL;
+    gchar *key;
+    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_keypress);
+    GVariant *result = g_dbus_proxy_call_sync(action_proxy,
+                                              "GetKeys",
+                                              NULL,
+                                              G_DBUS_CALL_FLAGS_NONE,
+                                              -1,
+                                              NULL,
+                                              &error);
 
+    if (g_error_matches(error, 146, 19)) return 1;
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(as)", &iter);
+
+    while (g_variant_iter_loop(iter, "s", &key)) {
+        guint *key_code = l_key_code_kernel_to_gdk(self->key_code_converter, key);
+        keys = g_slist_append(keys, GUINT_TO_POINTER(*key_code));
+    }
+
+    if (keypress != NULL) keypress->keys = keys;
     g_variant_iter_free(iter);
     g_variant_unref(result);
 
-    return self->device_paths;
+    return 0;
 }
 
-GString *
-l_bus_manager_request_device_name(LBusManager *self, GString *device) {
-    GDBusProxy *property_proxy;
-    GVariant *result;
+static int
+request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi) {
     GError *error = NULL;
-    gchar *device_name;
+    GVariantIter *iter;
+    GSList *dpis = NULL;
+    guint dpi;
+    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_cycle_dpi);
+    GVariant *result = g_dbus_proxy_call_sync(action_proxy,
+                                              "GetDPIs",
+                                              NULL,
+                                              G_DBUS_CALL_FLAGS_NONE,
+                                              -1,
+                                              NULL,
+                                              &error);
 
-    property_proxy = get_property_proxy(self, device);
+    if (g_error_matches(error, 146, 19)) return 1;
 
-    result = g_dbus_proxy_call_sync(property_proxy,
-                                    "Get",
-                                    g_variant_new("(ss)", logid_device, "Name"),
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
     g_assert_no_error(error);
-    g_variant_get(result, "(v)", &result);
-    g_variant_get(result, "s", &device_name);
+
+    g_variant_get(result, "(ai)", &iter);
+
+    while (g_variant_iter_loop(iter, "i", &dpi))
+        dpis = g_slist_append(dpis, GUINT_TO_POINTER(dpi));
+
+    if (cycle_dpi != NULL) cycle_dpi->dpis = dpis;
+    g_variant_iter_free(iter);
     g_variant_unref(result);
 
-    return g_string_new(device_name);
+    return 0;
 }
 
 static void
@@ -293,6 +328,57 @@ callback_get_dpis(GObject *object, GAsyncResult *result, gpointer data) {
     }
 
     g_variant_unref(variant);
+}
+
+GSList *
+l_bus_manager_request_devices_list(LBusManager *self) {
+    GVariant *result;
+    GError *error = NULL;
+    GVariantIter *iter;
+    gchar *path;
+
+    result = g_dbus_proxy_call_sync(self->logid_proxy,
+                                    "Enumerate",
+                                    NULL,
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+
+    g_variant_get(result, "(ao)", &iter);
+
+    while (g_variant_iter_loop(iter, "o", &path))
+        self->device_paths = g_slist_append(self->device_paths, g_string_new(path));
+
+    g_variant_iter_free(iter);
+    g_variant_unref(result);
+
+    return self->device_paths;
+}
+
+GString *
+l_bus_manager_request_device_name(LBusManager *self, GString *device) {
+    GDBusProxy *property_proxy;
+    GVariant *result;
+    GError *error = NULL;
+    gchar *device_name;
+
+    property_proxy = get_property_proxy(self, device);
+
+    result = g_dbus_proxy_call_sync(property_proxy,
+                                    "Get",
+                                    g_variant_new("(ss)", logid_device, "Name"),
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    -1,
+                                    NULL,
+                                    &error);
+    g_assert_no_error(error);
+    g_variant_get(result, "(v)", &result);
+    g_variant_get(result, "s", &device_name);
+    g_variant_unref(result);
+
+    return g_string_new(device_name);
 }
 
 int
@@ -427,43 +513,6 @@ l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean targe
     return 0;
 }
 
-static void
-torque_support_request(GDBusProxy *proxy, gboolean *state) {
-    GVariant *result;
-    GVariant *arguments = g_variant_new("(ss)", logid_smart_shift, "TorqueSupport");
-    GError *error = NULL;
-
-    result = g_dbus_proxy_call_sync(proxy,
-                                    "Get",
-                                    arguments,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
-    g_assert_no_error(error);
-
-    g_variant_get(result, "(v)", &result);
-    g_variant_get(result, "b", state);
-    g_variant_unref(result);
-}
-
-static void
-smartshift_get_config(GDBusProxy *proxy, guchar *active, guchar *threshold, guchar *torque) {
-    GVariant *result;
-    GError *error = NULL;
-
-    result = g_dbus_proxy_call_sync(proxy,
-                                    "GetConfig",
-                                    NULL,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
-    g_assert_no_error(error);
-
-    g_variant_get(result, "(yyy)", active, threshold, torque);
-}
-
 int
 l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift) {
     GDBusProxy *proxy, *property;
@@ -508,14 +557,11 @@ l_bus_manager_request_thumb_wheel(LBusManager *self, GString *device,
 }
 
 int
-l_bus_manager_request_button_info(LBusManager *self, GString *button,
-                                  guint16 *cid, guint16 *task_id,
+l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *cid, guint16 *task_id,
                                   gboolean *gesture_support, gboolean *remappable) {
-    GDBusProxy *property_proxy;
     GVariant *result;
     GError *error = NULL;
-
-    property_proxy = get_property_proxy(self, button);
+    GDBusProxy *property_proxy = get_property_proxy(self, button);
 
     result = g_dbus_proxy_call_sync(property_proxy,
                                     "Get",
@@ -568,40 +614,6 @@ l_bus_manager_request_button_info(LBusManager *self, GString *button,
     return 0;
 }
 
-static int
-request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
-    GVariant *result;
-    GError *error = NULL;
-    GVariantIter *iter;
-    GSList *keys = NULL;
-    gchar *key;
-    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_keypress);
-
-    result = g_dbus_proxy_call_sync(action_proxy,
-                                    "GetKeys",
-                                    NULL,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
-
-    if (g_error_matches(error, 146, 19)) return 1;
-    g_assert_no_error(error);
-
-    g_variant_get(result, "(as)", &iter);
-
-    while (g_variant_iter_loop(iter, "s", &key)) {
-        guint *key_code = l_key_code_kernel_to_gdk(self->key_code_converter, key);
-        keys = g_slist_append(keys, GUINT_TO_POINTER(*key_code));
-    }
-
-    keypress->keys = keys;
-    g_variant_iter_free(iter);
-    g_variant_unref(result);
-
-    return 0;
-}
-
 int
 l_bus_manager_set_keypress_action(LBusManager *self, GString *button, Keypress *keypress) {
     GError *error = NULL;
@@ -629,39 +641,6 @@ l_bus_manager_set_keypress_action(LBusManager *self, GString *button, Keypress *
                            &error);
 
     g_assert_no_error(error);
-
-    return 0;
-}
-
-static int
-request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi) {
-    GVariant *result;
-    GError *error = NULL;
-    GVariantIter *iter;
-    GSList *dpis = NULL;
-    guint dpi;
-    GDBusProxy *action_proxy = get_action_proxy(self, button, iface_action_cycle_dpi);
-
-    result = g_dbus_proxy_call_sync(action_proxy,
-                                    "GetDPIs",
-                                    NULL,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
-
-    if (g_error_matches(error, 146, 19)) return 1;
-
-    g_assert_no_error(error);
-
-    g_variant_get(result, "(ai)", &iter);
-
-    while (g_variant_iter_loop(iter, "i", &dpi))
-        dpis = g_slist_append(dpis, GUINT_TO_POINTER(dpi));
-
-    cycle_dpi->dpis = dpis;
-    g_variant_iter_free(iter);
-    g_variant_unref(result);
 
     return 0;
 }
