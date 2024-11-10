@@ -262,8 +262,9 @@ init_content(LPrefPanel * self, gpointer device_conf) {
     init_dpi(device, self->pref_container);
 }
 
+/**Public part*/
 void
-centered(LPrefPanel *self, int width) {
+l_pref_panel_centered(LPrefPanel *self, int width) {
     g_object_set(self,
                  "halign", GTK_ALIGN_CENTER,
                  "valign", GTK_ALIGN_START,
@@ -271,7 +272,6 @@ centered(LPrefPanel *self, int width) {
     gtk_widget_set_size_request(GTK_WIDGET(self), (int) (width * 0.7), -1);
 }
 
-/**Public part*/
 void
 l_pref_panel_expand(LPrefPanel *self) {
     g_object_set(self,
