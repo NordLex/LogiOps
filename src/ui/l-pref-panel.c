@@ -37,7 +37,7 @@ typedef struct {
     GtkWidget *expander;
 } ExpanderSwitch;
 
-
+/**Callbacks*/
 static void
 callback_set_sm_state(GtkSwitch *widget, gboolean state, gpointer data) {
     ExpanderSwitch *exp_switch = (ExpanderSwitch *) data;
@@ -93,8 +93,9 @@ callback_save_button(GtkWidget *button, gpointer data) {
     g_print("== Save ==\n");
 }
 
+/**Init data methods*/
 static void
-l_pref_panel_init_dpi(LDevice *device, GtkWidget *parent) {
+init_dpi(LDevice *device, GtkWidget *parent) {
     Dpi *dpi = l_device_get_dpi(device);
     GtkWidget *dpi_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *title = gtk_label_new(NULL);
@@ -115,7 +116,7 @@ l_pref_panel_init_dpi(LDevice *device, GtkWidget *parent) {
 }
 
 static void
-l_pref_panel_init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
+init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     GtkWidget *main_label = gtk_label_new(NULL);
     ExpanderSwitch *exp_switch = g_malloc(sizeof(ExpanderSwitch));
@@ -168,7 +169,7 @@ l_pref_panel_init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
 }
 
 static void
-l_pref_panel_init_hiresscroll(LDevice *device, GtkWidget *parent) {
+init_hiresscroll(LDevice *device, GtkWidget *parent) {
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
@@ -239,7 +240,7 @@ l_pref_panel_init_hiresscroll(LDevice *device, GtkWidget *parent) {
 }
 
 static void
-l_pref_panel_clear_content(GtkWidget *container) {
+clear_content(GtkWidget *container) {
     GtkWidget *child = gtk_widget_get_first_child(container);
     while (child != NULL) {
         gtk_box_remove(GTK_BOX(container), child);
@@ -248,21 +249,21 @@ l_pref_panel_clear_content(GtkWidget *container) {
 }
 
 static void
-l_pref_panel_init_content(LPrefPanel * self, gpointer device_conf) {
+init_content(LPrefPanel * self, gpointer device_conf) {
     LDevice *device = L_DEVICE(device_conf);
     Smartshift *smartshift = l_device_get_smartshift(device);
     Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 
     g_signal_connect(G_OBJECT(self->save_button), "clicked", G_CALLBACK(callback_save_button), device);
 
-    l_pref_panel_clear_content(self->pref_container);
-    l_pref_panel_init_hiresscroll(device, self->pref_container);
-    l_pref_panel_init_smartshift(smartshift, self->pref_container);
-    l_pref_panel_init_dpi(device, self->pref_container);
+    clear_content(self->pref_container);
+    init_hiresscroll(device, self->pref_container);
+    init_smartshift(smartshift, self->pref_container);
+    init_dpi(device, self->pref_container);
 }
 
 void
-l_pref_panel_centered(LPrefPanel *self, int width) {
+centered(LPrefPanel *self, int width) {
     g_object_set(self,
                  "halign", GTK_ALIGN_CENTER,
                  "valign", GTK_ALIGN_START,
@@ -270,6 +271,7 @@ l_pref_panel_centered(LPrefPanel *self, int width) {
     gtk_widget_set_size_request(GTK_WIDGET(self), (int) (width * 0.7), -1);
 }
 
+/**Public part*/
 void
 l_pref_panel_expand(LPrefPanel *self) {
     g_object_set(self,
@@ -280,7 +282,7 @@ l_pref_panel_expand(LPrefPanel *self) {
 
 void
 l_pref_panel_configure(LPrefPanel * self, gpointer device_conf) {
-    l_pref_panel_init_content(self, device_conf);
+    init_content(self, device_conf);
 }
 
 LPrefPanel *
