@@ -119,12 +119,8 @@ l_bus_manager_request_buttons_list(LBusManager *self,
  * @return The execution status of the operation.
  * */
 int
-l_bus_manager_request_button_info(LBusManager *self,
-                                  GString *button,
-                                  guint16 *cid,
-                                  guint16 *task_id,
-                                  gboolean *gesture_support,
-                                  gboolean *remappable);
+l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *cid, guint16 *task_id,
+                                  gboolean *gesture_support, gboolean *remappable);
 
 /**
  * @brief Request button action.
@@ -184,9 +180,7 @@ l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean targe
  * @return The execution status of the operation.
  * */
 int
-l_bus_manager_set_keypress_action(LBusManager *self,
-                                  GString *button,
-                                  Keypress *keypress);
+l_bus_manager_set_keypress_action(LBusManager *self, GString *button, Keypress *keypress);
 
 /**
  * @brief Set Cycle DPI action.
@@ -196,8 +190,6 @@ l_bus_manager_set_keypress_action(LBusManager *self,
  * @return The execution status of the operation.
  * */
 int
-l_bus_manager_set_cycle_dpi_action(LBusManager *self,
-                                   GString *button,
-                                   CycleDPI *cycle_dpi);
+l_bus_manager_set_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi);
 
 G_END_DECLS
