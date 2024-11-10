@@ -136,15 +136,43 @@ l_bus_manager_request_button_info(LBusManager *self,
 int
 l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *action);
 
+/**
+ * @brief Request set DPI.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device_name Path to the device.
+ * @param [in] dpi guint16 dpi value.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_set_dpi(LBusManager *self, GString *device_name, Dpi dpi);
 
+/**
+ * @brief Request set hires of HiresScroll.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device_name Path to the device.
+ * @param [in] hires boolean hires state.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_set_hires(LBusManager *self, GString *device_name, gboolean hires);
 
+/**
+ * @brief Request set invert of HiresScroll.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device_name Path to the device.
+ * @param [in] invert boolean invert state.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean invert);
 
+/**
+ * @brief Request set target of HiresScroll.
+ * @param [in] self D-BUS manager instance.
+ * @param [in] device_name Path to the device.
+ * @param [in] target boolean target state.
+ * @return The execution status of the operation.
+ * */
 int
 l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target);
 

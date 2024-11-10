@@ -270,6 +270,7 @@ request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi
     return 0;
 }
 
+/**Callbacks*/
 static void
 callback_get_dpi(GObject *object, GAsyncResult *result, gpointer data) {
     GDBusProxy *proxy = G_DBUS_PROXY(object);
@@ -324,6 +325,7 @@ callback_get_dpis(GObject *object, GAsyncResult *result, gpointer data) {
     g_variant_unref(variant);
 }
 
+/**Getters*/
 GSList *
 l_bus_manager_request_devices_list(LBusManager *self) {
     GError *error = NULL;
