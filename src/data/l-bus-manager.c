@@ -160,10 +160,8 @@ get_button_proxy(LBusManager *self, GString *button) {
 
 static GDBusProxy *
 get_action_proxy(LBusManager *self, GString *button, const char *iface_name) {
-    GDBusProxy *action_proxy;
     GError *error = NULL;
-
-    action_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+    GDBusProxy *action_proxy = g_dbus_proxy_new_sync(self->bus_connection,
                                          G_DBUS_PROXY_FLAGS_NONE,
                                          NULL,
                                          logid_name,
@@ -196,10 +194,8 @@ torque_support_request(GDBusProxy *proxy, gboolean *state) {
 
 static void
 smartshift_get_config(GDBusProxy *proxy, guchar *active, guchar *threshold, guchar *torque) {
-    GVariant *result;
     GError *error = NULL;
-
-    result = g_dbus_proxy_call_sync(proxy,
+    GVariant *result = g_dbus_proxy_call_sync(proxy,
                                     "GetConfig",
                                     NULL,
                                     G_DBUS_CALL_FLAGS_NONE,
@@ -295,13 +291,11 @@ static void
 callback_get_dpis(GObject *object, GAsyncResult *result, gpointer data) {
     GDBusProxy *proxy = G_DBUS_PROXY(object);
     Dpi *dpi = (Dpi *) data;
-    GVariant *variant;
     GError *error = NULL;
     GVariantIter *dpi_iter;
     guint16 dpi_step, dpis;
     gboolean range;
-
-    variant = g_dbus_proxy_call_finish(proxy, result, &error);
+    GVariant *variant = g_dbus_proxy_call_finish(proxy, result, &error);
 
     if (error != NULL && !g_error_matches(error, G_IO_ERROR, G_IO_ERROR_CANCELLED)) {
         g_warning("Failed to read DPI`s: %s", error->message);
@@ -332,12 +326,10 @@ callback_get_dpis(GObject *object, GAsyncResult *result, gpointer data) {
 
 GSList *
 l_bus_manager_request_devices_list(LBusManager *self) {
-    GVariant *result;
     GError *error = NULL;
     GVariantIter *iter;
     gchar *path;
-
-    result = g_dbus_proxy_call_sync(self->logid_proxy,
+    GVariant *result = g_dbus_proxy_call_sync(self->logid_proxy,
                                     "Enumerate",
                                     NULL,
                                     G_DBUS_CALL_FLAGS_NONE,
@@ -359,14 +351,10 @@ l_bus_manager_request_devices_list(LBusManager *self) {
 
 GString *
 l_bus_manager_request_device_name(LBusManager *self, GString *device) {
-    GDBusProxy *property_proxy;
-    GVariant *result;
     GError *error = NULL;
     gchar *device_name;
-
-    property_proxy = get_property_proxy(self, device);
-
-    result = g_dbus_proxy_call_sync(property_proxy,
+    GDBusProxy *property_proxy = get_property_proxy(self, device);
+    GVariant *result = g_dbus_proxy_call_sync(property_proxy,
                                     "Get",
                                     g_variant_new("(ss)", logid_device, "Name"),
                                     G_DBUS_CALL_FLAGS_NONE,
@@ -420,12 +408,10 @@ l_bus_manager_request_dpi(LBusManager *self, GString *device, Dpi *dpi) {
 
 int
 l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscroll *hiresscroll) {
-    GVariant *result;
     GError *error = NULL;
     GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device);
     gboolean hires, invert, target;
-
-    result = g_dbus_proxy_call_sync(hires_scroll_proxy,
+    GVariant *result = g_dbus_proxy_call_sync(hires_scroll_proxy,
                                     "GetConfig",
                                     NULL,
                                     G_DBUS_CALL_FLAGS_NONE,
@@ -515,12 +501,10 @@ l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean targe
 
 int
 l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift) {
-    GDBusProxy *proxy, *property;
     gboolean torque_support;
     guchar active, threshold, torque;
-
-    property = get_property_proxy(self, device);
-    proxy = get_smartshift_proxy(self, device);
+    GDBusProxy *property = get_property_proxy(self, device);
+    GDBusProxy *proxy = get_smartshift_proxy(self, device);
 
     torque_support_request(property, &torque_support);
     smartshift_get_config(proxy, &active, &threshold, &torque);
@@ -536,11 +520,9 @@ l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift 
 int
 l_bus_manager_request_thumb_wheel(LBusManager *self, GString *device,
                                   gboolean *divert, gboolean *invert) {
-    GDBusProxy *thumb_wheel_proxy;
     GVariant *result;
     GError *error = NULL;
-
-    thumb_wheel_proxy = get_thumb_wheel_proxy(self, device);
+    GDBusProxy *thumb_wheel_proxy = get_thumb_wheel_proxy(self, device);
 
     result = g_dbus_proxy_call_sync(thumb_wheel_proxy,
                                     "GetConfig",
@@ -559,11 +541,9 @@ l_bus_manager_request_thumb_wheel(LBusManager *self, GString *device,
 int
 l_bus_manager_request_button_info(LBusManager *self, GString *button, guint16 *cid, guint16 *task_id,
                                   gboolean *gesture_support, gboolean *remappable) {
-    GVariant *result;
     GError *error = NULL;
     GDBusProxy *property_proxy = get_property_proxy(self, button);
-
-    result = g_dbus_proxy_call_sync(property_proxy,
+    GVariant *result = g_dbus_proxy_call_sync(property_proxy,
                                     "Get",
                                     g_variant_new("(ss)", logid_button, "ControlID"),
                                     G_DBUS_CALL_FLAGS_NONE,
@@ -695,13 +675,11 @@ l_bus_manager_request_button_action(LBusManager *self, GString *button, Action *
 
 GSList *
 l_bus_manager_request_buttons_list(LBusManager *self, GString *device) {
-    GDBusProxy *device_proxy;
     GVariant *result;
     GError *error = NULL;
     GVariantIter *iter;
     gchar *path;
-
-    device_proxy = get_buttons_proxy(self, device);
+    GDBusProxy *device_proxy = get_buttons_proxy(self, device);
 
     result = g_dbus_proxy_call_sync(device_proxy,
                                     "Enumerate",
