@@ -252,7 +252,6 @@ static void
 init_content(LPrefPanel * self, gpointer device_conf) {
     LDevice *device = L_DEVICE(device_conf);
     Smartshift *smartshift = l_device_get_smartshift(device);
-    Hiresscroll *hiresscroll = l_device_get_hiresscroll(device);
 
     g_signal_connect(G_OBJECT(self->save_button), "clicked", G_CALLBACK(callback_save_button), device);
 
