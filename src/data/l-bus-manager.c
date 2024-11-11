@@ -432,24 +432,6 @@ l_bus_manager_request_hiresscroll(LBusManager *self, GString *device, Hiresscrol
 }
 
 int
-l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target) {
-    GError *error = NULL;
-    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
-    GVariant *value = g_variant_new("(b)", target);
-
-    g_dbus_proxy_call_sync(hires_scroll_proxy,
-                           "SetTarget",
-                           value,
-                           G_DBUS_CALL_FLAGS_NONE,
-                           -1,
-                           NULL,
-                           &error);
-
-    g_assert_no_error(error);
-    return 0;
-}
-
-int
 l_bus_manager_request_smartshift(LBusManager *self, GString *device, Smartshift *smartshift) {
     gboolean torque_support;
     guchar active, threshold, torque;
@@ -635,6 +617,24 @@ l_bus_manager_set_invert(LBusManager *self, GString *device_name, gboolean inver
 
     g_dbus_proxy_call_sync(hires_scroll_proxy,
                            "SetInvert",
+                           value,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1,
+                           NULL,
+                           &error);
+
+    g_assert_no_error(error);
+    return 0;
+}
+
+int
+l_bus_manager_set_target(LBusManager *self, GString *device_name, gboolean target) {
+    GError *error = NULL;
+    GDBusProxy *hires_scroll_proxy = get_hiresscroll_proxy(self, device_name);
+    GVariant *value = g_variant_new("(b)", target);
+
+    g_dbus_proxy_call_sync(hires_scroll_proxy,
+                           "SetTarget",
                            value,
                            G_DBUS_CALL_FLAGS_NONE,
                            -1,
