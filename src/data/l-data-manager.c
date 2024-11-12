@@ -142,11 +142,10 @@ fill_description(DeviceDescription *description, LBusManager *bus, LSaver *saver
 }
 
 static void
-callback_set_dpi(LSaver *saver, GString *name, gpointer dpi, gpointer data) {
+callback_set_dpi(LSaver *saver, GString *name, gint dpi, gpointer data) {
     LDataManager *self = L_DATA_MANAGER(data);
-    Dpi *dp = (Dpi*) dpi;
 
-    l_bus_manager_set_dpi(self->bus_manager, name, (guint16) dp->dpi);
+    l_bus_manager_set_dpi(self->bus_manager, name, (guint16) dpi);
 }
 
 static void

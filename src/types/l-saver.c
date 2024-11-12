@@ -34,7 +34,7 @@ G_DEFINE_FINAL_TYPE(LSaver, l_saver, G_TYPE_OBJECT)
 
 
 void
-l_saver_set_dpi(LSaver *self, GString *name, gpointer dpi) {
+l_saver_set_dpi(LSaver *self, GString *name, gint dpi) {
     g_signal_emit(self, signal_set_dpi, 0, name, dpi);
 }
 
@@ -61,17 +61,17 @@ l_saver_new(void) {
 static void
 l_saver_class_init(LSaverClass *klass) {
     signal_set_dpi = g_signal_new("set-dpi",
-                              G_TYPE_FROM_CLASS(klass),
-                              G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
-                              0,
-                              NULL,
-                              NULL,
-                              NULL,
-                              G_TYPE_NONE,
-                              2,
-                              G_TYPE_STRING,
-                              G_TYPE_POINTER,
-                              NULL);
+                                  G_TYPE_FROM_CLASS(klass),
+                                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                  0,
+                                  NULL,
+                                  NULL,
+                                  NULL,
+                                  G_TYPE_NONE,
+                                  2,
+                                  G_TYPE_STRING,
+                                  G_TYPE_INT,
+                                  NULL);
     signal_set_hires = g_signal_new("set-hires",
                                 G_TYPE_FROM_CLASS(klass),
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,

@@ -142,7 +142,7 @@ void
 l_device_set_dpi(LDevice *self, gint dpi) {
     self->dpi.dpi = dpi;
 
-    l_saver_set_dpi(self->saver, self->name, &self->dpi);
+    l_saver_set_dpi(self->saver, self->name, dpi);
 }
 
 /**

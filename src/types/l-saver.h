@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(LSaver, l_saver, L, SAVER, GObject)
 
 void
-l_saver_set_dpi(LSaver *self, GString *name, gpointer dpi);
+l_saver_set_dpi(LSaver *self, GString *name, gint dpi);
 
 void
 l_saver_set_hires(LSaver *self, GString *name, gboolean hires);
