@@ -77,7 +77,13 @@ void
 l_device_set_dpi(LDevice *self, gint dpi);
 
 void
-l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque);
+l_device_set_smartshift_state(LDevice *self, gboolean state);
+
+void
+l_device_set_smartshift_threshold(LDevice *self, gint threshold);
+
+void
+l_device_set_smartshift_torque(LDevice *self, gint torque);
 
 void
 l_device_set_hiresscroll_hires(LDevice *self, gboolean hires);

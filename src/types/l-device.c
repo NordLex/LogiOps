@@ -78,11 +78,21 @@ l_device_get_smartshift(LDevice *self) {
 }
 
 void
-l_device_set_smartshift(LDevice *self, gboolean on, gint threshold, gint torque) {
-    self->smartshift->on = on;
+l_device_set_smartshift_state(LDevice *self, gboolean state) {
+    self->smartshift->on = state;
+    l_saver_set_sm_state(self->saver, self->name, state);
+}
+
+void
+l_device_set_smartshift_threshold(LDevice *self, gint threshold) {
     self->smartshift->threshold = threshold;
+    l_saver_set_sm_threshold(self->saver, self->name, threshold);
+}
+
+void
+l_device_set_smartshift_torque(LDevice *self, gint torque) {
     self->smartshift->torque = torque;
-    self->settings_is_changed = TRUE;
+    l_saver_set_sm_torque(self->saver, self->name, torque);
 }
 
 /**
