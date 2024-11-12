@@ -139,6 +139,7 @@ init_dpi(LDevice *device, GtkWidget *parent) {
 static void
 init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+    GtkWidget *main_label_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *main_label = gtk_label_new(NULL);
     ExpanderSwitch *exp_switch = g_malloc(sizeof(ExpanderSwitch));
     GtkWidget *state_switch = gtk_switch_new();
@@ -159,6 +160,12 @@ init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
     g_object_set(torque_label, "hexpand", TRUE, "halign", GTK_ALIGN_START, NULL);
     g_object_set(torque_scale, "halign", GTK_ALIGN_END, NULL);
     g_object_set(main_box,  "name", "PrefGroup", "hexpand", TRUE, NULL);
+    g_object_set(main_label_box, "hexpand", TRUE, "halign", GTK_ALIGN_CENTER, NULL);
+
+    gtk_box_append(GTK_BOX(main_label_box), main_label);
+    gtk_box_append(GTK_BOX(main_label_box), state_switch);
+    gtk_widget_set_margin_start(GTK_WIDGET(main_label), 60);
+    gtk_widget_set_margin_end(GTK_WIDGET(main_label), 10);
 
     gtk_box_append(GTK_BOX(threshold_box), threshold_label);
     gtk_box_append(GTK_BOX(threshold_box), threshold_scale);
@@ -166,13 +173,12 @@ init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
     gtk_box_append(GTK_BOX(torque_box), torque_label);
     gtk_box_append(GTK_BOX(torque_box), torque_scale);
 
-    gtk_box_append(GTK_BOX(main_box), main_label);
+    gtk_box_append(GTK_BOX(main_box), main_label_box);
     gtk_label_set_markup(GTK_LABEL(main_label), "<span weight=\"bold\">Smartshift</span>");
     gtk_box_append(GTK_BOX(main_box), threshold_box);
     gtk_box_append(GTK_BOX(main_box), torque_box);
 
     exp_switch->state = &smartshift->on;
-    g_object_set(state_switch, "valign", GTK_ALIGN_CENTER, NULL);
 
     gtk_switch_set_active(GTK_SWITCH(state_switch), *exp_switch->state);
 
