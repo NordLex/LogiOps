@@ -137,7 +137,8 @@ init_dpi(LDevice *device, GtkWidget *parent) {
 }
 
 static void
-init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
+init_smartshift(LDevice *device, GtkWidget *parent) {
+    Smartshift *smartshift = l_device_get_smartshift(device);
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     GtkWidget *main_label_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *main_label = gtk_label_new(NULL);
@@ -188,9 +189,9 @@ init_smartshift(Smartshift *smartshift, GtkWidget *parent) {
     gtk_range_set_value(GTK_RANGE(threshold_scale), smartshift->threshold);
     gtk_range_set_value(GTK_RANGE(torque_scale), smartshift->torque);
 
-    g_signal_connect(state_switch, "state-set", G_CALLBACK(callback_set_sm_state), exp_switch);
-    //g_signal_connect(threshold_scale, "value-changed", G_CALLBACK(callback_set_value), &smartshift->threshold);
-    //g_signal_connect(torque_scale, "value-changed", G_CALLBACK(callback_set_value), &smartshift->torque);
+    g_signal_connect(state_switch, "state-set", G_CALLBACK(callback_set_smartshift_state), device);
+    g_signal_connect(threshold_scale, "value-changed", G_CALLBACK(callback_set_threshold), device);
+    g_signal_connect(torque_scale, "value-changed", G_CALLBACK(callback_set_torque), device);
 
     gtk_box_append(GTK_BOX(parent), main_box);
 }
@@ -278,13 +279,12 @@ clear_content(GtkWidget *container) {
 static void
 init_content(LPrefPanel * self, gpointer device_conf) {
     LDevice *device = L_DEVICE(device_conf);
-    Smartshift *smartshift = l_device_get_smartshift(device);
 
     g_signal_connect(G_OBJECT(self->save_button), "clicked", G_CALLBACK(callback_save_button), device);
 
     clear_content(self->pref_container);
     init_hiresscroll(device, self->pref_container);
-    init_smartshift(smartshift, self->pref_container);
+    init_smartshift(device, self->pref_container);
     init_dpi(device, self->pref_container);
 }
 
