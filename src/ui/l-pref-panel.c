@@ -83,6 +83,27 @@ callback_set_target(GtkSwitch *widget, gboolean state, gpointer data) {
 }
 
 static void
+callback_set_smartshift_state(GtkSwitch *widget, gboolean state, gpointer data) {
+    LDevice *device = L_DEVICE(data);
+    l_device_set_smartshift_state(device, state);
+    gtk_switch_set_active(widget, state);
+}
+
+static void
+callback_set_torque(GtkRange *widget, gpointer data) {
+    LDevice *device = L_DEVICE(data);
+    gint value = (gint) gtk_range_get_value(widget);
+    l_device_set_smartshift_torque(device, value);
+}
+
+static void
+callback_set_threshold(GtkRange *widget, gpointer data) {
+    LDevice *device = L_DEVICE(data);
+    gint value = (gint) gtk_range_get_value(widget);
+    l_device_set_smartshift_threshold(device, value);
+}
+
+static void
 callback_close_button(GtkWidget *button, gpointer data) {
     LPrefPanel *self = L_PREF_PANEL(data);
     g_object_set(G_OBJECT(self), "visible", FALSE, NULL);
