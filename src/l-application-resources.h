@@ -39,7 +39,6 @@ typedef enum  {
 #include "types/description-types.h"
 #include "types/l-saver.h"
 #include "types/l-device.h"
-#include "types/l-device-concept.h"
 #include "ui/device-description/device-description.h"
 #include "ui/l-device-card.h"
 #include "ui/action-cards/l-keys-label.h"
