@@ -25,6 +25,7 @@ static guint signal_set_dpi;
 static guint signal_set_hires;
 static guint signal_set_invert;
 static guint signal_set_target;
+static guint signal_set_sm_state;
 static guint signal_set_sm_threshold;
 static guint signal_set_sm_torque;
 
