@@ -41,6 +41,15 @@ l_saver_set_invert(LSaver *self, GString *name, gboolean invert);
 void
 l_saver_set_target(LSaver *self, GString *name, gboolean target);
 
+void
+l_saver_set_sm_state(LSaver *self, GString *name, gboolean state);
+
+void
+l_saver_set_sm_threshold(LSaver *self, GString *name, gint value);
+
+void
+l_saver_set_sm_torque(LSaver *self, GString *name, gint value);
+
 LSaver *
 l_saver_new(void);
 

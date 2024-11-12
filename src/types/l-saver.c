@@ -25,6 +25,8 @@ static guint signal_set_dpi;
 static guint signal_set_hires;
 static guint signal_set_invert;
 static guint signal_set_target;
+static guint signal_set_sm_threshold;
+static guint signal_set_sm_torque;
 
 struct _LSaver {
     GObject parent_instance;
@@ -53,6 +55,21 @@ l_saver_set_target(LSaver *self, GString *name, gboolean target) {
     g_signal_emit(self, signal_set_target, 0, name, target);
 }
 
+void
+l_saver_set_sm_state(LSaver *self, GString *name, gboolean state) {
+    g_signal_emit(self, signal_set_sm_state, 0, name, state);
+}
+
+void
+l_saver_set_sm_threshold(LSaver *self, GString *name, gint value) {
+    g_signal_emit(self, signal_set_sm_threshold, 0, name, value);
+}
+
+void
+l_saver_set_sm_torque(LSaver *self, GString *name, gint value) {
+    g_signal_emit(self, signal_set_sm_torque, 0, name, value);
+}
+
 LSaver *
 l_saver_new(void) {
     return g_object_new(L_TYPE_SAVER, NULL);
@@ -73,41 +90,77 @@ l_saver_class_init(LSaverClass *klass) {
                                   G_TYPE_INT,
                                   NULL);
     signal_set_hires = g_signal_new("set-hires",
-                                G_TYPE_FROM_CLASS(klass),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
-                                0,
-                                NULL,
-                                NULL,
-                                NULL,
-                                G_TYPE_NONE,
-                                2,
-                                G_TYPE_STRING,
-                                G_TYPE_BOOLEAN,
-                                NULL);
+                                    G_TYPE_FROM_CLASS(klass),
+                                    G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                    0,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    G_TYPE_NONE,
+                                    2,
+                                    G_TYPE_STRING,
+                                    G_TYPE_BOOLEAN,
+                                    NULL);
     signal_set_invert = g_signal_new("set-invert",
-                                 G_TYPE_FROM_CLASS(klass),
-                                 G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
-                                 0,
-                                 NULL,
-                                 NULL,
-                                 NULL,
-                                 G_TYPE_NONE,
-                                 2,
-                                 G_TYPE_STRING,
-                                 G_TYPE_BOOLEAN,
-                                 NULL);
+                                     G_TYPE_FROM_CLASS(klass),
+                                     G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                     0,
+                                     NULL,
+                                     NULL,
+                                     NULL,
+                                     G_TYPE_NONE,
+                                     2,
+                                     G_TYPE_STRING,
+                                     G_TYPE_BOOLEAN,
+                                     NULL);
     signal_set_target = g_signal_new("set-target",
-                                 G_TYPE_FROM_CLASS(klass),
-                                 G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
-                                 0,
-                                 NULL,
-                                 NULL,
-                                 NULL,
-                                 G_TYPE_NONE,
-                                 2,
-                                 G_TYPE_STRING,
-                                 G_TYPE_BOOLEAN,
-                                 NULL);
+                                     G_TYPE_FROM_CLASS(klass),
+                                     G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                     0,
+                                     NULL,
+                                     NULL,
+                                     NULL,
+                                     G_TYPE_NONE,
+                                     2,
+                                     G_TYPE_STRING,
+                                     G_TYPE_BOOLEAN,
+                                     NULL);
+    signal_set_sm_state = g_signal_new("set-smartshift-state",
+                                       G_TYPE_FROM_CLASS(klass),
+                                       G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                       0,
+                                       NULL,
+                                       NULL,
+                                       NULL,
+                                       G_TYPE_NONE,
+                                       2,
+                                       G_TYPE_STRING,
+                                       G_TYPE_BOOLEAN,
+                                       NULL);
+    signal_set_sm_threshold = g_signal_new("set-smartshift-threshold",
+                                           G_TYPE_FROM_CLASS(klass),
+                                           G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                           0,
+                                           NULL,
+                                           NULL,
+                                           NULL,
+                                           G_TYPE_NONE,
+                                           2,
+                                           G_TYPE_STRING,
+                                           G_TYPE_INT,
+                                           NULL);
+    signal_set_sm_torque = g_signal_new("set-smartshift-torque",
+                                        G_TYPE_FROM_CLASS(klass),
+                                        G_SIGNAL_RUN_LAST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS,
+                                        0,
+                                        NULL,
+                                        NULL,
+                                        NULL,
+                                        G_TYPE_NONE,
+                                        2,
+                                        G_TYPE_STRING,
+                                        G_TYPE_INT,
+                                        NULL);
 
 }
 
