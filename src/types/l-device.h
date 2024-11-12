@@ -28,11 +28,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LDevice, l_device, L, DEVICE, GObject)
 
-gboolean
-l_device_settings_is_changed(LDevice *self);
-
-void
-l_device_reset_settings_state(LDevice *self);
 
 LDevice *
 l_device_new(gpointer saver);

@@ -25,7 +25,6 @@ struct _LDevice {
 
     LSaver *saver;
     GString *name;
-    gboolean settings_is_changed;
     Dpi dpi;
     Smartshift *smartshift;
     Hiresscroll *hiresscroll;
@@ -34,15 +33,6 @@ struct _LDevice {
 
 G_DEFINE_FINAL_TYPE (LDevice, l_device, G_TYPE_OBJECT)
 
-gboolean
-l_device_settings_is_changed(LDevice *self) {
-    return self->settings_is_changed;
-}
-
-void
-l_device_reset_settings_state(LDevice *self) {
-    self->settings_is_changed = FALSE;
-}
 
 GString *
 l_device_get_name(LDevice *self) {
@@ -142,7 +132,6 @@ l_device_set_hiresscroll_target(LDevice *self, gboolean target) {
 void
 l_device_set_name(LDevice *self, const char *name) {
     self->name = g_string_new(name);
-    self->settings_is_changed = TRUE;
 }
 
 /**
@@ -194,7 +183,6 @@ l_device_class_init(LDeviceClass *klass) {}
 static void
 l_device_init(LDevice *self) {
     self->name = g_malloc(sizeof(GString));
-    self->settings_is_changed = FALSE;
     self->smartshift = g_malloc(sizeof(Smartshift));
     self->hiresscroll = g_malloc(sizeof(Hiresscroll));
 }
