@@ -1,4 +1,4 @@
-application_id = 'org.nordlex.logiops'
+application_id = 'dev.nordlex.logiops'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(

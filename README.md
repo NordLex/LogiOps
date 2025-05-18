@@ -1,6 +1,6 @@
 # LogiOps
 
-![LogiOps Icon](data/icons/hicolor/scalable/apps/org.nordlex.logiops.svg)
+![LogiOps Icon](data/icons/hicolor/scalable/apps/dev.nordlex.logiops.svg)
 
 #### UI configurator for [PixelOne/LogiOps](https://github.com/PixlOne/logiops)
 

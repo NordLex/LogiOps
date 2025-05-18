@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'org.nordlex.logiops.desktop.in',
-       output: 'org.nordlex.logiops.desktop',
+        input: 'dev.nordlex.logiops.desktop.in',
+       output: 'dev.nordlex.logiops.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'org.nordlex.logiops.appdata.xml.in',
-       output: 'org.nordlex.logiops.appdata.xml',
+        input: 'dev.nordlex.logiops.appdata.xml.in',
+       output: 'dev.nordlex.logiops.appdata.xml',
        po_dir: '../po',
       install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -25,7 +25,7 @@ if appstream_util.found()
   test('Validate appstream file', appstream_util, args: ['validate', appstream_file])
 endif
 
-install_data('org.nordlex.logiops.gschema.xml',
+install_data('dev.nordlex.logiops.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

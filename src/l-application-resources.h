@@ -56,24 +56,24 @@ typedef enum  {
 #include "data/l-bus-manager.h"
 #include "data/l-key-code.h"
 
-#define L_APP_ID                "org.nordlex.logiops"
+#define L_APP_ID                "dev.nordlex.logiops"
 #define L_APP_NAME              "LogiOps"
-#define L_CSS_STYLE_PATH        "/org/nordlex/logiops/resources/media/application_style.css"
+#define L_CSS_STYLE_PATH        "/dev/nordlex/logiops/resources/media/application_style.css"
 
-#define MX_MASTER_3_IMAGE           "/org/nordlex/logiops/resources/media/mx-master-3.png"
-#define MX_MASTER_3_IMAGE_LIGHT     "/org/nordlex/logiops/resources/media/mx-master-3-light..."
-#define MX_ANYWHERE_3_IMAGE         "/org/nordlex/logiops/resources/media/mx-anywhere-3.png"
-#define MX_ANYWHERE_3_IMAGE_LIGHT   "/org/nordlex/logiops/resources/media/mx-anywhere-3-light..."
+#define MX_MASTER_3_IMAGE           "/dev/nordlex/logiops/resources/media/mx-master-3.png"
+#define MX_MASTER_3_IMAGE_LIGHT     "/dev/nordlex/logiops/resources/media/mx-master-3-light..."
+#define MX_ANYWHERE_3_IMAGE         "/dev/nordlex/logiops/resources/media/mx-anywhere-3.png"
+#define MX_ANYWHERE_3_IMAGE_LIGHT   "/dev/nordlex/logiops/resources/media/mx-anywhere-3-light..."
 
 #define L_DEVICE_BUTTON_SIZE    45
 
-#define L_KEYBOARD_SVG          "/org/nordlex/logiops/resources/media/keyboard.svg"
-#define L_KEYBOARD_PNG          "/org/nordlex/logiops/resources/media/keyboard.png"
-#define L_BATTERY_0             "/org/nordlex/logiops/resources/media/battery/0.svg"
-#define L_BATTERY_20            "/org/nordlex/logiops/resources/media/battery/20.svg"
-#define L_BATTERY_50            "/org/nordlex/logiops/resources/media/battery/50.svg"
-#define L_BATTERY_80            "/org/nordlex/logiops/resources/media/battery/80.svg"
-#define L_BATTERY_100           "/org/nordlex/logiops/resources/media/battery/100.svg"
+#define L_KEYBOARD_SVG          "/dev/nordlex/logiops/resources/media/keyboard.svg"
+#define L_KEYBOARD_PNG          "/dev/nordlex/logiops/resources/media/keyboard.png"
+#define L_BATTERY_0             "/dev/nordlex/logiops/resources/media/battery/0.svg"
+#define L_BATTERY_20            "/dev/nordlex/logiops/resources/media/battery/20.svg"
+#define L_BATTERY_50            "/dev/nordlex/logiops/resources/media/battery/50.svg"
+#define L_BATTERY_80            "/dev/nordlex/logiops/resources/media/battery/80.svg"
+#define L_BATTERY_100           "/dev/nordlex/logiops/resources/media/battery/100.svg"
 
 extern const char *frame[1];
 extern const char *action_names[9];

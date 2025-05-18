@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-    <gresource prefix="/org/nordlex/logiops">
+    <gresource prefix="/dev/nordlex/logiops">
         <file preprocess="xml-stripblanks">resources/ui/logiops-window.ui</file>
         <file preprocess="xml-stripblanks">resources/ui/help-overlay.ui</file>
         <file>resources/media/application_style.css</file>

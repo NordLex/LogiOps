@@ -1,5 +1,5 @@
 {
-  "app-id": "org.nordlex.logiops",
+  "app-id": "dev.nordlex.logiops",
   "runtime": "org.gnome.Platform",
   "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
@@ -30,7 +30,7 @@
       "sources": [
         {
           "type": "git",
-          "url": "file:///home/nordlex/devel/CLionProjects"
+          "url": "file:///home/nordlex/Devel/CLionProjects"
         }
       ]
     }
