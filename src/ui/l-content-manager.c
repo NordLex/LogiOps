@@ -26,6 +26,7 @@ struct _LContentManager {
 
     LDataManager *data_manager;
     LOverviewPage *overview_page;
+    LAuthorityCheckPage *authority_check_page;
     GtkWidget *back_button;
     GtkWidget *main_box;
     GSList *devices;
@@ -74,6 +75,13 @@ fill_cards(LContentManager *self) {
         temp_devices = g_slist_next(temp_devices);
     }
     return cards;
+}
+
+static GtkWidget *
+get_authority_check_page(LContentManager *self) {
+    self->authority_check_page = l_authority_check_page_new();
+
+    return GTK_WIDGET(self->authority_check_page);
 }
 
 static GtkWidget *
