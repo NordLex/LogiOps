@@ -5,6 +5,7 @@ logiops_sources = [
   'l-window.c',
   'ui/l-content-manager.c',
   'ui/l-device-card.c',
+  'ui/l-authority-check-page.c',
   'ui/l-overview-page.c',
   'ui/l-device-page.c',
   'ui/header-bar.c',

@@ -47,6 +47,7 @@ typedef enum  {
 #include "ui/action-cards/l-keypress-card.h"
 #include "ui/action-cards/l-gesture-card.h"
 #include "ui/action-cards/l-action-selector.h"
+#include "ui/l-authority-check-page.h"
 #include "ui/l-overview-page.h"
 #include "ui/l-device-page.h"
 #include "ui/l-device-button.h"
