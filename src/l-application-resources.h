@@ -36,6 +36,7 @@ typedef enum  {
 } ActionType;
 
 #include <adwaita.h>
+#include <polkit-1/polkit/polkit.h>
 #include "types/description-types.h"
 #include "types/l-device.h"
 #include "ui/device-description/device-description.h"
@@ -59,6 +60,8 @@ typedef enum  {
 #define L_APP_ID                "dev.nordlex.logiops"
 #define L_APP_NAME              "LogiOps"
 #define L_CSS_STYLE_PATH        "/dev/nordlex/logiops/resources/media/application_style.css"
+
+#define L_POLKIT_ACTION_ID      "dev.nordlex.logiops.request-permission"
 
 #define MX_MASTER_3_IMAGE           "/dev/nordlex/logiops/resources/media/mx-master-3.png"
 #define MX_MASTER_3_IMAGE_LIGHT     "/dev/nordlex/logiops/resources/media/mx-master-3-light..."

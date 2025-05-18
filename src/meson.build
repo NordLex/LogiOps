@@ -27,6 +27,7 @@ logiops_sources = [
 ]
 
 logiops_deps = [
+  dependency('polkit-gobject-1'),
   dependency('gtk4'),
   dependency('libadwaita-1', version: '>= 1.4'),
 ]
