@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+    <vendor>NordLex</vendor>
+    <vendor_url>https://github.com/NordLex</vendor_url>
+
+    <action id="dev.nordlex.logiops.request-permission">
+        <description>LogiOps Authentication</description>
+        <message>Authentication is required for LogiOps</message>\
+        <message xml:lang="ru">Для работы LogiOps требуется аутентификация</message>
+        <icon_name>preferences-system</icon_name>
+
+        <default>
+            <allow_any>auth_admin</allow_any>
+            <allow_inactive>auth_admin</allow_inactive>
+            <allow_active>auth_admin</allow_active>
+        </default>
+    </action>
+</policyconfig>
