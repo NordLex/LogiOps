@@ -71,7 +71,7 @@ l_application_about_action(GSimpleAction *action, GVariant *parameter, gpointer 
 
     window = gtk_application_get_active_window(GTK_APPLICATION (self));
 
-    adw_show_about_window(window,
+    adw_show_about_dialog(GTK_WIDGET(window),
                           "application-name", L_APP_NAME,
                           "application-icon", L_APP_ID,
                           "developer-name", "NordLex",
