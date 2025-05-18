@@ -27,6 +27,7 @@ struct _LApplication {
 
 G_DEFINE_TYPE (LApplication, l_application, ADW_TYPE_APPLICATION)
 
+
 LApplication *
 l_application_new(const char *application_id,
                                             GApplicationFlags flags) {
