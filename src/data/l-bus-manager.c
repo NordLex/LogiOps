@@ -44,6 +44,22 @@ struct _LBusManager {
 
 G_DEFINE_FINAL_TYPE(LBusManager, l_bus_manager, G_TYPE_OBJECT)
 
+
+static void
+get_logid_proxy(LBusManager *self) {
+    GError *error = NULL;
+
+    self->logid_proxy = g_dbus_proxy_new_sync(self->bus_connection,
+                                              G_DBUS_PROXY_FLAGS_NONE,
+                                              NULL,
+                                              logid_name,
+                                              logid_path,
+                                              logid_devices,
+                                              NULL,
+                                              &error);
+    g_assert_no_error(error);
+}
+
 static GDBusProxy *
 get_property_proxy(LBusManager *self, GString *device) {
     GDBusProxy *property_proxy;
@@ -695,15 +711,5 @@ l_bus_manager_init(LBusManager *self) {
     GError *error = NULL;
     self->key_code_converter = l_key_code_new();
     self->bus_connection = g_bus_get_sync(G_BUS_TYPE_SYSTEM, NULL, &error);
-    g_assert_no_error(error);
-
-    self->logid_proxy = g_dbus_proxy_new_sync(self->bus_connection,
-                                              G_DBUS_PROXY_FLAGS_NONE,
-                                              NULL,
-                                              logid_name,
-                                              logid_path,
-                                              logid_devices,
-                                              NULL,
-                                              &error);
     g_assert_no_error(error);
 }
