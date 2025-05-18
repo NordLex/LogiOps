@@ -94,11 +94,11 @@ get_start_page(LContentManager *self) {
 
 GtkWidget *
 l_content_manager_get_content(LContentManager *self) {
-    self->devices = l_data_manager_get_devices_list(self->data_manager,
-                                                    self->devices);
+    //self->devices = l_data_manager_get_devices_list(self->data_manager,
+    //                                                self->devices);
     gtk_stack_add_named(GTK_STACK(self->main_box),
-                        get_start_page(self),
-                        "start-page");
+                        get_authority_check_page(self),
+                        "authority-check-page");
 
     return GTK_WIDGET(self->main_box);
 }
