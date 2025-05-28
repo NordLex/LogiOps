@@ -522,7 +522,10 @@ request_keypress_action(LBusManager *self, GString *button, Keypress *keypress) 
                                     NULL,
                                     &error);
 
-    if (g_error_matches(error, 146, 19)) return 1;
+    //if (g_error_matches(error, 146, 19)) return 1;
+
+    if (error != NULL) return 1;
+
     g_assert_no_error(error);
 
     g_variant_get(result, "(as)", &iter);
@@ -587,7 +590,9 @@ request_cycle_dpi_action(LBusManager *self, GString *button, CycleDPI *cycle_dpi
                                     NULL,
                                     &error);
 
-    if (g_error_matches(error, 146, 19)) return 1;
+    //if (g_error_matches(error, 146, 19)) return 1;
+
+    if (error != NULL) return 1;
 
     g_assert_no_error(error);
 
